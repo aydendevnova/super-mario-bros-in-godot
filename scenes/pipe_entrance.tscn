@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bh6xp7x4bqtnv"]
+
+[ext_resource type="Script" uid="uid://d0nf4af6snrd4" path="res://scenes/pipe_entrance.gd" id="1_8nerh"]
+[ext_resource type="Texture2D" uid="uid://dfrkcw5qumebk" path="res://assets/white.png" id="2_wtxu8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8nerh"]
+size = Vector2(0.5, 8)
+
+[node name="PipeEntrance" type="Area2D" unique_id=1379708215]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_8nerh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1660357896]
+shape = SubResource("RectangleShape2D_8nerh")
+
+[node name="Mask" type="Sprite2D" parent="." unique_id=1011278352]
+visible = false
+z_index = 1
+position = Vector2(0, -24)
+scale = Vector2(2, 1.9999999)
+texture = ExtResource("2_wtxu8")
+centered = false

@@ -1,0 +1,411 @@
+[gd_scene format=3 uid="uid://bp2kvtrb4tqq7"]
+
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="1_vkava"]
+[ext_resource type="Texture2D" uid="uid://cqmskpby07x1a" path="res://assets/textures/chr-mapping.png" id="2_tf0e0"]
+[ext_resource type="Script" uid="uid://b7nysndpibbrn" path="res://ui/text_builder.gd" id="3_obcwv"]
+[ext_resource type="Script" uid="uid://cfuq6nmyuvnib" path="res://scripts/palette_swap_ui.gd" id="3_tf0e0"]
+[ext_resource type="Texture2D" uid="uid://y0sklbgxekhb" path="res://assets/cursor_atlas.tres" id="5_tf0e0"]
+[ext_resource type="Texture2D" uid="uid://suotrbf0iuex" path="res://ui/small_mario_display.tres" id="6_bo1jx"]
+[ext_resource type="Script" uid="uid://b6p3et14aan2l" path="res://ui/ui.gd" id="7_ui_gd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xuqvo"]
+shader = ExtResource("1_vkava")
+shader_parameter/palette_id = 4
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsp4k"]
+atlas = ExtResource("2_tf0e0")
+region = Rect2(256, 144, 176, 88)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bo1jx"]
+shader = ExtResource("1_vkava")
+shader_parameter/palette_id = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gycre"]
+shader = ExtResource("1_vkava")
+shader_parameter/palette_id = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vkava"]
+shader = ExtResource("1_vkava")
+shader_parameter/palette_id = 6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pa1oa"]
+shader = ExtResource("1_vkava")
+shader_parameter/palette_id = 21
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_obcwv"]
+shader = ExtResource("1_vkava")
+shader_parameter/palette_id = 0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vkava"]
+load_path = "res://.godot/imported/chr-mapping.png-c6c78b003d13594ae8e0fb9b7617de9d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tf0e0"]
+atlas = SubResource("CompressedTexture2D_vkava")
+region = Rect2(208, 192, 8, 8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tf0e0"]
+shader = ExtResource("1_vkava")
+shader_parameter/palette_id = 8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkava"]
+atlas = ExtResource("2_tf0e0")
+region = Rect2(193, 192, 8, 8)
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1955268887]
+script = ExtResource("7_ui_gd")
+
+[node name="MainMenu" type="CenterContainer" parent="." unique_id=375531848]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -328.0
+offset_right = 328.0
+offset_bottom = 160.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu" unique_id=1015046845]
+layout_mode = 2
+theme_override_constants/margin_top = 134
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MarginContainer" unique_id=528490842]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=931754919]
+custom_minimum_size = Vector2(0, 328)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/MarginContainer/VBoxContainer/AspectRatioContainer" unique_id=1220051869]
+material = SubResource("ShaderMaterial_xuqvo")
+custom_minimum_size = Vector2(684, 342)
+layout_mode = 2
+texture = SubResource("AtlasTexture_qsp4k")
+stretch_mode = 6
+
+[node name="VBoxContainer" type="HBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=1623609508]
+layout_mode = 2
+alignment = 2
+
+[node name="Copyright" type="Control" parent="MainMenu/MarginContainer/VBoxContainer/VBoxContainer" unique_id=545612512]
+texture_filter = 1
+material = SubResource("ShaderMaterial_bo1jx")
+custom_minimum_size = Vector2(448, 32)
+layout_mode = 2
+script = ExtResource("3_obcwv")
+text = "&C1985 NINTENDO"
+scale_factor = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=518485546]
+layout_mode = 2
+theme_override_constants/margin_top = 56
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer" unique_id=649759563]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="1PlayerGame" type="VBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=797047132]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/1PlayerGame" unique_id=1023147950]
+layout_mode = 2
+alignment = 1
+
+[node name="Cursor" type="TextureRect" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/1PlayerGame/HBoxContainer" unique_id=595662190]
+material = SubResource("ShaderMaterial_gycre")
+layout_mode = 2
+texture = ExtResource("5_tf0e0")
+expand_mode = 3
+
+[node name="Label" type="Control" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/1PlayerGame/HBoxContainer" unique_id=1110658711]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(448, 32)
+layout_mode = 2
+script = ExtResource("3_obcwv")
+text = " 1 PLAYER GAME"
+scale_factor = 4
+
+[node name="2PlayerGame" type="VBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=888077722]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/2PlayerGame" unique_id=547584345]
+layout_mode = 2
+alignment = 1
+
+[node name="Cursor" type="TextureRect" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/2PlayerGame/HBoxContainer" unique_id=56388817]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_gycre")
+layout_mode = 2
+texture = ExtResource("5_tf0e0")
+expand_mode = 3
+
+[node name="Label" type="Control" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/2PlayerGame/HBoxContainer" unique_id=53321425]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(448, 32)
+layout_mode = 2
+script = ExtResource("3_obcwv")
+text = " 2 PLAYER GAME"
+scale_factor = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1450640592]
+layout_mode = 2
+theme_override_constants/margin_top = 28
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=2066044803]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Control" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1667671561]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(352, 32)
+layout_mode = 2
+script = ExtResource("3_obcwv")
+text = "TOP- 000000"
+scale_factor = 4
+
+[node name="Transition" type="Control" parent="." unique_id=722732007]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Transition" unique_id=1794076742]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Transition" type="CenterContainer" parent="Transition" unique_id=343119191]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -162.0
+offset_right = 162.0
+offset_bottom = 112.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Transition/Transition" unique_id=6218629]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 320
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Transition/Transition/MarginContainer" unique_id=1984604979]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Transition/Transition/MarginContainer/VBoxContainer" unique_id=1342287537]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Control" parent="Transition/Transition/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1868230861]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(288, 32)
+layout_mode = 2
+script = ExtResource("3_obcwv")
+text = "WORLD X-X"
+scale_factor = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Transition/Transition/MarginContainer/VBoxContainer" unique_id=590296959]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Transition/Transition/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1337377284]
+layout_mode = 2
+theme_override_constants/margin_left = -8
+theme_override_constants/margin_top = 84
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Transition/Transition/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer" unique_id=1613482792]
+layout_mode = 2
+alignment = 1
+
+[node name="MarioIcon" type="TextureRect" parent="Transition/Transition/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/HBoxContainer2" unique_id=622719482]
+material = SubResource("ShaderMaterial_pa1oa")
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("6_bo1jx")
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="Transition/Transition/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/HBoxContainer2" unique_id=242502978]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Transition/Transition/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/HBoxContainer2/MarginContainer" unique_id=921458716]
+layout_mode = 2
+
+[node name="Label" type="Control" parent="Transition/Transition/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/HBoxContainer2/MarginContainer/HBoxContainer" unique_id=2111205662]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 2
+script = ExtResource("3_obcwv")
+text = " *  "
+scale_factor = 4
+
+[node name="LivesLabel" type="Control" parent="Transition/Transition/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/HBoxContainer2/MarginContainer/HBoxContainer" unique_id=501292942]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+script = ExtResource("3_obcwv")
+text = "3"
+scale_factor = 4
+
+[node name="LoadTimer" type="Timer" parent="Transition/Transition" unique_id=67332338]
+
+[node name="HUD" type="CenterContainer" parent="." unique_id=1400137677]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_right = 480.0
+offset_bottom = 48.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=906967074]
+texture_filter = 1
+custom_minimum_size = Vector2(960, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 0
+
+[node name="UI" type="Control" parent="HUD/MarginContainer" unique_id=1066129650]
+layout_mode = 2
+
+[node name="TopLine" type="HBoxContainer" parent="HUD/MarginContainer/UI" unique_id=1640957761]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 40.0
+theme_override_constants/separation = 64
+
+[node name="Character" type="HBoxContainer" parent="HUD/MarginContainer/UI/TopLine" unique_id=588028933]
+layout_mode = 2
+
+[node name="Character" type="Control" parent="HUD/MarginContainer/UI/TopLine/Character" unique_id=26831000]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(160, 32)
+layout_mode = 2
+script = ExtResource("3_obcwv")
+text = "MARIO"
+scale_factor = 4
+
+[node name="SpacerIgnoreThis" type="Control" parent="HUD/MarginContainer/UI/TopLine/Character" unique_id=727356239]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(224, 32)
+layout_mode = 2
+script = ExtResource("3_obcwv")
+text = "       "
+scale_factor = 4
+
+[node name="World" type="Control" parent="HUD/MarginContainer/UI/TopLine" unique_id=1312125536]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(160, 32)
+layout_mode = 2
+script = ExtResource("3_obcwv")
+text = "WORLD"
+scale_factor = 4
+
+[node name="Time" type="Control" parent="HUD/MarginContainer/UI/TopLine" unique_id=794501512]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 2
+script = ExtResource("3_obcwv")
+text = "TIME"
+scale_factor = 4
+
+[node name="BottomLine" type="HBoxContainer" parent="HUD/MarginContainer/UI" unique_id=699389226]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 788.0
+offset_bottom = 72.0
+theme_override_constants/separation = 58
+
+[node name="Score" type="Control" parent="HUD/MarginContainer/UI/BottomLine" unique_id=10311738]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(192, 32)
+layout_mode = 2
+script = ExtResource("3_obcwv")
+text = "000000"
+scale_factor = 4
+
+[node name="CoinDiv" type="Label" parent="HUD/MarginContainer/UI/BottomLine" unique_id=435367820]
+custom_minimum_size = Vector2(178, 0)
+layout_mode = 2
+text = "                                 "
+
+[node name="CoinBottomSprite" type="TextureRect" parent="HUD/MarginContainer/UI/BottomLine/CoinDiv" unique_id=2103409582]
+process_mode = 1
+material = SubResource("ShaderMaterial_obcwv")
+layout_mode = 0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 24.0
+offset_bottom = 24.0
+texture = SubResource("AtlasTexture_tf0e0")
+script = ExtResource("3_tf0e0")
+
+[node name="CoinDisplay" type="TextureRect" parent="HUD/MarginContainer/UI/BottomLine/CoinDiv" unique_id=1499809686]
+process_mode = 1
+material = SubResource("ShaderMaterial_tf0e0")
+layout_mode = 0
+offset_top = -8.0
+offset_right = 28.0
+offset_bottom = 20.0
+texture = SubResource("AtlasTexture_vkava")
+script = ExtResource("3_tf0e0")
+sprite_type = 2
+
+[node name="Coin" type="Control" parent="HUD/MarginContainer/UI/BottomLine/CoinDiv" unique_id=846245658]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(96, 32)
+anchors_preset = 0
+offset_left = 24.0
+offset_top = -8.0
+offset_right = 120.0
+offset_bottom = 24.0
+script = ExtResource("3_obcwv")
+text = "*00"
+scale_factor = 4
+
+[node name="Control" type="Control" parent="HUD/MarginContainer/UI/BottomLine" unique_id=166955543]
+custom_minimum_size = Vector2(162, 0)
+layout_mode = 2
+
+[node name="World" type="Control" parent="HUD/MarginContainer/UI/BottomLine/Control" unique_id=516484878]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(96, 32)
+anchors_preset = 0
+offset_right = 96.0
+offset_bottom = 32.0
+script = ExtResource("3_obcwv")
+text = "1-1"
+scale_factor = 4
+
+[node name="Time" type="Control" parent="HUD/MarginContainer/UI/BottomLine" unique_id=306666284]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(96, 32)
+layout_mode = 2
+script = ExtResource("3_obcwv")
+text = "400"
+scale_factor = 4

@@ -1,0 +1,40 @@
+[gd_resource type="TileSet" format=3 uid="uid://drbqyvcwe1wl8"]
+
+[ext_resource type="Texture2D" uid="uid://cqmskpby07x1a" path="res://assets/textures/chr-mapping.png" id="1_j4km4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ycdy4"]
+texture = ExtResource("1_j4km4")
+12:0/0 = 0
+13:0/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+14:0/0 = 0
+12:1/0 = 0
+15:0/0 = 0
+15:1/0 = 0
+16:1/0 = 0
+17:1/0 = 0
+18:1/0 = 0
+19:1/0 = 0
+20:1/0 = 0
+21:1/0 = 0
+22:1/0 = 0
+23:1/0 = 0
+23:0/0 = 0
+22:0/0 = 0
+21:0/0 = 0
+20:0/0 = 0
+19:0/0 = 0
+18:0/0 = 0
+17:0/0 = 0
+16:0/0 = 0
+12:3/0 = 0
+12:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+13:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
+15:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[resource]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_ycdy4")

@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://ce2pfugcn4ybx"]
+
+[ext_resource type="Script" uid="uid://cfrk1lq3vq2qg" path="res://scripts/palette_swap.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://kdjmo2dhwgba" path="res://scenes/sprites/flag.gd" id="1_xwmwj"]
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="2_shader"]
+[ext_resource type="Texture2D" uid="uid://dbif06p0dp74g" path="res://assets/textures/chr-mapping.png" id="3_atlas"]
+[ext_resource type="PackedScene" uid="uid://qkq8rkgv6q4m" path="res://scenes/sprites/pole.tscn" id="4_usba3"]
+[ext_resource type="PackedScene" uid="uid://cwnrrx2ss0qg7" path="res://scenes/sprites/flag_ball.tscn" id="5_cwgho"]
+[ext_resource type="Shape2D" uid="uid://ccy5o4jglbeso" path="res://assets/16x16_collision.tres" id="7_xwmwj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("2_shader")
+shader_parameter/palette_id = 24
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("3_atlas")
+region = Rect2(16, 128, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pole"]
+size = Vector2(16, 144)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wjxks"]
+shader = ExtResource("2_shader")
+shader_parameter/palette_id = 4
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryfo2"]
+atlas = ExtResource("3_atlas")
+region = Rect2(0, 16, 16, 16)
+
+[node name="Flag" type="Node2D" unique_id=1462559492]
+script = ExtResource("1_xwmwj")
+
+[node name="FlagSprite" type="Sprite2D" parent="." unique_id=1094755125]
+z_index = -1
+material = SubResource("ShaderMaterial_1")
+position = Vector2(-8, 12)
+texture = SubResource("AtlasTexture_1")
+centered = false
+
+[node name="Pole" parent="." unique_id=484939886 instance=ExtResource("4_usba3")]
+position = Vector2(0, 8)
+
+[node name="Pole2" parent="." unique_id=1133763696 instance=ExtResource("4_usba3")]
+position = Vector2(0, 24)
+
+[node name="Pole3" parent="." unique_id=1600885810 instance=ExtResource("4_usba3")]
+position = Vector2(0, 40)
+
+[node name="Pole4" parent="." unique_id=209963508 instance=ExtResource("4_usba3")]
+position = Vector2(0, 56)
+
+[node name="Pole5" parent="." unique_id=496312292 instance=ExtResource("4_usba3")]
+position = Vector2(0, 72)
+
+[node name="Pole6" parent="." unique_id=916856285 instance=ExtResource("4_usba3")]
+position = Vector2(0, 88)
+
+[node name="Pole7" parent="." unique_id=1140738860 instance=ExtResource("4_usba3")]
+position = Vector2(0, 104)
+
+[node name="Pole8" parent="." unique_id=2126311909 instance=ExtResource("4_usba3")]
+position = Vector2(0, 120)
+
+[node name="Pole9" parent="." unique_id=142320782 instance=ExtResource("4_usba3")]
+position = Vector2(0, 136)
+
+[node name="FlagBall" parent="." unique_id=1964232527 instance=ExtResource("5_cwgho")]
+position = Vector2(0, -8)
+
+[node name="PoleArea" type="Area2D" parent="." unique_id=281421960]
+position = Vector2(14, 72)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PoleArea" unique_id=96275670]
+shape = SubResource("RectangleShape2D_pole")
+
+[node name="Stair" type="StaticBody2D" parent="." unique_id=230855794]
+position = Vector2(0, 152)
+
+[node name="Sprite2D" type="Sprite2D" parent="Stair" unique_id=1225066371]
+material = SubResource("ShaderMaterial_wjxks")
+texture = SubResource("AtlasTexture_ryfo2")
+centered = false
+script = ExtResource("1_script")
+sprite_type = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stair" unique_id=1631983638]
+position = Vector2(8, 8)
+shape = ExtResource("7_xwmwj")
+
+[connection signal="body_entered" from="PoleArea" to="." method="_on_pole_area_body_entered"]

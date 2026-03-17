@@ -1,0 +1,343 @@
+[
+    {
+      "id": 0,
+      "label": "Overworld Foreground",
+      "category": "sprite",
+      "nes_indices": [
+        15,
+        15,
+        54,
+        23
+      ]
+    },
+    {
+      "id": 1,
+      "label": "Underground Foreground",
+      "category": "sprite",
+      "nes_indices": [
+        15,
+        12,
+        60,
+        28
+      ]
+    },
+    {
+      "id": 2,
+      "label": "Castle Foreground",
+      "category": "sprite",
+      "nes_indices": [
+        15,
+        0,
+        48,
+        16
+      ]
+    },
+    {
+      "id": 3,
+      "label": "Underwater Foreground",
+      "category": "sprite",
+      "nes_indices": [
+        15,
+        15,
+        48,
+        16
+      ]
+    },
+    {
+      "id": 4,
+      "label": "Overworld Background",
+      "category": "background",
+      "nes_indices": [
+        15,
+        54,
+        23,
+        15
+      ]
+    },
+    {
+      "id": 5,
+      "label": "Underground Background",
+      "category": "background",
+      "nes_indices": [
+        15,
+        60,
+        28,
+        15
+      ]
+    },
+    {
+      "id": 6,
+      "label": "Castle Background",
+      "category": "background",
+      "nes_indices": [
+        15,
+        48,
+        16,
+        0
+      ]
+    },
+    {
+      "id": 7,
+      "label": "Underwater Background",
+      "category": "background",
+      "nes_indices": [
+        15,
+        58,
+        26,
+        15
+      ]
+    },
+    {
+      "id": 8,
+      "label": "Overworld Gold",
+      "category": "background",
+      "nes_indices": [15, 39, 23, 15],
+      "animation_frames": [28, 32]
+    },
+    {
+      "id": 9,
+      "label": "Underground Gold",
+      "category": "background",
+      "nes_indices": [15, 39, 23, 28],
+      "animation_frames": [29, 33]
+    },
+    {
+      "id": 10,
+      "label": "Castle Gold",
+      "category": "background",
+      "nes_indices": [15, 39, 23, 0],
+      "animation_frames": [30, 34]
+    },
+    {
+      "id": 11,
+      "label": "Underwater Gold",
+      "category": "background",
+      "nes_indices": [15, 39, 18, 15],
+      "animation_frames": [31, 35]
+    },
+    {
+      "id": 12,
+      "label": "Scenery Overworld",
+      "category": "background",
+      "nes_indices": [
+        15,
+        41,
+        26,
+        15
+      ]
+    },
+    {
+      "id": 13,
+      "label": "Scenery Underground",
+      "category": "background",
+      "nes_indices": [
+        15,
+        41,
+        26,
+        9
+      ]
+    },
+    {
+      "id": 14,
+      "label": "Scenery Underwater",
+      "category": "background",
+      "nes_indices": [
+        15,
+        21,
+        18,
+        37
+      ]
+    },
+    {
+      "id": 15,
+      "label": "Scenery Snow",
+      "category": "background",
+      "nes_indices": [
+        15,
+        16,
+        48,
+        0
+      ]
+    },
+    {
+      "id": 16,
+      "label": "Scenery Mushrooms",
+      "category": "background",
+      "nes_indices": [
+        15,
+        39,
+        22,
+        15
+      ]
+    },
+    {
+      "id": 17,
+      "label": "Overworld Atmospheric",
+      "category": "background",
+      "nes_indices": [
+        15,
+        48,
+        33,
+        15
+      ]
+    },
+    {
+      "id": 18,
+      "label": "Underground Atmospheric",
+      "category": "background",
+      "nes_indices": [
+        15,
+        48,
+        33,
+        28
+      ]
+    },
+    {
+      "id": 19,
+      "label": "Underwater Atmospheric",
+      "category": "background",
+      "nes_indices": [
+        15,
+        48,
+        18,
+        15
+      ]
+    },
+    {
+      "id": 20,
+      "label": "Castle Atmospheric",
+      "category": "background",
+      "nes_indices": [
+        15,
+        48,
+        22,
+        0
+      ]
+    },
+    {
+      "id": 21,
+      "label": "Mario",
+      "category": "player",
+      "nes_indices": [
+        15,
+        22,
+        39,
+        24
+      ]
+    },
+    {
+      "id": 22,
+      "label": "Luigi",
+      "category": "player",
+      "nes_indices": [
+        15,
+        48,
+        39,
+        25
+      ]
+    },
+    {
+      "id": 23,
+      "label": "Fire Mario",
+      "category": "player",
+      "nes_indices": [
+        15,
+        55,
+        39,
+        22
+      ]
+    },
+    {
+      "id": 24,
+      "label": "Overworld Enemies",
+      "category": "sprite",
+      "nes_indices": [
+        15,
+        26,
+        48,
+        39
+      ]
+    },
+    {
+      "id": 25,
+      "label": "Underground Enemies",
+      "category": "sprite",
+      "nes_indices": [
+        15,
+        28,
+        54,
+        23
+      ]
+    },
+    {
+      "id": 26,
+      "label": "Underwater Enemies",
+      "category": "sprite",
+      "nes_indices": [
+        15,
+        16,
+        48,
+        39
+      ]
+    },
+    {
+      "id": 27,
+      "label": "Red Enemies",
+      "category": "sprite",
+      "nes_indices": [
+        15,
+        22,
+        48,
+        39
+      ]
+    },
+    {
+      "id": 28,
+      "label": "Overworld Gold F1",
+      "category": "background",
+      "nes_indices": [15, 23, 23, 15]
+    },
+    {
+      "id": 29,
+      "label": "Underground Gold F1",
+      "category": "background",
+      "nes_indices": [15, 23, 23, 28]
+    },
+    {
+      "id": 30,
+      "label": "Castle Gold F1",
+      "category": "background",
+      "nes_indices": [15, 23, 23, 0]
+    },
+    {
+      "id": 31,
+      "label": "Underwater Gold F1",
+      "category": "background",
+      "nes_indices": [15, 23, 18, 15]
+    },
+    {
+      "id": 32,
+      "label": "Overworld Gold F2",
+      "category": "background",
+      "nes_indices": [15, 7, 23, 15]
+    },
+    {
+      "id": 33,
+      "label": "Underground Gold F2",
+      "category": "background",
+      "nes_indices": [15, 7, 23, 28]
+    },
+    {
+      "id": 34,
+      "label": "Castle Gold F2",
+      "category": "background",
+      "nes_indices": [15, 7, 23, 0]
+    },
+    {
+      "id": 35,
+      "label": "Underwater Gold F2",
+      "category": "background",
+      "nes_indices": [15, 7, 18, 15]
+    }
+  ]
+  

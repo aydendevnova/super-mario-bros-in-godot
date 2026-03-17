@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bxxciava8wl1"]
+
+[ext_resource type="Script" uid="uid://cfrk1lq3vq2qg" path="res://scripts/palette_swap.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://y0sklbgxekhb" path="res://assets/cursor_atlas.tres" id="2_g1ylt"]
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="2_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("2_shader")
+shader_parameter/palette_id = 4
+
+[node name="Cursor" type="Node2D" unique_id=780285882]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2131034565]
+material = SubResource("ShaderMaterial_1")
+texture = ExtResource("2_g1ylt")
+centered = false
+script = ExtResource("1_script")
+sprite_type = 1

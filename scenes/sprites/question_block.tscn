@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://d30imi6y61x0s"]
+
+[ext_resource type="Script" uid="uid://camdoy7lfi5ae" path="res://scenes/sprites/question_block.gd" id="1_m5wvy"]
+[ext_resource type="Script" uid="uid://cfrk1lq3vq2qg" path="res://scripts/palette_swap.gd" id="1_script"]
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="2_shader"]
+[ext_resource type="Texture2D" uid="uid://dbif06p0dp74g" path="res://assets/textures/chr-mapping.png" id="3_atlas"]
+[ext_resource type="Shape2D" uid="uid://ccy5o4jglbeso" path="res://assets/16x16_collision.tres" id="4_8oy46"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("2_shader")
+shader_parameter/palette_id = 8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("3_atlas")
+region = Rect2(192, 80, 16, 16)
+
+[node name="QuestionBlock" type="StaticBody2D" unique_id=442592255]
+z_index = 1
+script = ExtResource("1_m5wvy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1462561919]
+material = SubResource("ShaderMaterial_1")
+texture = SubResource("AtlasTexture_1")
+centered = false
+script = ExtResource("1_script")
+sprite_type = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1919449704]
+position = Vector2(8, 8)
+shape = ExtResource("4_8oy46")

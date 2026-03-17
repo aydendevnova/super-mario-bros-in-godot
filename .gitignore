@@ -1,0 +1,18 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Misc
+.DS_Store
+Thumbs.db
+
+# Our _gen_assets directory is used to generate the assets for the project
+__pycache__/
+
+_gen_assets/smb.nes
+_gen_assets/smb.nsf
+
+
+assets/textures/
+assets/music/
+assets/sfx/

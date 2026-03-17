@@ -1,0 +1,50 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="shader"]
+[ext_resource type="Script" uid="uid://cfrk1lq3vq2qg" path="res://scripts/palette_swap.gd" id="palette_script"]
+[ext_resource type="Texture2D" uid="uid://bltae2kfawg7u" path="res://assets/textures/enemies/bowser_walk_0.png" id="tex_0"]
+[ext_resource type="Texture2D" uid="uid://bfg8uq5r07faw" path="res://assets/textures/enemies/bowser_walk_1.png" id="tex_1"]
+[ext_resource type="Texture2D" uid="uid://uu2vcqmqajcd" path="res://assets/textures/enemies/bowser_walk_2.png" id="tex_2"]
+[ext_resource type="Texture2D" uid="uid://b0gmqgu2o48lo" path="res://assets/textures/enemies/bowser_walk_3.png" id="tex_3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("shader")
+shader_parameter/palette_id = 24
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(32, 32)
+
+[node name="Bowser" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_1")
+sprite_frames = SubResource("SpriteFrames_1")
+animation = &"walk"
+autoplay = "walk"
+centered = false
+script = ExtResource("palette_script")
+sprite_type = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_1")

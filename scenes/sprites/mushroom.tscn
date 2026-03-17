@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://mgbkwvttnrti"]
+
+[ext_resource type="Script" uid="uid://jh442faqjmy6" path="res://scenes/sprites/mushroom.gd" id="1_janut"]
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="2_shader"]
+[ext_resource type="Texture2D" uid="uid://dbif06p0dp74g" path="res://assets/textures/chr-mapping.png" id="3_atlas"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("2_shader")
+shader_parameter/palette_id = 27
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("3_atlas")
+region = Rect2(288, 96, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhyhj"]
+size = Vector2(10, 15.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_janut"]
+size = Vector2(10, 10)
+
+[node name="Mushroom" type="CharacterBody2D" unique_id=616552496]
+collision_layer = 32
+script = ExtResource("1_janut")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=91453059]
+material = SubResource("ShaderMaterial_1")
+texture = SubResource("AtlasTexture_1")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=26674196]
+position = Vector2(8, 8.5)
+shape = SubResource("RectangleShape2D_uhyhj")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1006657504]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=859836631]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_janut")

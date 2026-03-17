@@ -1,0 +1,36 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dlldmbgi7syen"]
+
+[ext_resource type="Texture2D" uid="uid://ddlawgx15362a" path="res://assets/textures/player/stand_small_full_0.png" id="tex_0"]
+[ext_resource type="Texture2D" uid="uid://qjkbekoxv73i" path="res://assets/textures/player/stand_medium_full_0.png" id="tex_1"]
+[ext_resource type="Texture2D" uid="uid://dq3fc4j7mheor" path="res://assets/textures/player/stand_large_0.png" id="tex_2"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_2")
+}],
+"loop": false,
+"name": &"grow",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_0")
+}],
+"loop": false,
+"name": &"shrink",
+"speed": 5.0
+}]

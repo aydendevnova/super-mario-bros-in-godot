@@ -1,0 +1,624 @@
+[gd_scene format=4 uid="uid://cg1gtsbob3rty"]
+
+[ext_resource type="Script" uid="uid://c2sosdnv3pv24" path="res://scripts/level_builder.gd" id="1_lwpho"]
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="2_5il03"]
+[ext_resource type="TileSet" uid="uid://bimohwyjhw0v2" path="res://tilesets/background_tileset.tres" id="3_qg47h"]
+[ext_resource type="Script" uid="uid://cfrk1lq3vq2qg" path="res://scripts/palette_swap.gd" id="4_qxv2u"]
+[ext_resource type="TileSet" uid="uid://dm6v8on7ggv0l" path="res://tilesets/scenery_tileset.tres" id="5_hqvaf"]
+[ext_resource type="TileSet" uid="uid://drbqyvcwe1wl8" path="res://tilesets/atmospheric_tileset.tres" id="6_b87h7"]
+[ext_resource type="TileSet" uid="uid://dnylvyjtr38fk" path="res://tilesets/red_enemies.tres" id="7_w5in8"]
+[ext_resource type="PackedScene" uid="uid://bkywjeu2574u0" path="res://scenes/sprites/brick_bg.tscn" id="8_7mx25"]
+[ext_resource type="Script" uid="uid://cnuf8qxvj258v" path="res://scenes/sprites/brick_bg.gd" id="9_4c5h4"]
+[ext_resource type="PackedScene" uid="uid://u8vi3vnse2qj" path="res://scenes/sprites/cannon_top.tscn" id="10_osyqt"]
+[ext_resource type="PackedScene" uid="uid://bp05j4ckp6g4d" path="res://scenes/sprites/cannon_mid.tscn" id="11_k0nwd"]
+[ext_resource type="PackedScene" uid="uid://d30imi6y61x0s" path="res://scenes/sprites/question_block.tscn" id="12_5lolj"]
+[ext_resource type="Script" uid="uid://camdoy7lfi5ae" path="res://scenes/sprites/question_block.gd" id="13_hu06f"]
+[ext_resource type="PackedScene" uid="uid://dd3lrcsxobbbh" path="res://scenes/sprites/cannon_base.tscn" id="14_ouymi"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/paratroopa.tscn" id="15_ysrd4"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/hammer_bro.tscn" id="16_p3t6u"]
+[ext_resource type="PackedScene" uid="uid://bfhfvpy4jj5k4" path="res://scenes/enemies/koopa_troopa.tscn" id="17_echwh"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/buzzy_beetle.tscn" id="18_pbe56"]
+[ext_resource type="PackedScene" uid="uid://msccydg1llh0" path="res://scenes/sprites/coin_a.tscn" id="19_jofsq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvy44"]
+shader = ExtResource("2_5il03")
+shader_parameter/palette_id = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbpu7"]
+shader = ExtResource("2_5il03")
+shader_parameter/palette_id = 12
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j47s7"]
+shader = ExtResource("2_5il03")
+shader_parameter/palette_id = 17
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_godxv"]
+shader = ExtResource("2_5il03")
+shader_parameter/palette_id = 27
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a3dns"]
+shader = ExtResource("2_5il03")
+shader_parameter/palette_id = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gwmlk"]
+shader = ExtResource("2_5il03")
+shader_parameter/palette_id = 13
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lejsg"]
+shader = ExtResource("2_5il03")
+shader_parameter/palette_id = 18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4pp0x"]
+shader = ExtResource("2_5il03")
+shader_parameter/palette_id = 27
+
+[node name="Level" type="Node2D" unique_id=1226794753]
+
+[node name="LevelBuilder" type="Node2D" parent="." unique_id=235941376]
+script = ExtResource("1_lwpho")
+level_json_path = "res://data/levels/7-1.json"
+
+[node name="Main" type="Node2D" parent="LevelBuilder" unique_id=327076004]
+
+[node name="Background" type="TileMapLayer" parent="LevelBuilder/Main" unique_id=1082818523]
+material = SubResource("ShaderMaterial_vvy44")
+tile_map_data = PackedByteArray("AAABAAAAAAAEAAAAAAACAAAAAAAEAAAAAAADAAAAAAAEAAAAAAABAAEAAAADAAEAAAACAAEAAAACAAAAAAADAAEAAAAFAAEAAAAAAAIAAAAEAAAAAAABAAIAAAAFAAAAAAACAAIAAAAFAAAAAAADAAIAAAAFAAAAAAAEAAIAAAAEAAAAAAAAAAMAAAACAAAAAAABAAMAAAACAAAAAAACAAMAAAAGAAAAAAADAAMAAAACAAAAAAAEAAMAAAACAAAAAACpAAMAAAAAAAEAAACqAAMAAAAAAAEAAAAAAAQAAAACAAAAAAABAAQAAAACAAAAAAACAAQAAAAGAAEAAAADAAQAAAACAAAAAAAEAAQAAAACAAAAAACoAAQAAAAAAAEAAACpAAQAAAAAAAEAAACqAAQAAAAAAAEAAAAAAAUAAAAFAAAAAAABAAUAAAAFAAAAAAACAAUAAAAFAAAAAAADAAUAAAAFAAAAAAAEAAUAAAAFAAAAAAAFAAUAAAAEAAAAAAAGAAUAAAAEAAAAAACeAAUAAAAAAAEAAACnAAUAAAAAAAEAAACoAAUAAAAAAAEAAACpAAUAAAAAAAEAAACqAAUAAAAAAAEAAAAAAAYAAAACAAAAAAABAAYAAAAGAAAAAAACAAYAAAACAAAAAAADAAYAAAAGAAAAAAAEAAYAAAACAAAAAAAFAAYAAAACAAAAAAAGAAYAAAACAAAAAACdAAYAAAAAAAEAAACeAAYAAAAAAAEAAACmAAYAAAAAAAEAAACnAAYAAAAAAAEAAACoAAYAAAAAAAEAAACpAAYAAAAAAAEAAACqAAYAAAAAAAEAAAC4AAYAAAAEAAAAAAC5AAYAAAAEAAAAAAC6AAYAAAAEAAAAAAAAAAcAAAACAAAAAAABAAcAAAAGAAEAAAACAAcAAAACAAAAAAADAAcAAAAGAAEAAAAEAAcAAAACAAAAAAAFAAcAAAACAAAAAAAGAAcAAAACAAAAAABAAAcAAAAAAAEAAACcAAcAAAAAAAEAAACdAAcAAAAAAAEAAACeAAcAAAAAAAEAAAClAAcAAAAAAAEAAACmAAcAAAAAAAEAAACnAAcAAAAAAAEAAACoAAcAAAAAAAEAAACpAAcAAAAAAAEAAACqAAcAAAAAAAEAAAC4AAcAAAADAAEAAAC5AAcAAAACAAAAAAC6AAcAAAAFAAEA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")
+tile_set = ExtResource("3_qg47h")
+script = ExtResource("4_qxv2u")
+sprite_type = 1
+
+[node name="Scenery" type="TileMapLayer" parent="LevelBuilder/Main" unique_id=586852501]
+material = SubResource("ShaderMaterial_lbpu7")
+tile_map_data = PackedByteArray("AACzAAAAAAADAAgAAACzAAEAAAACAAgAAACzAAIAAAACAAgAAACzAAMAAAACAAgAAACzAAQAAAACAAgAAACzAAUAAAACAAgAAACzAAYAAAACAAgAAACzAAcAAAACAAgAAAANAAgAAAABAAYAAAAVAAgAAAABAAYAAAArAAgAAAABAAYAAAA9AAgAAAABAAYAAABFAAgAAAABAAYAAABMAAgAAAAHAAUAAABNAAgAAAAIAAUAAABbAAgAAAABAAYAAABdAAgAAAAHAAUAAABeAAgAAAAIAAUAAABtAAgAAAAHAAUAAABuAAgAAAAIAAUAAAB1AAgAAAABAAYAAACLAAgAAAABAAYAAACzAAgAAAACAAgAAAALAAkAAAAAAAcAAAANAAkAAAABAAcAAAAVAAkAAAABAAcAAAAXAAkAAAAAAAcAAAAYAAkAAAAAAAcAAAAoAAkAAAAAAAcAAAArAAkAAAABAAcAAAA7AAkAAAAAAAcAAAA9AAkAAAABAAcAAABFAAkAAAABAAcAAABHAAkAAAAAAAcAAABIAAkAAAAAAAcAAABMAAkAAAAHAAYAAABNAAkAAAAIAAYAAABYAAkAAAAAAAcAAABbAAkAAAABAAcAAABdAAkAAAAHAAYAAABeAAkAAAAIAAYAAABrAAkAAAAAAAcAAABtAAkAAAAHAAYAAABuAAkAAAAIAAYAAABzAAkAAAAHAAUAAAB0AAkAAAAIAAUAAAB1AAkAAAABAAcAAAB3AAkAAAAAAAcAAAB4AAkAAAAAAAcAAACAAAkAAAAHAAUAAACBAAkAAAAIAAUAAACIAAkAAAAAAAcAAACLAAkAAAABAAcAAACzAAkAAAACAAgAAADLAAkAAAAAAAcAAABMAAoAAAAHAAYAAABNAAoAAAAIAAYAAABdAAoAAAAHAAYAAABeAAoAAAAIAAYAAABtAAoAAAAHAAYAAABuAAoAAAAIAAYAAABzAAoAAAAHAAYAAAB0AAoAAAAIAAYAAACAAAoAAAAHAAYAAACBAAoAAAAIAAYAAAA=")
+tile_set = ExtResource("5_hqvaf")
+script = ExtResource("4_qxv2u")
+sprite_type = 3
+
+[node name="Atmospheric" type="TileMapLayer" parent="LevelBuilder/Main" unique_id=1202031570]
+material = SubResource("ShaderMaterial_j47s7")
+tile_map_data = PackedByteArray("AAAbAAAAAAAMAAAAAAAcAAAAAAANAAAAAAAdAAAAAAAOAAAAAAAtAAAAAAAMAAAAAAAuAAAAAAANAAAAAAAvAAAAAAAOAAAAAABLAAAAAAAMAAAAAABMAAAAAAANAAAAAABNAAAAAAAOAAAAAABdAAAAAAAMAAAAAABeAAAAAAANAAAAAABfAAAAAAAOAAAAAAB7AAAAAAAMAAAAAAB8AAAAAAANAAAAAAB9AAAAAAAOAAAAAACNAAAAAAAMAAAAAACOAAAAAAANAAAAAACPAAAAAAAOAAAAAACrAAAAAAAMAAAAAACsAAAAAAANAAAAAACtAAAAAAAOAAAAAAC9AAAAAAAMAAAAAAC+AAAAAAANAAAAAAC/AAAAAAAOAAAAAAASAAEAAAAMAAAAAAATAAEAAAANAAAAAAAUAAEAAAAOAAAAAAAbAAEAAAAMAAEAAAAcAAEAAAANAAEAAAAdAAEAAAAOAAEAAAAeAAEAAAAMAAAAAAAfAAEAAAANAAAAAAAgAAEAAAANAAAAAAAhAAEAAAAOAAAAAAAtAAEAAAAMAAEAAAAuAAEAAAANAAEAAAAvAAEAAAAOAAEAAAAwAAEAAAAMAAAAAAAxAAEAAAANAAAAAAAyAAEAAAANAAAAAAAzAAEAAAAOAAAAAABCAAEAAAAMAAAAAABDAAEAAAANAAAAAABEAAEAAAAOAAAAAABLAAEAAAAMAAEAAABMAAEAAAANAAEAAABNAAEAAAAOAAEAAABOAAEAAAAMAAAAAABPAAEAAAANAAAAAABQAAEAAAANAAAAAABRAAEAAAAOAAAAAABdAAEAAAAMAAEAAABeAAEAAAANAAEAAABfAAEAAAAOAAEAAABgAAEAAAAMAAAAAABhAAEAAAANAAAAAABiAAEAAAANAAAAAABjAAEAAAAOAAAAAAByAAEAAAAMAAAAAABzAAEAAAANAAAAAAB0AAEAAAAOAAAAAAB7AAEAAAAMAAEAAAB8AAEAAAANAAEAAAB9AAEAAAAOAAEAAAB+AAEAAAAMAAAAAAB/AAEAAAANAAAAAACAAAEAAAANAAAAAACBAAEAAAAOAAAAAACNAAEAAAAMAAEAAACOAAEAAAANAAEAAACPAAEAAAAOAAEAAACQAAEAAAAMAAAAAACRAAEAAAANAAAAAACSAAEAAAANAAAAAACTAAEAAAAOAAAAAACiAAEAAAAMAAAAAACjAAEAAAANAAAAAACkAAEAAAAOAAAAAACrAAEAAAAMAAEAAACsAAEAAAANAAEAAACtAAEAAAAOAAEAAACuAAEAAAAMAAAAAACvAAEAAAANAAAAAACwAAEAAAANAAAAAACxAAEAAAAOAAAAAAC9AAEAAAAMAAEAAAC+AAEAAAANAAEAAAC/AAEAAAAOAAEAAADAAAEAAAAMAAAAAADBAAEAAAANAAAAAADCAAEAAAANAAAAAADDAAEAAAAOAAAAAAASAAIAAAAMAAEAAAATAAIAAAANAAEAAAAUAAIAAAAOAAEAAAAeAAIAAAAMAAEAAAAfAAIAAAANAAEAAAAgAAIAAAANAAEAAAAhAAIAAAAOAAEAAAAwAAIAAAAMAAEAAAAxAAIAAAANAAEAAAAyAAIAAAANAAEAAAAzAAIAAAAOAAEAAABCAAIAAAAMAAEAAABDAAIAAAANAAEAAABEAAIAAAAOAAEAAABOAAIAAAAMAAEAAABPAAIAAAANAAEAAABQAAIAAAANAAEAAABRAAIAAAAOAAEAAABgAAIAAAAMAAEAAABhAAIAAAANAAEAAABiAAIAAAANAAEAAABjAAIAAAAOAAEAAAByAAIAAAAMAAEAAABzAAIAAAANAAEAAAB0AAIAAAAOAAEAAAB+AAIAAAAMAAEAAAB/AAIAAAANAAEAAACAAAIAAAANAAEAAACBAAIAAAAOAAEAAACQAAIAAAAMAAEAAACRAAIAAAANAAEAAACSAAIAAAANAAEAAACTAAIAAAAOAAEAAACiAAIAAAAMAAEAAACjAAIAAAANAAEAAACkAAIAAAAOAAEAAACuAAIAAAAMAAEAAACvAAIAAAANAAEAAACwAAIAAAANAAEAAACxAAIAAAAOAAEAAADAAAIAAAAMAAEAAADBAAIAAAANAAEAAADCAAIAAAANAAEAAADDAAIAAAAOAAEAAAA=")
+tile_set = ExtResource("6_b87h7")
+script = ExtResource("4_qxv2u")
+sprite_type = 6
+
+[node name="RedEnemies" type="TileMapLayer" parent="LevelBuilder/Main" unique_id=1796728917]
+material = SubResource("ShaderMaterial_godxv")
+tile_set = ExtResource("7_w5in8")
+script = ExtResource("4_qxv2u")
+sprite_type = 7
+
+[node name="Scenes" type="Node2D" parent="LevelBuilder/Main" unique_id=1152571074]
+
+[node name="BrickBg" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1947564881 instance=ExtResource("8_7mx25")]
+position = Vector2(2416, 0)
+script = ExtResource("9_4c5h4")
+contents = "vine"
+
+[node name="@StaticBody2D@739294" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1827726001 instance=ExtResource("8_7mx25")]
+position = Vector2(432, 48)
+script = ExtResource("9_4c5h4")
+contents = "vine"
+
+[node name="@StaticBody2D@739295" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1502769375 instance=ExtResource("8_7mx25")]
+position = Vector2(448, 48)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739296" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=753281469 instance=ExtResource("8_7mx25")]
+position = Vector2(464, 48)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739297" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1014413294 instance=ExtResource("8_7mx25")]
+position = Vector2(1312, 48)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739298" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=301910763 instance=ExtResource("8_7mx25")]
+position = Vector2(1328, 48)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739299" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=591738727 instance=ExtResource("8_7mx25")]
+position = Vector2(1344, 48)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739300" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1884040207 instance=ExtResource("8_7mx25")]
+position = Vector2(1360, 48)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739301" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=708413097 instance=ExtResource("8_7mx25")]
+position = Vector2(1376, 48)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739302" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1264270525 instance=ExtResource("8_7mx25")]
+position = Vector2(1392, 48)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739303" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1877641645 instance=ExtResource("8_7mx25")]
+position = Vector2(1408, 48)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739304" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1596940439 instance=ExtResource("8_7mx25")]
+position = Vector2(2144, 48)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739305" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1439766647 instance=ExtResource("8_7mx25")]
+position = Vector2(2160, 48)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739306" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1538269538 instance=ExtResource("8_7mx25")]
+position = Vector2(2176, 48)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739307" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=2080782575 instance=ExtResource("8_7mx25")]
+position = Vector2(2192, 48)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739308" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1271568564 instance=ExtResource("8_7mx25")]
+position = Vector2(2208, 48)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739309" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=768013069 instance=ExtResource("8_7mx25")]
+position = Vector2(2448, 64)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739310" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1229462706 instance=ExtResource("8_7mx25")]
+position = Vector2(2464, 64)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="CannonTop" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=411918159 instance=ExtResource("10_osyqt")]
+position = Vector2(1024, 80)
+
+[node name="CannonMid" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=780053348 instance=ExtResource("11_k0nwd")]
+position = Vector2(1024, 96)
+
+[node name="@StaticBody2D@739311" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1533994451 instance=ExtResource("8_7mx25")]
+position = Vector2(2384, 96)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739312" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=587437857 instance=ExtResource("8_7mx25")]
+position = Vector2(2400, 96)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="QuestionBlock" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=442592255 instance=ExtResource("12_5lolj")]
+position = Vector2(624, 112)
+script = ExtResource("13_hu06f")
+contents = "coin"
+
+[node name="@StaticBody2D@739313" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=2091318915 instance=ExtResource("12_5lolj")]
+position = Vector2(640, 112)
+script = ExtResource("13_hu06f")
+contents = "coin"
+
+[node name="@StaticBody2D@739314" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=105336801 instance=ExtResource("12_5lolj")]
+position = Vector2(656, 112)
+script = ExtResource("13_hu06f")
+contents = "coin"
+
+[node name="@StaticBody2D@739315" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=325150431 instance=ExtResource("12_5lolj")]
+position = Vector2(672, 112)
+script = ExtResource("13_hu06f")
+contents = "coin"
+
+[node name="@StaticBody2D@739316" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=2132633342 instance=ExtResource("8_7mx25")]
+position = Vector2(992, 112)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739317" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1077371236 instance=ExtResource("8_7mx25")]
+position = Vector2(1008, 112)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739318" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=517425656 instance=ExtResource("8_7mx25")]
+position = Vector2(1040, 112)
+script = ExtResource("9_4c5h4")
+contents = "one_up"
+
+[node name="@StaticBody2D@739319" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=2103753839 instance=ExtResource("8_7mx25")]
+position = Vector2(1056, 112)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739320" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=2071393762 instance=ExtResource("8_7mx25")]
+position = Vector2(1312, 112)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739321" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=126725212 instance=ExtResource("8_7mx25")]
+position = Vector2(1328, 112)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739322" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1536339210 instance=ExtResource("8_7mx25")]
+position = Vector2(1344, 112)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739323" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1879017878 instance=ExtResource("8_7mx25")]
+position = Vector2(1360, 112)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739324" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=805771569 instance=ExtResource("8_7mx25")]
+position = Vector2(1376, 112)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739325" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1297418303 instance=ExtResource("8_7mx25")]
+position = Vector2(1392, 112)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739326" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=427453834 instance=ExtResource("8_7mx25")]
+position = Vector2(1408, 112)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739327" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1770044751 instance=ExtResource("8_7mx25")]
+position = Vector2(2144, 112)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739328" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=239434984 instance=ExtResource("8_7mx25")]
+position = Vector2(2160, 112)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739329" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1502071632 instance=ExtResource("8_7mx25")]
+position = Vector2(2176, 112)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739330" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1053223291 instance=ExtResource("8_7mx25")]
+position = Vector2(2192, 112)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739331" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=1981737943 instance=ExtResource("8_7mx25")]
+position = Vector2(2208, 112)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@Node2D@739332" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=1931075535 instance=ExtResource("10_osyqt")]
+position = Vector2(448, 128)
+
+[node name="@Node2D@739333" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=637014737 instance=ExtResource("10_osyqt")]
+position = Vector2(736, 128)
+
+[node name="@Node2D@739334" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=818183562 instance=ExtResource("10_osyqt")]
+position = Vector2(896, 128)
+
+[node name="@Node2D@739335" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=1517723161 instance=ExtResource("10_osyqt")]
+position = Vector2(2336, 128)
+
+[node name="@Node2D@739336" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=1124190905 instance=ExtResource("10_osyqt")]
+position = Vector2(304, 144)
+
+[node name="@Node2D@739337" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=1257937424 instance=ExtResource("11_k0nwd")]
+position = Vector2(448, 144)
+
+[node name="@Node2D@739338" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=1588277723 instance=ExtResource("10_osyqt")]
+position = Vector2(576, 144)
+
+[node name="@Node2D@739339" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=2050323764 instance=ExtResource("11_k0nwd")]
+position = Vector2(736, 144)
+
+[node name="@Node2D@739340" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=1474131067 instance=ExtResource("11_k0nwd")]
+position = Vector2(896, 144)
+
+[node name="@Node2D@739341" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=1059686370 instance=ExtResource("10_osyqt")]
+position = Vector2(1088, 144)
+
+[node name="@Node2D@739342" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=1554040862 instance=ExtResource("10_osyqt")]
+position = Vector2(1664, 144)
+
+[node name="@Node2D@739343" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=1308270233 instance=ExtResource("10_osyqt")]
+position = Vector2(1952, 144)
+
+[node name="@Node2D@739344" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=165787907 instance=ExtResource("11_k0nwd")]
+position = Vector2(2336, 144)
+
+[node name="@Node2D@739345" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=1190595801 instance=ExtResource("11_k0nwd")]
+position = Vector2(304, 160)
+
+[node name="@Node2D@739346" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=724831649 instance=ExtResource("10_osyqt")]
+position = Vector2(448, 160)
+
+[node name="@Node2D@739347" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=1484071039 instance=ExtResource("11_k0nwd")]
+position = Vector2(576, 160)
+
+[node name="CannonBase" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=1912602104 instance=ExtResource("14_ouymi")]
+position = Vector2(736, 160)
+
+[node name="@Node2D@739348" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=1186141449 instance=ExtResource("10_osyqt")]
+position = Vector2(896, 160)
+
+[node name="@Node2D@739349" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=662994696 instance=ExtResource("11_k0nwd")]
+position = Vector2(1088, 160)
+
+[node name="@Node2D@739350" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=226247323 instance=ExtResource("11_k0nwd")]
+position = Vector2(1664, 160)
+
+[node name="@Node2D@739351" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=1722952143 instance=ExtResource("11_k0nwd")]
+position = Vector2(1952, 160)
+
+[node name="@Node2D@739352" type="Node2D" parent="LevelBuilder/Main/Scenes" unique_id=2012892260 instance=ExtResource("10_osyqt")]
+position = Vector2(2336, 160)
+
+[node name="@StaticBody2D@739353" type="StaticBody2D" parent="LevelBuilder/Main/Scenes" unique_id=369234596 instance=ExtResource("8_7mx25")]
+position = Vector2(2976, 160)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="Entities" type="Node2D" parent="LevelBuilder/Main" unique_id=462380031]
+
+[node name="Paratroopa" type="Area2D" parent="LevelBuilder/Main/Entities" unique_id=1522274751 instance=ExtResource("15_ysrd4")]
+position = Vector2(416, 152)
+
+[node name="@Area2D@739354" type="Area2D" parent="LevelBuilder/Main/Entities" unique_id=183375089 instance=ExtResource("15_ysrd4")]
+position = Vector2(704, 152)
+
+[node name="@Area2D@739355" type="Area2D" parent="LevelBuilder/Main/Entities" unique_id=1619970992 instance=ExtResource("15_ysrd4")]
+position = Vector2(848, 152)
+
+[node name="@Area2D@739356" type="Area2D" parent="LevelBuilder/Main/Entities" unique_id=2059701971 instance=ExtResource("15_ysrd4")]
+position = Vector2(1040, 152)
+
+[node name="HammerBro" type="Area2D" parent="LevelBuilder/Main/Entities" unique_id=1159944773 instance=ExtResource("16_p3t6u")]
+position = Vector2(1344, 152)
+
+[node name="@Area2D@739357" type="Area2D" parent="LevelBuilder/Main/Entities" unique_id=1818490576 instance=ExtResource("16_p3t6u")]
+position = Vector2(1376, 88)
+
+[node name="KoopaTroopa" type="Area2D" parent="LevelBuilder/Main/Entities" unique_id=940130106 instance=ExtResource("17_echwh")]
+position = Vector2(1824, 152)
+
+[node name="@Area2D@739358" type="Area2D" parent="LevelBuilder/Main/Entities" unique_id=624486203 instance=ExtResource("16_p3t6u")]
+position = Vector2(2160, 152)
+
+[node name="@Area2D@739359" type="Area2D" parent="LevelBuilder/Main/Entities" unique_id=505561242 instance=ExtResource("16_p3t6u")]
+position = Vector2(2192, 88)
+
+[node name="BuzzyBeetle" type="Area2D" parent="LevelBuilder/Main/Entities" unique_id=750744590 instance=ExtResource("18_pbe56")]
+position = Vector2(2704, 16)
+
+[node name="Bonus Room" type="Node2D" parent="LevelBuilder" unique_id=882401623]
+position = Vector2(0, 240)
+
+[node name="Background" type="TileMapLayer" parent="LevelBuilder/Bonus Room" unique_id=367718342]
+material = SubResource("ShaderMaterial_a3dns")
+tile_map_data = PackedByteArray("AAAAAAsAAAAAAAAAAAABAAsAAAAAAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAGAAsAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAsAAAAAAAAAAAAJAAsAAAAAAAAAAAAKAAsAAAAAAAAAAAALAAsAAAAAAAAAAAAMAAsAAAAAAAAAAAANAAsAAAAAAAAAAAAOAAsAAAAAAAAAAAAPAAsAAAAAAAAAAAAQAAsAAAAAAAAAAAARAAsAAAAAAAAAAAASAAsAAAAAAAAAAAATAAsAAAAAAAAAAAAUAAsAAAAAAAAAAAAVAAsAAAAAAAAAAAAWAAsAAAAAAAAAAAAXAAsAAAAAAAAAAAAYAAsAAAAAAAAAAAAZAAsAAAAAAAAAAAAaAAsAAAAAAAAAAAAbAAsAAAAAAAAAAAAcAAsAAAAAAAAAAAAdAAsAAAAAAAAAAAAeAAsAAAAAAAAAAAAfAAsAAAAAAAAAAAAAAAwAAAAAAAAAAAABAAwAAAAAAAAAAAACAAwAAAAAAAAAAAADAAwAAAAAAAAAAAAEAAwAAAAAAAAAAAAFAAwAAAAAAAAAAAAGAAwAAAAAAAAAAAAHAAwAAAAAAAAAAAAIAAwAAAAAAAAAAAAJAAwAAAAAAAAAAAAKAAwAAAAAAAAAAAALAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAANAAwAAAAAAAAAAAAOAAwAAAAAAAAAAAAPAAwAAAAAAAAAAAAQAAwAAAAAAAAAAAARAAwAAAAAAAAAAAASAAwAAAAAAAAAAAATAAwAAAAAAAAAAAAUAAwAAAAAAAAAAAAVAAwAAAAAAAAAAAAWAAwAAAAAAAAAAAAXAAwAAAAAAAAAAAAYAAwAAAAAAAAAAAAZAAwAAAAAAAAAAAAaAAwAAAAAAAAAAAAbAAwAAAAAAAAAAAAcAAwAAAAAAAAAAAAdAAwAAAAAAAAAAAAeAAwAAAAAAAAAAAAfAAwAAAAAAAAAAAA=")
+tile_set = ExtResource("3_qg47h")
+script = ExtResource("4_qxv2u")
+sprite_type = 1
+
+[node name="Scenery" type="TileMapLayer" parent="LevelBuilder/Bonus Room" unique_id=250352026]
+material = SubResource("ShaderMaterial_gwmlk")
+tile_map_data = PackedByteArray("AAAPAAAAAAAHAAYAAAAQAAAAAAAIAAYAAAAPAAEAAAAHAAYAAAAQAAEAAAAIAAYAAAAPAAIAAAAHAAYAAAAQAAIAAAAIAAYAAAAPAAMAAAAHAAYAAAAQAAMAAAAIAAYAAAAPAAQAAAAHAAYAAAAQAAQAAAAIAAYAAAAPAAUAAAAHAAYAAAAQAAUAAAAIAAYAAAAPAAYAAAAHAAYAAAAQAAYAAAAIAAYAAAAPAAcAAAAHAAYAAAAQAAcAAAAIAAYAAAAPAAgAAAAHAAYAAAAQAAgAAAAIAAYAAAANAAkAAAAFAAcAAAAOAAkAAAAGAAcAAAAPAAkAAAAHAAcAAAAQAAkAAAAIAAYAAAANAAoAAAAFAAgAAAAOAAoAAAAGAAgAAAAPAAoAAAAHAAgAAAAQAAoAAAAIAAYAAAA=")
+tile_set = ExtResource("5_hqvaf")
+script = ExtResource("4_qxv2u")
+sprite_type = 3
+
+[node name="Atmospheric" type="TileMapLayer" parent="LevelBuilder/Bonus Room" unique_id=216981522]
+material = SubResource("ShaderMaterial_lejsg")
+tile_set = ExtResource("6_b87h7")
+script = ExtResource("4_qxv2u")
+sprite_type = 6
+
+[node name="RedEnemies" type="TileMapLayer" parent="LevelBuilder/Bonus Room" unique_id=817115884]
+material = SubResource("ShaderMaterial_4pp0x")
+tile_set = ExtResource("7_w5in8")
+script = ExtResource("4_qxv2u")
+sprite_type = 7
+
+[node name="Scenes" type="Node2D" parent="LevelBuilder/Bonus Room" unique_id=1395950915]
+
+[node name="BrickBg" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=479268836 instance=ExtResource("8_7mx25")]
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739360" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1871839913 instance=ExtResource("8_7mx25")]
+position = Vector2(64, 0)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739361" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=223250329 instance=ExtResource("8_7mx25")]
+position = Vector2(80, 0)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739362" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1925128099 instance=ExtResource("8_7mx25")]
+position = Vector2(96, 0)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739363" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1834232468 instance=ExtResource("8_7mx25")]
+position = Vector2(112, 0)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739364" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=848238806 instance=ExtResource("8_7mx25")]
+position = Vector2(128, 0)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739365" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1492603738 instance=ExtResource("8_7mx25")]
+position = Vector2(144, 0)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739366" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=445115608 instance=ExtResource("8_7mx25")]
+position = Vector2(160, 0)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739367" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=466894743 instance=ExtResource("8_7mx25")]
+position = Vector2(0, 16)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739368" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=765654736 instance=ExtResource("8_7mx25")]
+position = Vector2(160, 16)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739369" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1508161924 instance=ExtResource("8_7mx25")]
+position = Vector2(0, 32)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739370" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=759108352 instance=ExtResource("8_7mx25")]
+position = Vector2(160, 32)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739371" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=29083196 instance=ExtResource("8_7mx25")]
+position = Vector2(0, 48)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="CoinA" type="Node2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1868719139 instance=ExtResource("19_jofsq")]
+position = Vector2(80, 48)
+
+[node name="@Node2D@739372" type="Node2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1500167072 instance=ExtResource("19_jofsq")]
+position = Vector2(96, 48)
+
+[node name="@Node2D@739373" type="Node2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1292587516 instance=ExtResource("19_jofsq")]
+position = Vector2(112, 48)
+
+[node name="@Node2D@739374" type="Node2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1264081541 instance=ExtResource("19_jofsq")]
+position = Vector2(128, 48)
+
+[node name="@Node2D@739375" type="Node2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1918247596 instance=ExtResource("19_jofsq")]
+position = Vector2(144, 48)
+
+[node name="@StaticBody2D@739376" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=869166387 instance=ExtResource("8_7mx25")]
+position = Vector2(160, 48)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739377" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=409702588 instance=ExtResource("8_7mx25")]
+position = Vector2(0, 64)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739378" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=673375814 instance=ExtResource("8_7mx25")]
+position = Vector2(64, 64)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@Node2D@739379" type="Node2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1057741979 instance=ExtResource("19_jofsq")]
+position = Vector2(80, 64)
+
+[node name="@Node2D@739380" type="Node2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1843824681 instance=ExtResource("19_jofsq")]
+position = Vector2(96, 64)
+
+[node name="@Node2D@739381" type="Node2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=37183610 instance=ExtResource("19_jofsq")]
+position = Vector2(112, 64)
+
+[node name="@Node2D@739382" type="Node2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=543463091 instance=ExtResource("19_jofsq")]
+position = Vector2(128, 64)
+
+[node name="@Node2D@739383" type="Node2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=416939660 instance=ExtResource("19_jofsq")]
+position = Vector2(144, 64)
+
+[node name="@StaticBody2D@739384" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=152590661 instance=ExtResource("8_7mx25")]
+position = Vector2(160, 64)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739385" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=20982835 instance=ExtResource("8_7mx25")]
+position = Vector2(176, 64)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739386" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=662112656 instance=ExtResource("8_7mx25")]
+position = Vector2(192, 64)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739387" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1553603519 instance=ExtResource("8_7mx25")]
+position = Vector2(0, 80)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739388" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1693328621 instance=ExtResource("8_7mx25")]
+position = Vector2(64, 80)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739389" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=291702310 instance=ExtResource("8_7mx25")]
+position = Vector2(80, 80)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739390" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1287662275 instance=ExtResource("8_7mx25")]
+position = Vector2(96, 80)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739391" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1369955073 instance=ExtResource("8_7mx25")]
+position = Vector2(112, 80)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739392" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=852691651 instance=ExtResource("8_7mx25")]
+position = Vector2(128, 80)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739393" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1109153396 instance=ExtResource("8_7mx25")]
+position = Vector2(144, 80)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739394" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=737938090 instance=ExtResource("8_7mx25")]
+position = Vector2(160, 80)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739395" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=237414811 instance=ExtResource("8_7mx25")]
+position = Vector2(224, 80)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739396" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1391278968 instance=ExtResource("8_7mx25")]
+position = Vector2(0, 96)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739397" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1267980220 instance=ExtResource("8_7mx25")]
+position = Vector2(0, 112)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739398" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=1155905853 instance=ExtResource("8_7mx25")]
+position = Vector2(0, 128)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739399" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=621077731 instance=ExtResource("8_7mx25")]
+position = Vector2(0, 144)
+script = ExtResource("9_4c5h4")
+contents = "empty"
+
+[node name="@StaticBody2D@739400" type="StaticBody2D" parent="LevelBuilder/Bonus Room/Scenes" unique_id=2137201649 instance=ExtResource("8_7mx25")]
+position = Vector2(0, 160)
+script = ExtResource("9_4c5h4")
+contents = "empty"

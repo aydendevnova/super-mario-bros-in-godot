@@ -1,0 +1,112 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dqucvmtl5rux4"]
+
+[ext_resource type="Texture2D" uid="uid://dq3fc4j7mheor" path="res://assets/textures/player/stand_large_0.png" id="tex_0"]
+[ext_resource type="Texture2D" uid="uid://dmur2axcbppnh" path="res://assets/textures/player/climb_large_0.png" id="tex_1"]
+[ext_resource type="Texture2D" uid="uid://cyq8t2qjnphoa" path="res://assets/textures/player/climb_large_1.png" id="tex_2"]
+[ext_resource type="Texture2D" uid="uid://c5pgq8v4rwnj6" path="res://assets/textures/player/crouch_large_0.png" id="tex_3"]
+[ext_resource type="Texture2D" uid="uid://tddyyp415tg7" path="res://assets/textures/player/jump_large_0.png" id="tex_4"]
+[ext_resource type="Texture2D" uid="uid://b3tru5sblc4xr" path="res://assets/textures/player/skid_large_0.png" id="tex_5"]
+[ext_resource type="Texture2D" uid="uid://dmknecs4bfqw6" path="res://assets/textures/player/swim_large_0.png" id="tex_6"]
+[ext_resource type="Texture2D" uid="uid://cjpb40gcs23qm" path="res://assets/textures/player/swim_large_1.png" id="tex_7"]
+[ext_resource type="Texture2D" uid="uid://ddn08co24edjn" path="res://assets/textures/player/swim_large_2.png" id="tex_8"]
+[ext_resource type="Texture2D" uid="uid://1sv7lrw5on" path="res://assets/textures/player/walk_large_0.png" id="tex_9"]
+[ext_resource type="Texture2D" uid="uid://c4r5glanggmka" path="res://assets/textures/player/walk_large_1.png" id="tex_10"]
+[ext_resource type="Texture2D" uid="uid://doog157nw40c0" path="res://assets/textures/player/walk_large_2.png" id="tex_11"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_0")
+}],
+"loop": true,
+"name": &"BottomFlagpole",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_2")
+}],
+"loop": true,
+"name": &"Climb",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_3")
+}],
+"loop": true,
+"name": &"Crouch",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Dying",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_2")
+}],
+"loop": true,
+"name": &"Flagpole",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_0")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_4")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_5")
+}],
+"loop": true,
+"name": &"Skid",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_8")
+}],
+"loop": true,
+"name": &"Swim",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_11")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 10.0
+}]

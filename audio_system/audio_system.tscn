@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c2lb6afi8sj80"]
+
+[ext_resource type="Script" uid="uid://bpqkcqbtqr1oy" path="res://audio_system/audio_system.gd" id="1_vn1x8"]
+
+[node name="AudioSystem" type="Node" unique_id=2003846930]
+script = ExtResource("1_vn1x8")
+
+[node name="Pulse1" type="AudioStreamPlayer" parent="." unique_id=285662397]
+
+[node name="Pulse2" type="AudioStreamPlayer" parent="." unique_id=1789016977]
+
+[node name="Triangle" type="AudioStreamPlayer" parent="." unique_id=357617962]
+
+[node name="Noise" type="AudioStreamPlayer" parent="." unique_id=1632665320]

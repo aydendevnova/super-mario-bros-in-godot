@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dv5y6ofssm7o5"]
+
+[ext_resource type="Script" uid="uid://depvy3xfyexwd" path="res://scenes/sprites/score_coin.gd" id="1_crx7u"]
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="1_nljx3"]
+[ext_resource type="Texture2D" uid="uid://4bo86rgrdi8r" path="res://assets/score_coin_atlas.tres" id="2_5p3xw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("1_nljx3")
+shader_parameter/palette_id = 27
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nljx3"]
+atlas = ExtResource("2_5p3xw")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5p3xw"]
+atlas = ExtResource("2_5p3xw")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88jb3"]
+atlas = ExtResource("2_5p3xw")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46d2l"]
+atlas = ExtResource("2_5p3xw")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_omciq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nljx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5p3xw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88jb3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46d2l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ScoreCoin" type="Node2D" unique_id=114474075]
+script = ExtResource("1_crx7u")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=73319909]
+material = SubResource("ShaderMaterial_1")
+position = Vector2(4, 0)
+sprite_frames = SubResource("SpriteFrames_omciq")
+frame_progress = 0.5322989
+speed_scale = 1.5
+centered = false

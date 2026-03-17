@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://crntfclcmor86"
+
+[deps]
+
+files=["res://_gen_assets/data/chr-mapping.row.translation", "res://_gen_assets/data/chr-mapping.chr.translation", "res://_gen_assets/data/chr-mapping.hflip.translation", "res://_gen_assets/data/chr-mapping.vflip.translation", "res://_gen_assets/data/chr-mapping.palette.translation"]
+
+source_file="res://_gen_assets/data/chr-mapping.csv"
+dest_files=["res://_gen_assets/data/chr-mapping.row.translation", "res://_gen_assets/data/chr-mapping.chr.translation", "res://_gen_assets/data/chr-mapping.hflip.translation", "res://_gen_assets/data/chr-mapping.vflip.translation", "res://_gen_assets/data/chr-mapping.palette.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

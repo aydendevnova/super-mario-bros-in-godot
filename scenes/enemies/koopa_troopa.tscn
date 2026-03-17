@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://bfhfvpy4jj5k4"]
+
+[ext_resource type="Script" uid="uid://btegidpj6gll5" path="res://scenes/enemies/koopa_troopa.gd" id="1_860r1"]
+[ext_resource type="Texture2D" uid="uid://dbftijpe865ws" path="res://assets/textures/enemies/koopa_shell_idle_0.png" id="6_honuu"]
+[ext_resource type="Texture2D" uid="uid://lg0e62ac8fw1" path="res://assets/textures/enemies/koopa_shell_idle_1.png" id="7_sxa58"]
+[ext_resource type="Script" uid="uid://cfrk1lq3vq2qg" path="res://scripts/palette_swap.gd" id="palette_script"]
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="shader"]
+[ext_resource type="Texture2D" uid="uid://dcyxei6bs8sqs" path="res://assets/textures/enemies/koopa_troopa_walk_0.png" id="tex_0"]
+[ext_resource type="Texture2D" uid="uid://drabn5ylh4oy1" path="res://assets/textures/enemies/koopa_troopa_walk_1.png" id="tex_1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("shader")
+shader_parameter/palette_id = 24
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_1")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1rem3"]
+shader = ExtResource("shader")
+shader_parameter/palette_id = 24
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3eqw8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_honuu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_sxa58")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(14, 18.125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i74lx"]
+size = Vector2(12, 12.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_honuu"]
+size = Vector2(14, 14)
+
+[node name="KoopaTroopa" type="CharacterBody2D" unique_id=1636307410 groups=["Enemies"]]
+collision_layer = 4
+collision_mask = 21
+script = ExtResource("1_860r1")
+
+[node name="KoopaNormal" type="AnimatedSprite2D" parent="." unique_id=243259255]
+material = SubResource("ShaderMaterial_1")
+sprite_frames = SubResource("SpriteFrames_1")
+animation = &"walk"
+autoplay = "walk"
+centered = false
+script = ExtResource("palette_script")
+sprite_type = 8
+
+[node name="KoopaStomp" type="AnimatedSprite2D" parent="." unique_id=304376658]
+material = SubResource("ShaderMaterial_1rem3")
+position = Vector2(0, 10)
+sprite_frames = SubResource("SpriteFrames_3eqw8")
+animation = &"idle"
+autoplay = "idle"
+speed_scale = 0.0
+centered = false
+flip_v = true
+script = ExtResource("palette_script")
+sprite_type = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1900698310]
+position = Vector2(8, 14.0625)
+shape = SubResource("RectangleShape2D_1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=51892040]
+position = Vector2(8, 16.25)
+shape = SubResource("RectangleShape2D_i74lx")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1673982652]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2012147630]
+position = Vector2(8, 16)
+shape = SubResource("RectangleShape2D_honuu")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1835692225]
+position = Vector2(-2, 5)
+rect = Rect2(2, -5, 17, 26)

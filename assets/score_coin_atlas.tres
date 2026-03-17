@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://4bo86rgrdi8r"]
+
+[ext_resource type="Texture2D" uid="uid://dbif06p0dp74g" path="res://assets/textures/chr-mapping.png" id="1_uok1s"]
+
+[resource]
+atlas = ExtResource("1_uok1s")
+region = Rect2(192, 96, 64, 16)

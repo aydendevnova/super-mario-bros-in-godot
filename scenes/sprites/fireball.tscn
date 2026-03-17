@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://b64rit4aki0yf"]
+
+[ext_resource type="Script" uid="uid://d0qjnivt7v72v" path="res://scenes/sprites/fireball.gd" id="1_4o15c"]
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="2_shader"]
+[ext_resource type="Texture2D" uid="uid://dbif06p0dp74g" path="res://assets/textures/chr-mapping.png" id="3_atlas"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a1jyq"]
+shader = ExtResource("2_shader")
+shader_parameter/palette_id = 27
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4o15c"]
+atlas = ExtResource("3_atlas")
+region = Rect2(336, 112, 8, 8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("2_shader")
+shader_parameter/palette_id = 27
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("3_atlas")
+region = Rect2(352, 112, 8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4o15c"]
+size = Vector2(6, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
+size = Vector2(8, 8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vspad"]
+shader = ExtResource("2_shader")
+shader_parameter/palette_id = 27
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc3ho"]
+atlas = ExtResource("3_atlas")
+region = Rect2(320, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73pbd"]
+atlas = ExtResource("3_atlas")
+region = Rect2(304, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3l54"]
+atlas = ExtResource("3_atlas")
+region = Rect2(288, 112, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bhain"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc3ho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73pbd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3l54")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Fireball" type="CharacterBody2D" unique_id=1144372373]
+collision_layer = 0
+script = ExtResource("1_4o15c")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1599076388]
+material = SubResource("ShaderMaterial_a1jyq")
+texture = SubResource("AtlasTexture_4o15c")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=655390918]
+visible = false
+material = SubResource("ShaderMaterial_1")
+texture = SubResource("AtlasTexture_1")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1862988038]
+position = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_4o15c")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1431126739]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=328262833]
+position = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_hitbox")
+
+[node name="ExplosionSprite" type="AnimatedSprite2D" parent="." unique_id=406404751]
+material = SubResource("ShaderMaterial_vspad")
+position = Vector2(-4, -4)
+sprite_frames = SubResource("SpriteFrames_bhain")
+speed_scale = 2.4
+centered = false

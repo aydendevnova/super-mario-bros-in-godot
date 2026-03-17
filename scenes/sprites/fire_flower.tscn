@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://djhsegy1b0hps"]
+
+[ext_resource type="Script" uid="uid://bxslan1fti734" path="res://scenes/sprites/fire_flower.gd" id="1_jihnb"]
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="2_shader"]
+[ext_resource type="Texture2D" uid="uid://dbif06p0dp74g" path="res://assets/textures/chr-mapping.png" id="3_atlas"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("2_shader")
+shader_parameter/palette_id = 24
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("3_atlas")
+region = Rect2(160, 96, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jihnb"]
+size = Vector2(10, 10)
+
+[node name="FireFlower" type="Node2D" unique_id=568816445]
+script = ExtResource("1_jihnb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=725921054]
+material = SubResource("ShaderMaterial_1")
+texture = SubResource("AtlasTexture_1")
+centered = false
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1229996745]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1162419805]
+position = Vector2(7.5, 7.5)
+shape = SubResource("RectangleShape2D_jihnb")

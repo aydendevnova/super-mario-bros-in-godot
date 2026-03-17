@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://dx5yq1pp8m80j"]
+
+[ext_resource type="Script" uid="uid://dj8c88dw5ro1q" path="res://player/mario.gd" id="1_g1dw6"]
+[ext_resource type="Script" uid="uid://6q1h0h2cmkam" path="res://addons/pixel_perfect_smoother/pixel_perfect_smoother.gd" id="2_rkbax"]
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="2_yw30f"]
+[ext_resource type="SpriteFrames" uid="uid://ccvpk871d3nvq" path="res://player/small_sprite_frames.tres" id="3_qjkh3"]
+[ext_resource type="SpriteFrames" uid="uid://dqucvmtl5rux4" path="res://player/big_sprite_frames.tres" id="4_g6k8r"]
+[ext_resource type="SpriteFrames" uid="uid://dlldmbgi7syen" path="res://player/transition_sprite_frames.tres" id="6_boad6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_161q0"]
+size = Vector2(14, 25.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yw30f"]
+size = Vector2(10, 13)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qjkh3"]
+shader = ExtResource("2_yw30f")
+shader_parameter/palette_id = 21
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lvrnd"]
+size = Vector2(0.75, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjkh3"]
+size = Vector2(1, 1)
+
+[node name="Player" type="CharacterBody2D" unique_id=1306588497]
+z_index = 2
+collision_layer = 2
+collision_mask = 25
+script = ExtResource("1_g1dw6")
+
+[node name="BigCollisionShape" type="CollisionShape2D" parent="." unique_id=203096729]
+position = Vector2(8, 2.625)
+shape = SubResource("RectangleShape2D_161q0")
+
+[node name="SmallCollisionShape" type="CollisionShape2D" parent="." unique_id=1008807383]
+position = Vector2(6, 8.5)
+shape = SubResource("RectangleShape2D_yw30f")
+
+[node name="SmallSprite" type="AnimatedSprite2D" parent="." unique_id=969542756]
+visible = false
+material = SubResource("ShaderMaterial_qjkh3")
+position = Vector2(-2, 0)
+sprite_frames = ExtResource("3_qjkh3")
+animation = &"BottomFlagpole"
+autoplay = "Idle"
+centered = false
+
+[node name="BigSprite" type="AnimatedSprite2D" parent="." unique_id=201910012]
+material = SubResource("ShaderMaterial_qjkh3")
+position = Vector2(0, -16)
+sprite_frames = ExtResource("4_g6k8r")
+animation = &"Idle"
+autoplay = "Idle"
+centered = false
+
+[node name="TransitionSprite" type="AnimatedSprite2D" parent="." unique_id=455344183]
+visible = false
+material = SubResource("ShaderMaterial_qjkh3")
+position = Vector2(-1, -16)
+scale = Vector2(0.875, 1)
+sprite_frames = ExtResource("6_boad6")
+animation = &"grow"
+centered = false
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1862369667]
+visible = false
+
+[node name="SmallHitbox" type="CollisionShape2D" parent="Hitbox" unique_id=183062440]
+position = Vector2(6, 8)
+scale = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_lvrnd")
+
+[node name="BigHitbox" type="CollisionShape2D" parent="Hitbox" unique_id=2124894357]
+position = Vector2(6, 8)
+scale = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_qjkh3")
+
+[node name="TransitionTimer" type="Timer" parent="." unique_id=2141891936]
+wait_time = 3.0
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1066653473]
+zoom = Vector2(4, 4)
+limit_left = 0
+limit_bottom = 0
+drag_vertical_enabled = true
+drag_top_margin = 1.0
+drag_right_margin = 1.0
+script = ExtResource("2_rkbax")
+
+[connection signal="animation_finished" from="TransitionSprite" to="." method="_on_transition_sprite_animation_finished"]
+[connection signal="ready" from="TransitionSprite" to="." method="_on_transition_sprite_ready"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="TransitionTimer" to="." method="_on_transition_timer_timeout"]

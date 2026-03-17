@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://c3ygp1o6r1ygu"]
+
+[ext_resource type="Script" uid="uid://cfrk1lq3vq2qg" path="res://scripts/palette_swap.gd" id="1_script"]
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="2_shader"]
+[ext_resource type="Texture2D" uid="uid://dbif06p0dp74g" path="res://assets/textures/chr-mapping.png" id="3_atlas"]
+[ext_resource type="Script" uid="uid://dt2piqcr5264o" path="res://scenes/sprites/platform.gd" id="4_platform"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("2_shader")
+shader_parameter/palette_id = 27
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("3_atlas")
+region = Rect2(336, 80, 48, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bl8y2"]
+size = Vector2(48, 8)
+
+[node name="PlatformMovingLonger" type="StaticBody2D" unique_id=1372714624]
+script = ExtResource("4_platform")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2112161398]
+material = SubResource("ShaderMaterial_1")
+texture = SubResource("AtlasTexture_1")
+centered = false
+script = ExtResource("1_script")
+sprite_type = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=929978055]
+position = Vector2(24, 4)
+shape = SubResource("RectangleShape2D_bl8y2")

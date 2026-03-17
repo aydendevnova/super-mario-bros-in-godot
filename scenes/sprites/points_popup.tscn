@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bc268igqc8e54"]
+
+[ext_resource type="Script" uid="uid://brd7p5pm14atc" path="res://ui/points_popup.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dbif06p0dp74g" path="res://assets/textures/chr-mapping.png" id="2_atlas"]
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="3_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("3_shader")
+shader_parameter/palette_id = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("2_atlas")
+region = Rect2(400.93, 80, 16.52, 8)
+
+[node name="PointsPopup" type="Node2D" unique_id=1731818471]
+z_index = 99
+script = ExtResource("1_script")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1454961194]
+material = SubResource("ShaderMaterial_1")
+texture = SubResource("AtlasTexture_1")
+centered = false

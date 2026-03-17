@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bdjvumhmw8711"]
+
+[ext_resource type="Script" uid="uid://l5jfv1o0tv3c" path="res://scenes/sprites/star.gd" id="1_l0b0v"]
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="2_shader"]
+[ext_resource type="Texture2D" uid="uid://dbif06p0dp74g" path="res://assets/textures/chr-mapping.png" id="3_atlas"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("2_shader")
+shader_parameter/palette_id = 27
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("3_atlas")
+region = Rect2(320, 96, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkh1a"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0b0v"]
+size = Vector2(12, 12)
+
+[node name="Star" type="CharacterBody2D" unique_id=652479657]
+collision_layer = 32
+collision_mask = 1
+script = ExtResource("1_l0b0v")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=440477355]
+material = SubResource("ShaderMaterial_1")
+texture = SubResource("AtlasTexture_1")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=986154710]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_jkh1a")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=73860631]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2146378178]
+position = Vector2(9, 7)
+shape = SubResource("RectangleShape2D_l0b0v")
