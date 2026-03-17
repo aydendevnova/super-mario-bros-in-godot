@@ -6,6 +6,8 @@
 
 Objective: A complete recreation of Super Mario Bros. (1985) built from the ground up in Godot 4.6, covering all 32 levels (World 1-1 through 8-4) with accurate physics, enemies, music, and palette-swap rendering.
 
+<img width="1756" height="1002" alt="1" src="https://github.com/user-attachments/assets/f3b63eea-18fc-46d1-8e01-7a2b09cddc51" />
+
 
 ## Why You Need to Generate Assets
 
