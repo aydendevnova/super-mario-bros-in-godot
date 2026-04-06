@@ -156,6 +156,7 @@ func _physics_process(delta):
 		handle_last_collision()
 	
 	if (position.y > (Game.bottom_of_map_y + 16) && not is_dead):
+		
 		handle_death()
 	
 func process_camera_bounds():

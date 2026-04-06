@@ -40,6 +40,7 @@ func _process(delta: float) -> void:
 			time -= 1
 			up_score(POINTS_PER_TICK)
 			SignalBus.time_updated.emit(time)
+			AudioSystem.play_sfx("select")
 		if time <= 0:
 			_countdown_active = false
 			if _countdown_callback.is_valid():

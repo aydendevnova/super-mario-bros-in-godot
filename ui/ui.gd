@@ -20,11 +20,14 @@ extends CanvasLayer
 
 @onready var menu_top_score: Control = $MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Label
 
+@onready var _audio_viz = $AudioVisualizer
+
 var menu_selection: int = 0
 var _pause_container: CenterContainer
 var _debug_panel: PanelContainer
 var _debug_label: Label
 var _debug_visible := false
+var _audio_viz_visible := false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -132,6 +135,11 @@ func _build_debug_text() -> String:
 	return "\n".join(lines)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and event.keycode == KEY_F2:
+		_audio_viz_visible = not _audio_viz_visible
+		_audio_viz.visible = _audio_viz_visible
+		return
+
 	if event is InputEventKey and event.pressed and event.keycode == KEY_F3:
 		_debug_visible = not _debug_visible
 		_debug_panel.visible = _debug_visible

@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://y0sklbgxekhb" path="res://assets/cursor_atlas.tres" id="5_tf0e0"]
 [ext_resource type="Texture2D" uid="uid://suotrbf0iuex" path="res://ui/small_mario_display.tres" id="6_bo1jx"]
 [ext_resource type="Script" uid="uid://b6p3et14aan2l" path="res://ui/ui.gd" id="7_ui_gd"]
+[ext_resource type="PackedScene" uid="uid://cyb2po4jkih0r" path="res://ui/audio_visualizer.tscn" id="8_gycre"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xuqvo"]
 shader = ExtResource("1_vkava")
@@ -268,9 +269,9 @@ scale_factor = 4
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -480.0
-offset_right = 480.0
-offset_bottom = 48.0
+offset_left = -450.0
+offset_right = 510.0
+offset_bottom = 64.0
 grow_horizontal = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=906967074]
@@ -278,7 +279,7 @@ texture_filter = 1
 custom_minimum_size = Vector2(960, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 80
-theme_override_constants/margin_top = 64
+theme_override_constants/margin_top = 48
 theme_override_constants/margin_right = 80
 theme_override_constants/margin_bottom = 0
 
@@ -409,3 +410,5 @@ layout_mode = 2
 script = ExtResource("3_obcwv")
 text = "400"
 scale_factor = 4
+
+[node name="AudioVisualizer" parent="." unique_id=106963690 instance=ExtResource("8_gycre")]

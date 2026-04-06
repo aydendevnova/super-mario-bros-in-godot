@@ -1,0 +1,292 @@
+[gd_scene format=3 uid="uid://cyb2po4jkih0r"]
+
+[ext_resource type="FontFile" uid="uid://vob4qk73iam0" path="res://ui/minimal_5x7.ttf" id="1_55vit"]
+[ext_resource type="Script" uid="uid://2lcdubrl2al6" path="res://ui/audio_visualizer.gd" id="2_1nfgx"]
+
+[sub_resource type="Theme" id="Theme_gycre"]
+default_font = ExtResource("1_55vit")
+default_font_size = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0, 0, 0, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.25, 0.3, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_status"]
+content_margin_left = 6.0
+content_margin_top = 2.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.05, 0.05, 0.07, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.25, 0.3, 1)
+
+[node name="AudioVisualizer" type="PanelContainer" unique_id=222247489]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 338.0
+offset_bottom = 274.0
+theme = SubResource("Theme_gycre")
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+script = ExtResource("2_1nfgx")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=11251501]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Layout" type="VBoxContainer" parent="Margin" unique_id=308962068]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TitleLabel" type="Label" parent="Margin/Layout" unique_id=439796810]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.973, 0.847, 0.471, 1)
+theme_override_font_sizes/font_size = 64
+text = "NES 4-CHANNEL AUDIO"
+
+[node name="TrackLabel" type="Label" parent="Margin/Layout" unique_id=2074204669]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.55, 0.6, 1)
+theme_override_font_sizes/font_size = 20
+
+[node name="Divider" type="ColorRect" parent="Margin/Layout" unique_id=2083810293]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0.2, 0.2, 0.25, 1)
+
+[node name="Channels" type="VBoxContainer" parent="Margin/Layout" unique_id=984642341]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Channel0" type="HBoxContainer" parent="Margin/Layout/Channels" unique_id=529230077]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="Margin/Layout/Channels/Channel0"]
+layout_mode = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 5
+
+[node name="ChannelToggle" type="CheckBox" parent="Margin/Layout/Channels/Channel0/MarginContainer"]
+layout_mode = 2
+focus_mode = 0
+size_flags_vertical = 4
+button_pressed = true
+
+[node name="ChannelLabel" type="Label" parent="Margin/Layout/Channels/Channel0" unique_id=210621539]
+custom_minimum_size = Vector2(126, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.361, 0.58, 0.988, 1)
+theme_override_font_sizes/font_size = 43
+text = "PULSE 1"
+
+[node name="StatusColumn" type="VBoxContainer" parent="Margin/Layout/Channels/Channel0" unique_id=354520430]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="StatusBox" type="PanelContainer" parent="Margin/Layout/Channels/Channel0/StatusColumn" unique_id=1811387946]
+custom_minimum_size = Vector2(200, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_status")
+
+[node name="StatusStack" type="VBoxContainer" parent="Margin/Layout/Channels/Channel0/StatusColumn/StatusBox" unique_id=439554319]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TypeLabel" type="Label" parent="Margin/Layout/Channels/Channel0/StatusColumn/StatusBox/StatusStack" unique_id=807277654]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22, 0.22, 0.22, 1)
+theme_override_font_sizes/font_size = 32
+text = "---"
+
+[node name="StreamLabel" type="Label" parent="Margin/Layout/Channels/Channel0/StatusColumn/StatusBox/StatusStack" unique_id=1720198180]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.55, 0.6, 1)
+theme_override_font_sizes/font_size = 32
+
+[node name="TimerBar" type="ColorRect" parent="Margin/Layout/Channels/Channel0/StatusColumn" unique_id=1741567718]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 0
+color = Color(0.973, 0.847, 0.471, 0.6)
+
+[node name="Channel1" type="HBoxContainer" parent="Margin/Layout/Channels" unique_id=232089944]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="Margin/Layout/Channels/Channel1"]
+layout_mode = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 5
+
+[node name="ChannelToggle" type="CheckBox" parent="Margin/Layout/Channels/Channel1/MarginContainer"]
+layout_mode = 2
+focus_mode = 0
+size_flags_vertical = 4
+button_pressed = true
+
+[node name="ChannelLabel" type="Label" parent="Margin/Layout/Channels/Channel1" unique_id=493622867]
+custom_minimum_size = Vector2(126, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.345, 0.847, 0.329, 1)
+theme_override_font_sizes/font_size = 42
+text = "PULSE 2"
+
+[node name="StatusColumn" type="VBoxContainer" parent="Margin/Layout/Channels/Channel1" unique_id=1784044626]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="StatusBox" type="PanelContainer" parent="Margin/Layout/Channels/Channel1/StatusColumn" unique_id=1232104299]
+custom_minimum_size = Vector2(200, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_status")
+
+[node name="StatusStack" type="VBoxContainer" parent="Margin/Layout/Channels/Channel1/StatusColumn/StatusBox" unique_id=2061459067]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TypeLabel" type="Label" parent="Margin/Layout/Channels/Channel1/StatusColumn/StatusBox/StatusStack" unique_id=1326543028]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22, 0.22, 0.22, 1)
+theme_override_font_sizes/font_size = 32
+text = "---"
+
+[node name="StreamLabel" type="Label" parent="Margin/Layout/Channels/Channel1/StatusColumn/StatusBox/StatusStack" unique_id=188980213]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.55, 0.6, 1)
+theme_override_font_sizes/font_size = 32
+
+[node name="TimerBar" type="ColorRect" parent="Margin/Layout/Channels/Channel1/StatusColumn" unique_id=882160492]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 0
+color = Color(0.973, 0.847, 0.471, 0.6)
+
+[node name="Channel2" type="HBoxContainer" parent="Margin/Layout/Channels" unique_id=538113917]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="Margin/Layout/Channels/Channel2"]
+layout_mode = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 5
+
+[node name="ChannelToggle" type="CheckBox" parent="Margin/Layout/Channels/Channel2/MarginContainer"]
+layout_mode = 2
+focus_mode = 0
+size_flags_vertical = 4
+button_pressed = true
+
+[node name="ChannelLabel" type="Label" parent="Margin/Layout/Channels/Channel2" unique_id=2075373450]
+custom_minimum_size = Vector2(126, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.941, 0.471, 0.345, 1)
+theme_override_font_sizes/font_size = 42
+text = "TRIANGLE"
+
+[node name="StatusColumn" type="VBoxContainer" parent="Margin/Layout/Channels/Channel2" unique_id=1952748127]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="StatusBox" type="PanelContainer" parent="Margin/Layout/Channels/Channel2/StatusColumn" unique_id=110043915]
+custom_minimum_size = Vector2(200, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_status")
+
+[node name="StatusStack" type="VBoxContainer" parent="Margin/Layout/Channels/Channel2/StatusColumn/StatusBox" unique_id=298390076]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TypeLabel" type="Label" parent="Margin/Layout/Channels/Channel2/StatusColumn/StatusBox/StatusStack" unique_id=1962617147]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22, 0.22, 0.22, 1)
+theme_override_font_sizes/font_size = 32
+text = "---"
+
+[node name="StreamLabel" type="Label" parent="Margin/Layout/Channels/Channel2/StatusColumn/StatusBox/StatusStack" unique_id=690851669]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.55, 0.6, 1)
+theme_override_font_sizes/font_size = 32
+
+[node name="TimerBar" type="ColorRect" parent="Margin/Layout/Channels/Channel2/StatusColumn" unique_id=1740650673]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 0
+color = Color(0.973, 0.847, 0.471, 0.6)
+
+[node name="Channel3" type="HBoxContainer" parent="Margin/Layout/Channels" unique_id=1515336678]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="Margin/Layout/Channels/Channel3"]
+layout_mode = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 5
+
+[node name="ChannelToggle" type="CheckBox" parent="Margin/Layout/Channels/Channel3/MarginContainer"]
+layout_mode = 2
+focus_mode = 0
+size_flags_vertical = 4
+button_pressed = true
+
+[node name="ChannelLabel" type="Label" parent="Margin/Layout/Channels/Channel3" unique_id=845600544]
+custom_minimum_size = Vector2(126, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.659, 0.659, 0.659, 1)
+theme_override_font_sizes/font_size = 42
+text = "NOISE"
+
+[node name="StatusColumn" type="VBoxContainer" parent="Margin/Layout/Channels/Channel3" unique_id=705743016]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="StatusBox" type="PanelContainer" parent="Margin/Layout/Channels/Channel3/StatusColumn" unique_id=647562800]
+custom_minimum_size = Vector2(200, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_status")
+
+[node name="StatusStack" type="VBoxContainer" parent="Margin/Layout/Channels/Channel3/StatusColumn/StatusBox" unique_id=1481368506]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TypeLabel" type="Label" parent="Margin/Layout/Channels/Channel3/StatusColumn/StatusBox/StatusStack" unique_id=2143081773]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22, 0.22, 0.22, 1)
+theme_override_font_sizes/font_size = 32
+text = "---"
+
+[node name="StreamLabel" type="Label" parent="Margin/Layout/Channels/Channel3/StatusColumn/StatusBox/StatusStack" unique_id=908213651]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.55, 0.6, 1)
+theme_override_font_sizes/font_size = 32
+
+[node name="TimerBar" type="ColorRect" parent="Margin/Layout/Channels/Channel3/StatusColumn" unique_id=400891001]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 0
+color = Color(0.973, 0.847, 0.471, 0.6)

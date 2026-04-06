@@ -59,14 +59,17 @@ func _set_shell_flipped():
 	shell_sprite.show()
 
 func stomp(player: Player):
-	AudioSystem.play_sfx("kick")
+	
 	if not shell:
+		AudioSystem.play_sfx("stomp")
 		_enter_shell()
 		Game.up_score(100)
 		_spawn_points(100)
 	elif pushed:
+		AudioSystem.play_sfx("kick")
 		_stop_shell()
 	else:
+		AudioSystem.play_sfx("kick")
 		push(player)
 
 func _enter_shell():

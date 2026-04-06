@@ -29,14 +29,20 @@ AudioSystem="*uid://bpqkcqbtqr1oy"
 
 [display]
 
-window/size/viewport_width=960
-window/size/viewport_height=960
-window/stretch/mode="viewport"
+window/size/viewport_width=900
+window/size/viewport_height=900
+window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
 
 [global_group]
 
 Enemies=""
+
+[gui]
+
+theme/default_font_antialiasing=2
+theme/default_font_multichannel_signed_distance_field=true
+theme/default_font_generate_mipmaps=true
 
 [input]
 

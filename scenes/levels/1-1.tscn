@@ -148,26 +148,6 @@ position = Vector2(2080, 48)
 [node name="@StaticBody2D@703143" parent="LevelBuilder/Main/Scenes" unique_id=2143421038 instance=ExtResource("10_j7ukw")]
 position = Vector2(2096, 48)
 
-[node name="@StaticBody2D@703144" parent="LevelBuilder/Main/Scenes" unique_id=155930572 instance=ExtResource("8_e6vbh")]
-position = Vector2(240, 112)
-contents = "one_up"
-
-[node name="_StaticBody2D_703144" parent="LevelBuilder/Main/Scenes" unique_id=1189853519 instance=ExtResource("8_e6vbh")]
-position = Vector2(256, 112)
-contents = "star"
-
-[node name="@StaticBody2D@703145" parent="LevelBuilder/Main/Scenes" unique_id=1646577026 instance=ExtResource("10_j7ukw")]
-position = Vector2(176, 112)
-contents = "coin"
-
-[node name="_StaticBody2D_703145" parent="LevelBuilder/Main/Scenes" unique_id=1361015651 instance=ExtResource("10_j7ukw")]
-position = Vector2(192, 112)
-contents = "star"
-
-[node name="_StaticBody2D_703146" parent="LevelBuilder/Main/Scenes" unique_id=1161784878 instance=ExtResource("10_j7ukw")]
-position = Vector2(208, 112)
-contents = "one_up"
-
 [node name="@StaticBody2D@703146" parent="LevelBuilder/Main/Scenes" unique_id=620741673 instance=ExtResource("8_e6vbh")]
 position = Vector2(336, 112)
 contents = "powerup"
@@ -177,9 +157,6 @@ position = Vector2(352, 112)
 
 [node name="_StaticBody2D_703147" parent="LevelBuilder/Main/Scenes" unique_id=2126807828 instance=ExtResource("10_j7ukw")]
 position = Vector2(320, 112)
-
-[node name="_StaticBody2D_703148" parent="LevelBuilder/Main/Scenes" unique_id=1323262499 instance=ExtResource("10_j7ukw")]
-position = Vector2(304, 112)
 
 [node name="@StaticBody2D@703148" parent="LevelBuilder/Main/Scenes" unique_id=587362300 instance=ExtResource("8_e6vbh")]
 position = Vector2(368, 112)
@@ -258,6 +235,9 @@ position = Vector2(1312, 32)
 [node name="@CharacterBody2D@703172" parent="LevelBuilder/Main/Entities" unique_id=1913640127 instance=ExtResource("12_fcmsi")]
 position = Vector2(1600, 160)
 
+[node name="_CharacterBody2D_703172" parent="LevelBuilder/Main/Entities" unique_id=836737039 instance=ExtResource("12_fcmsi")]
+position = Vector2(328, 166)
+
 [node name="@CharacterBody2D@703173" parent="LevelBuilder/Main/Entities" unique_id=673014603 instance=ExtResource("12_fcmsi")]
 position = Vector2(1616, 160)
 
@@ -265,7 +245,7 @@ position = Vector2(1616, 160)
 position = Vector2(1712, 152)
 
 [node name="KoopaTroopa2" parent="LevelBuilder/Main/Entities" unique_id=1636307410 instance=ExtResource("14_2i6ik")]
-position = Vector2(384, 24)
+position = Vector2(400, 152)
 
 [node name="@CharacterBody2D@703174" parent="LevelBuilder/Main/Entities" unique_id=1892499671 instance=ExtResource("12_fcmsi")]
 position = Vector2(1872, 160)

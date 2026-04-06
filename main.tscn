@@ -48,10 +48,13 @@ shader_parameter/palette_id = 18
 shader = ExtResource("3_82xsv")
 shader_parameter/palette_id = 27
 
-[node name="Main" type="Node" unique_id=22782707]
+[node name="Main" type="Node" unique_id=1024354604]
 script = ExtResource("1_272bh")
-dev_quick_start = true
-dev_level = "7-2"
+
+[node name="AudioSystem" parent="." unique_id=2003846930 instance=ExtResource("3_h2yge")]
+process_mode = 3
+
+[node name="CanvasLayer" parent="." unique_id=1955268887 instance=ExtResource("18_074og")]
 
 [node name="Level" type="Node2D" parent="." unique_id=1176280362]
 
@@ -497,8 +500,3 @@ position = Vector2(160, 160)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=98279284]
 position = Vector2(120, -128)
 zoom = Vector2(4, 4)
-
-[node name="CanvasLayer" parent="." unique_id=1955268887 instance=ExtResource("18_074og")]
-
-[node name="AudioSystem" parent="." unique_id=2003846930 instance=ExtResource("3_h2yge")]
-process_mode = 3

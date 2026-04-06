@@ -19,12 +19,16 @@ var _music_stream: Array = [null, null, null, null]
 var _sfx_on: Array[bool] = [false, false, false, false]
 var _sfx_left: Array[float] = [0.0, 0.0, 0.0, 0.0]
 var _sfx_age: Array[float] = [0.0, 0.0, 0.0, 0.0]
-const MIN_SFX_PLAY := 0.068
+var _sfx_name: Array[String] = ["", "", "", ""]
+const MIN_SFX_PLAY := 0.096
 
 # --- Fade-in on music restore ---
 const FADE_IN_DB := -20.0
 const FADE_IN_DURATION := 0.025
 var _fade_tween: Array = [null, null, null, null]
+
+# --- Demo channel mute (does not affect play state, only audio output) ---
+var _channel_muted: Array[bool] = [false, false, false, false]
 
 
 func play_music(track_name: String) -> void:
@@ -84,7 +88,7 @@ func play_sfx(sfx_name: String) -> void:
 		var s := _load_stream(t.group, sfx_name, ch)
 		if not s:
 			continue
-		if _sfx_on[ch] and _sfx_age[ch] < MIN_SFX_PLAY:
+		if _sfx_on[ch] and _sfx_name[ch] == sfx_name and _sfx_age[ch] < MIN_SFX_PLAY:
 			_sfx_left[ch] = maxf(_sfx_left[ch], t.duration)
 			continue
 		if _fade_tween[ch]:
@@ -93,7 +97,8 @@ func play_sfx(sfx_name: String) -> void:
 		_sfx_on[ch] = true
 		_sfx_left[ch] = t.duration
 		_sfx_age[ch] = 0.0
-		_ch[ch].volume_db = 0.0
+		_sfx_name[ch] = sfx_name
+		_ch[ch].volume_db = -80.0 if _channel_muted[ch] else 0.0
 		_ch[ch].stream = s
 		_ch[ch].play()
 
@@ -105,12 +110,15 @@ func _process(delta: float) -> void:
 			_sfx_left[i] -= delta
 			if _sfx_left[i] <= 0.0:
 				_restore_channel(i)
+		if _channel_muted[i]:
+			_ch[i].volume_db = -80.0
 
 
 func _restore_channel(ch: int) -> void:
 	_sfx_on[ch] = false
 	_sfx_left[ch] = 0.0
 	_sfx_age[ch] = 0.0
+	_sfx_name[ch] = ""
 
 	if _music_stream[ch] == null:
 		_ch[ch].stop()
@@ -145,6 +153,8 @@ func _get_sync_position(exclude_ch: int) -> float:
 
 
 func get_debug_info() -> Dictionary:
+	if not OS.is_debug_build():
+		return {}
 	var ch_info := []
 	for i in CH_COUNT:
 		var stream_name := ""
@@ -162,6 +172,20 @@ func get_debug_info() -> Dictionary:
 		"voices": _voices,
 		"channels": ch_info,
 	}
+
+
+func set_channel_muted(ch: int, muted: bool) -> void:
+	if ch < 0 or ch >= CH_COUNT:
+		return
+	_channel_muted[ch] = muted
+	if muted:
+		_ch[ch].volume_db = -80.0
+	else:
+		_ch[ch].volume_db = 0.0
+
+
+func is_channel_muted(ch: int) -> bool:
+	return _channel_muted[ch] if ch >= 0 and ch < CH_COUNT else false
 
 
 func _load_stream(group: String, track_name: String, ch: int) -> AudioStream:

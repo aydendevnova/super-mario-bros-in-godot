@@ -81,7 +81,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1066653473]
-zoom = Vector2(4, 4)
+zoom = Vector2(3.76, 3.76)
 limit_left = 0
 limit_bottom = 0
 drag_vertical_enabled = true
