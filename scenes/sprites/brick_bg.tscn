@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cfrk1lq3vq2qg" path="res://scripts/palette_swap.gd" id="1_script"]
 [ext_resource type="Script" uid="uid://cnuf8qxvj258v" path="res://scenes/sprites/brick_bg.gd" id="1_t82s4"]
 [ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="2_shader"]
-[ext_resource type="Texture2D" uid="uid://dbif06p0dp74g" path="res://assets/textures/chr-mapping.png" id="3_atlas"]
+[ext_resource type="Texture2D" uid="uid://cqmskpby07x1a" path="res://assets/textures/chr-mapping.png" id="3_atlas"]
 [ext_resource type="Shape2D" uid="uid://ccy5o4jglbeso" path="res://assets/16x16_collision.tres" id="4_i2adv"]
 [ext_resource type="Texture2D" uid="uid://c6gauukegl10g" path="res://assets/brick_piece_atlas.tres" id="6_og3i4"]
 

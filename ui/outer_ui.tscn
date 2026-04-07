@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cx2q6r70hot23"]
+
+[ext_resource type="PackedScene" uid="uid://cyb2po4jkih0r" path="res://ui/audio_visualizer.tscn" id="1_cl0yi"]
+[ext_resource type="Script" uid="uid://ccnhho8fa0eq3" path="res://ui/outer_ui.gd" id="1_pesda"]
+
+[node name="OuterUI" type="CanvasLayer" unique_id=1169496093]
+script = ExtResource("1_pesda")
+
+[node name="AudioVisualizer" parent="." unique_id=222247489 instance=ExtResource("1_cl0yi")]
+offset_right = 478.0
+offset_bottom = 298.0

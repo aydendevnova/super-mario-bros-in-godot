@@ -1,20 +1,22 @@
 [gd_scene format=3 uid="uid://hmboymobgkc5"]
 
-[ext_resource type="Script" uid="uid://cfrk1lq3vq2qg" path="res://scripts/palette_swap.gd" id="1_script"]
 [ext_resource type="Script" uid="uid://ra441xtkdv2r" path="res://scenes/sprites/block_empty_bg.gd" id="1_y3qe7"]
 [ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="2_shader"]
 [ext_resource type="Texture2D" uid="uid://d3opr08ux4pg1" path="res://assets/block_empty_bg.tres" id="3_y3qe7"]
+[ext_resource type="Shape2D" uid="uid://ccy5o4jglbeso" path="res://assets/16x16_collision.tres" id="4_y3qe7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
 shader = ExtResource("2_shader")
 shader_parameter/palette_id = 8
 
-[node name="BlockEmptyBg" type="Node2D" unique_id=1596362980]
+[node name="BlockEmptyBg" type="StaticBody2D" unique_id=1326385563]
 script = ExtResource("1_y3qe7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1612193292]
 material = SubResource("ShaderMaterial_1")
 texture = ExtResource("3_y3qe7")
 centered = false
-script = ExtResource("1_script")
-sprite_type = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=159627481]
+position = Vector2(8, 8)
+shape = ExtResource("4_y3qe7")

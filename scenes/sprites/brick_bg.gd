@@ -11,14 +11,14 @@ var _piece_velocities: Array[Vector2] = []
 var _flip_timer := 0.0
 
 func _ready() -> void:
+	super()
 	_original_texture = sprite.texture
 	$First.visible = false
 	$Second.visible = false
 	$Third.visible = false
 	$Fourth.visible = false
 
-	if contents.begins_with("invisible"):
-		sprite.visible = false
+
 
 func _process(delta: float) -> void:
 	if not _breaking:
@@ -37,7 +37,7 @@ func hit(player) -> void:
 		return
 
 	if contents.begins_with("invisible"):
-		sprite.visible = true
+		_make_solid()
 
 	_knock_enemies_above(player)
 

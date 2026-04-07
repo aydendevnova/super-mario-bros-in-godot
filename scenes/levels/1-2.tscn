@@ -1963,22 +1963,22 @@ position = Vector2(2480, -16)
 collision_mask = 23
 
 [node name="PlatformMovingLonger" parent="LevelBuilder/Underground/Entities" unique_id=1372714624 instance=ExtResource("16_3d66v")]
-position = Vector2(2480, 96)
+position = Vector2(2240, 96)
 movement_type = 3
 
 [node name="@StaticBody2D@705135" parent="LevelBuilder/Underground/Entities" unique_id=1620197634 instance=ExtResource("16_3d66v")]
-position = Vector2(2480, 192)
+position = Vector2(2240, 192)
 movement_type = 3
 
 [node name="@Area2D@705136" parent="LevelBuilder/Underground/Entities" unique_id=19544687 instance=ExtResource("14_ykck8")]
 position = Vector2(2592, 152)
 
 [node name="@StaticBody2D@705137" parent="LevelBuilder/Underground/Entities" unique_id=1968810601 instance=ExtResource("16_3d66v")]
-position = Vector2(2720, 0)
+position = Vector2(2481, 0)
 movement_type = 2
 
 [node name="@StaticBody2D@705138" parent="LevelBuilder/Underground/Entities" unique_id=1316730807 instance=ExtResource("16_3d66v")]
-position = Vector2(2720, 128)
+position = Vector2(2481, 128)
 movement_type = 2
 
 [node name="StaticBody2D" type="StaticBody2D" parent="LevelBuilder" unique_id=545458071]

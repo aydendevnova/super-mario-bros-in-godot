@@ -13,10 +13,24 @@ const MUSHROOM := preload("res://scenes/sprites/mushroom.tscn")
 const FIRE_FLOWER := preload("res://scenes/sprites/fire_flower.tscn")
 const STAR := preload("res://scenes/sprites/star.tscn")
 
+const INVISIBLE_LAYER := 6
+
 var _used := false
 var _bopping := false
 
+func _ready() -> void:
+	if contents.begins_with("invisible"):
+		sprite.visible = false
+		set_collision_layer_value(1, false)
+		set_collision_layer_value(INVISIBLE_LAYER, true)
+
+func _make_solid() -> void:
+	sprite.visible = true
+	set_collision_layer_value(INVISIBLE_LAYER, false)
+	set_collision_layer_value(1, true)
+
 func _handle_contents(player) -> bool:
+
 	match contents:
 		"coin", "invisible_coin":
 			_dispense_coin()
@@ -79,12 +93,8 @@ func _knock_enemies_above(player) -> void:
 			node.collect(true)
 
 func _spawn_item(scene: PackedScene, is_1up: bool) -> void:
-	await get_tree().physics_frame
-	await get_tree().physics_frame
-	await get_tree().physics_frame
-	await get_tree().physics_frame
-	await get_tree().physics_frame
-	await get_tree().physics_frame
+	for n in range(8):
+		await get_tree().physics_frame
 	AudioSystem.play_sfx("powerup_appears")
 	var item := scene.instantiate()
 	item.position = Game.current_level.to_local(global_position)

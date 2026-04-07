@@ -34,7 +34,7 @@ var _loading_level := false
 func _ready():
 	get_window().size = Vector2i(1920, 1080)
 	DisplayServer.window_set_min_size(Vector2(960, 960), 0)
-	_level_container = $Level
+	_level_container = %Level
 	for child in _level_container.get_children():
 		child.queue_free()
 	SignalBus.game_state_changed.connect(_on_state_changed)
@@ -85,6 +85,8 @@ func _load_level() -> void:
 		Game.lvl_palette = level_builder.world_theme
 		Game.lvl_scenery_palette = level_builder.scenery_type
 		SignalBus.game_palette_updated.emit()
+	else:
+		printerr("Error!")
 
 	_spawn_player()
 
@@ -105,8 +107,9 @@ func _unload_level() -> void:
 
 func _spawn_player() -> void:
 	_player = PLAYER_SCENE.instantiate()
-	add_child(_player)
+	_level_container.add_child(_player)
 	_player.position = Vector2(SPAWN_X, _find_spawn_y())
+	
 
 func _despawn_player() -> void:
 	if _player and is_instance_valid(_player):
@@ -228,7 +231,7 @@ func _dev_start() -> void:
 		SignalBus.game_palette_updated.emit()
 
 	_player = PLAYER_SCENE.instantiate()
-	add_child(_player)
+	_level_container.add_child(_player)
 
 	var quick_start := _current_level.get_node_or_null("QuickStart") as Marker2D
 	if quick_start:

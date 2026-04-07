@@ -31,6 +31,8 @@ AudioSystem="*uid://bpqkcqbtqr1oy"
 
 window/size/viewport_width=900
 window/size/viewport_height=900
+window/size/window_width_override=900
+window/size/window_height_override=940
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
 
@@ -111,5 +113,6 @@ start={
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+renderer/rendering_method="mobile"
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true

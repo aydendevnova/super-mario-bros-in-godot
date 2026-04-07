@@ -174,7 +174,7 @@ const ENTITY_SCENE_MAP := {
 	"toad": ["res://scenes/enemies/toad.tscn", 24],
 	"princess": ["res://scenes/enemies/princess.tscn", 24],
 	"plat_std_h": ["res://scenes/sprites/platform_moving_longer.tscn", 16, {"movement_type": 0}],
-	"plat_std_h_b": ["res://scenes/sprites/platform_moving_longer.tscn", 16, {"movement_type": 0}],
+	"plat_std_h_b": ["res://scenes/sprites/platform_moving_longer.tscn", 16, {"movement_type": 6}],
 	"plat_std_v": ["res://scenes/sprites/platform_moving_longer.tscn", 16, {"movement_type": 1}],
 	"plat_l_up": ["res://scenes/sprites/platform_moving_longer.tscn", 16, {"movement_type": 2}],
 	"plat_s_up": ["res://scenes/sprites/platform_moving_longer.tscn", 16, {"movement_type": 2}],

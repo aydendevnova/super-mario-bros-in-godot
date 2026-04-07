@@ -24,6 +24,7 @@ const STOMP_SPEED = 240.0
 const STOMP_SPEED_CAP = -80.0
 const STOMP_TOLERANCE = 8.0
 const CORNER_CORRECTION_PX := 2
+const INVISIBLE_BLOCK_MASK := 32 # layer 6
 
 const COOLDOWN_TIME_SEC = 3.0
 const STAR_DURATION := 10.0
@@ -154,6 +155,7 @@ func _physics_process(delta):
 	move_and_slide()
 	if not _corner_correct():
 		handle_last_collision()
+	_check_invisible_blocks()
 	
 	if (position.y > (Game.bottom_of_map_y + 16) && not is_dead):
 		
@@ -270,7 +272,7 @@ func process_walk(delta: float):
 	if abs(velocity.x) < MIN_SLOW_DOWN_SPEED:
 		is_skiding = false
 	
-	speed_scale = abs(velocity.x) / MAX_SPEED
+	speed_scale = abs(velocity.x) / MAX_SPEED / 2
 	
 func _can_stand_up() -> bool:
 	small_collision_shape.disabled = true
@@ -357,6 +359,33 @@ func _find_block_above() -> Node:
 				best_dist = dist
 				best = collider
 	return best
+
+func _check_invisible_blocks() -> void:
+	if _old_velocity.y >= 0:
+		return
+	var active_shape = small_collision_shape if state == State.SMALL else big_collision_shape
+	var head_x: float = global_position.x + active_shape.position.x
+	var head_y: float = global_position.y + active_shape.position.y - active_shape.shape.size.y / 2.0
+
+	var space := get_world_2d().direct_space_state
+	var query := PhysicsPointQueryParameters2D.new()
+	query.position = Vector2(head_x, head_y - 4.0)
+	query.collision_mask = INVISIBLE_BLOCK_MASK
+	query.exclude = [get_rid()]
+
+	var results := space.intersect_point(query)
+	var best: Node = null
+	var best_dist := INF
+	for result in results:
+		var collider = result.collider
+		if collider.has_method("hit"):
+			var dist: float = abs(head_x - (collider.global_position.x + 8.0))
+			if dist < best_dist:
+				best_dist = dist
+				best = collider
+	if best:
+		velocity.y = 0
+		best.hit(self)
 
 func _process_blink(delta: float) -> void:
 	if _is_transitioning or has_cooldown:

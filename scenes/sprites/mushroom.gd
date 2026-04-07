@@ -14,7 +14,6 @@ var _direction := 1.0
 
 func _ready() -> void:
 	add_to_group("powerups")
-
 	if is_1up:
 		sprite.material.set_shader_parameter("palette_id", 24)
 	else:
