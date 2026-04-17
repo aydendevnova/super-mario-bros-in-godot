@@ -30,7 +30,7 @@ var _sfx_on: Array[bool] = [false, false, false, false]
 var _sfx_left: Array[float] = [0.0, 0.0, 0.0, 0.0]
 var _sfx_age: Array[float] = [0.0, 0.0, 0.0, 0.0]
 var _sfx_name: Array[String] = ["", "", "", ""]
-const MIN_SFX_PLAY := 0.064
+const MIN_SFX_PLAY := 0.016
 
 # --- Fade-in on music restore ---
 const FADE_IN_DB := -20.0
