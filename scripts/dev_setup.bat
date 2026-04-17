@@ -1,6 +1,6 @@
 @echo off
 echo Marking generated assets as assume-unchanged...
-for /f "tokens=*" %%i in ('git ls-files assets/textures/ assets/music/ assets/sfx/') do (
+for /f "tokens=*" %%i in ('git ls-files assets/textures/') do (
     git update-index --assume-unchanged "%%i"
 )
 echo Done. Local asset generation will not appear in git status.
