@@ -101,6 +101,11 @@ func level_complete() -> void:
 	_time_accumulator = 0.0
 
 func countdown_time_to_score(callback: Callable) -> void:
+	if time <= 0:
+		_countdown_active = false
+		if callback.is_valid():
+			callback.call()
+		return
 	_time_accumulator = 0.0
 	_countdown_callback = callback
 	_countdown_active = true

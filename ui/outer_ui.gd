@@ -13,11 +13,13 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and event.keycode == KEY_F2:
+		show()
 		_audio_viz_visible = not _audio_viz_visible
 		_audio_viz.visible = _audio_viz_visible
 		return
 
 	if event is InputEventKey and event.pressed and event.keycode == KEY_F3:
+		show()
 		_debug_visible = not _debug_visible
 		_debug_panel.visible = _debug_visible
 		return

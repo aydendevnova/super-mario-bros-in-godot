@@ -17,6 +17,8 @@ var _triggered := false
 var _player: Player
 var _walking := false
 var _walk_start_x := 0.0
+var _countdown_done := false
+var _advancing := false
 
 func _on_pole_area_body_entered(body: Node2D) -> void:
 	if _triggered:
@@ -89,6 +91,11 @@ func _process(_delta: float) -> void:
 	if _walking and _player.visible:
 		if _player.global_position.x - _walk_start_x >= HIDE_DISTANCE:
 			_player.visible = false
+			Game.countdown_time_to_score(_on_countdown_finished)
+
+	if _countdown_done and not _advancing and not AudioSystem.is_music_playing():
+		_advancing = true
+		_do_advance()
 
 func _start_walk() -> void:
 	_player.unfreeze_camera()
@@ -102,9 +109,10 @@ func _start_walk() -> void:
 	_walk_start_x = _player.global_position.x
 	_walking = true
 
-	Game.countdown_time_to_score(_on_countdown_finished)
-
 func _on_countdown_finished() -> void:
-	await get_tree().create_timer(1.0).timeout
+	_countdown_done = true
+
+func _do_advance() -> void:
+	await get_tree().create_timer(0.5).timeout
 	_player.sprite.offset.x = 0
 	Game.advance_level()

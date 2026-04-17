@@ -1,11 +1,10 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cy6bmvo5hmy1e"]
 
 [ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="shader"]
-[ext_resource type="Script" uid="uid://cfrk1lq3vq2qg" path="res://scripts/palette_swap.gd" id="palette_script"]
-[ext_resource type="Texture2D" uid="uid://bltae2kfawg7u" path="res://assets/textures/enemies/bowser_walk_0.png" id="tex_0"]
-[ext_resource type="Texture2D" uid="uid://bfg8uq5r07faw" path="res://assets/textures/enemies/bowser_walk_1.png" id="tex_1"]
-[ext_resource type="Texture2D" uid="uid://uu2vcqmqajcd" path="res://assets/textures/enemies/bowser_walk_2.png" id="tex_2"]
-[ext_resource type="Texture2D" uid="uid://b0gmqgu2o48lo" path="res://assets/textures/enemies/bowser_walk_3.png" id="tex_3"]
+[ext_resource type="Texture2D" uid="uid://r0h3h02wy3se" path="res://assets/textures/enemies/bowser_walk_0.png" id="tex_0"]
+[ext_resource type="Texture2D" uid="uid://bwarf8b1jnv20" path="res://assets/textures/enemies/bowser_walk_1.png" id="tex_1"]
+[ext_resource type="Texture2D" uid="uid://dotb2qe22eldj" path="res://assets/textures/enemies/bowser_walk_2.png" id="tex_2"]
+[ext_resource type="Texture2D" uid="uid://dt7pp4j7qxm01" path="res://assets/textures/enemies/bowser_walk_3.png" id="tex_3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
 shader = ExtResource("shader")
@@ -34,17 +33,15 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(32, 32)
 
-[node name="Bowser" type="Area2D"]
+[node name="Bowser" type="Area2D" unique_id=1397245645]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=437541945]
 material = SubResource("ShaderMaterial_1")
 sprite_frames = SubResource("SpriteFrames_1")
 animation = &"walk"
 autoplay = "walk"
 centered = false
-script = ExtResource("palette_script")
-sprite_type = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1885289961]
 position = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_1")

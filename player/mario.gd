@@ -3,8 +3,8 @@ extends CharacterBody2D
 class_name Player
 
 const MIN_SPEED = 4.453125
-const MAX_SPEED = 153.75
-const MAX_WALK_SPEED = 93.75
+const MAX_SPEED = 157.5
+const MAX_WALK_SPEED = 96.0
 const MAX_FALL_SPEED = 270.0
 const MIN_SLOW_DOWN_SPEED = 33.75
 
@@ -18,7 +18,7 @@ const JUMP_SPEED = [-240.0, -240.0, -300.0]
 const LONG_JUMP_GRAVITY = [450.0, 421.875, 562.5]
 const GRAVITY = [1575.0, 1350.0, 2025.0]
 
-const SPEED_THRESHOLDS = [60, 138.75]
+const SPEED_THRESHOLDS = [60, 93.75]
 
 const STOMP_SPEED = 240.0
 const STOMP_SPEED_CAP = -80.0
@@ -32,6 +32,12 @@ const STAR_WARNING_TIME := 3.0
 const STAR_PALETTE_INTERVAL := 0.05
 const STAR_WARNING_PALETTE_INTERVAL := 0.15
 const STAR_PALETTES := [27, 24, 44, 27]
+const DEFAULT_TRANSITION_DURATION := 0.6
+const TRANSITION_DURATION_PADDING := 0.12
+const WALK_ANIM_FPS_SLOW := 8
+const WALK_ANIM_FPS_MID := 14.0
+const WALK_ANIM_FPS_FAST := 24.0
+const WALK_ANIM_BASE_FPS := 10.0
 const POINTS_POPUP := preload("res://scenes/sprites/points_popup.tscn")
 const FIREBALL_SCENE := preload("res://scenes/sprites/fireball.tscn")
 const FIREBALL_MIN_DISTANCE := 112
@@ -62,25 +68,34 @@ var max_speed = MAX_WALK_SPEED
 var acceleration = WALK_ACCELERATION
 
 var speed_threshold: int = 0
+var run_timer: float = 0.0
+const RUN_TIMER_DURATION = 10.0 / 60.0
 
 var lives = 3
 var is_dead = false
 
 enum State { SMALL, BIG, FIRE }
 
-var state = State.BIG:
+var state = State.SMALL:
 	set(value):
 		if state != value:
+			var previous_state = state
 			state = value
+			_is_fire_transition = previous_state == State.BIG and state == State.FIRE
 			
 			match state:
 				State.SMALL:
 					transition_sprite.animation = "shrink"
-				State.BIG, State.FIRE:
+					
+				State.BIG:
 					transition_sprite.animation = "grow"
-			
-			transition_sprite.flip_h = sprite.flip_h
+				
+				State.FIRE:
+					transition_sprite.animation = "fire" if _is_fire_transition else "grow"
+
 			play_transition()
+			transition_sprite.flip_h = sprite.flip_h
+			
 			
 
 var has_cooldown = false
@@ -89,6 +104,9 @@ var _star_timer := 0.0
 var _star_palette_timer := 0.0
 var _star_palette_index := 0
 var _is_transitioning = false
+var _is_fire_transition = false
+var _transition_palette_timer := 0.0
+var _transition_palette_index := 0
 var _blink_timer: float = 0.0
 const COOLDOWN_BLINK_INTERVAL = 0.025
 const TRANSITION_BLINK_INTERVAL = 0.05
@@ -120,6 +138,7 @@ func _ready():
 	camera.make_current()
 
 func _process(delta):
+	_process_transition_palette(delta)
 	_process_star_power(delta)
 	_process_blink(delta)
 	if camera_frozen:
@@ -158,7 +177,6 @@ func _physics_process(delta):
 	_check_invisible_blocks()
 	
 	if (position.y > (Game.bottom_of_map_y + 16) && not is_dead):
-		
 		handle_death()
 	
 func process_camera_bounds():
@@ -178,7 +196,11 @@ func process_input():
 	var was_crouching = is_crouching
 	
 	if is_on_floor():
-		is_running = Input.is_action_pressed("run")
+		if Input.is_action_pressed("run"):
+			run_timer = RUN_TIMER_DURATION
+		elif run_timer > 0.0:
+			run_timer -= get_process_delta_time()
+		is_running = run_timer > 0.0
 		is_crouching = Input.is_action_pressed("crouch")
 
 		if is_crouching and input_axis.x:
@@ -397,6 +419,39 @@ func _process_blink(delta: float) -> void:
 	else:
 		_blink_timer = 0.0
 
+func _process_transition_palette(delta: float) -> void:
+	if not _is_transitioning or not _is_fire_transition:
+		return
+	_transition_palette_timer += delta
+	if _transition_palette_timer < STAR_PALETTE_INTERVAL:
+		return
+	_transition_palette_timer -= STAR_PALETTE_INTERVAL
+	_transition_palette_index = (_transition_palette_index + 1) % STAR_PALETTES.size()
+	transition_sprite.material.set_shader_parameter("palette_id", STAR_PALETTES[_transition_palette_index])
+
+func _get_transition_duration(animation_name: StringName) -> float:
+	var frames := transition_sprite.sprite_frames
+	if not frames or not frames.has_animation(animation_name):
+		return DEFAULT_TRANSITION_DURATION
+	var speed := frames.get_animation_speed(animation_name)
+	if speed <= 0.0:
+		return DEFAULT_TRANSITION_DURATION
+	var frame_duration := 0.0
+	for i in range(frames.get_frame_count(animation_name)):
+		frame_duration += frames.get_frame_duration(animation_name, i)
+	return (frame_duration / speed) + TRANSITION_DURATION_PADDING
+
+func _get_walk_animation_speed_scale() -> float:
+	var abs_speed = abs(velocity.x)
+	if abs_speed <= 0.0:
+		return WALK_ANIM_FPS_SLOW / WALK_ANIM_BASE_FPS
+	var walk_t := clampf(abs_speed / MAX_WALK_SPEED, 0.0, 1.0)
+	if walk_t < 0.35:
+		return WALK_ANIM_FPS_SLOW / WALK_ANIM_BASE_FPS
+	if walk_t < 0.70:
+		return WALK_ANIM_FPS_MID / WALK_ANIM_BASE_FPS
+	return WALK_ANIM_FPS_FAST / WALK_ANIM_BASE_FPS
+
 func process_animation():
 	if is_locked and not auto_walk_right:
 		if not has_cooldown and not _is_transitioning:
@@ -404,7 +459,7 @@ func process_animation():
 		return
 
 	sprite.flip_h = is_facing_left
-	sprite.speed_scale = max(2.5, speed_scale * 6.0) if is_running else max(1.75, speed_scale * 4.0)
+	sprite.speed_scale = 1.0
 	
 	if is_dead:
 		sprite.play("Dying")
@@ -428,6 +483,7 @@ func process_animation():
 		sprite.play("Skid")
 	elif input_axis.x or velocity.x:
 		sprite.play("Walk")
+		sprite.speed_scale = _get_walk_animation_speed_scale()
 	else:
 		sprite.play("Idle")
 
@@ -541,7 +597,8 @@ func take_hit():
 		handle_death()
 	else:
 		AudioSystem.play_sfx("pipe")
-		transform(state - 1)
+		# SMB behavior: any powered state drops straight to small.
+		transform(State.SMALL)
 		_cooldown()
 
 func _cooldown():
@@ -594,19 +651,34 @@ func _check_overlap():
 func play_transition():
 	get_tree().paused = true
 	_is_transitioning = true
+	_transition_palette_timer = 0.0
+	_transition_palette_index = 0
 	_blink_timer = 0.0
+	
 	sprite.visible = false
 	transition_sprite.visible = true
+	var target_palette_id := 23 if state == State.FIRE else 21
+	transition_sprite.material.set_shader_parameter("palette_id", target_palette_id)
+	if _is_fire_transition:
+		transition_sprite.material.set_shader_parameter("palette_id", 21)
 
 	transition_sprite.play()
+	var timed_animation := &"grow" if _is_fire_transition else StringName(transition_sprite.animation)
+	var transition_duration := _get_transition_duration(timed_animation)
+	get_tree().create_timer(transition_duration, true).timeout.connect(_finish_transition)
 
 	if collected_item_ref:
 		collected_item_ref.queue_free()
 		collected_item_ref = null
 
-func _on_transition_sprite_animation_finished() -> void:
+func _finish_transition() -> void:
+	if not _is_transitioning:
+		return
 	get_tree().paused = false
 	_is_transitioning = false
+	_is_fire_transition = false
+	_transition_palette_timer = 0.0
+	_transition_palette_index = 0
 	_blink_timer = 0.0
 	modulate.a = 1.0
 	var animation_name = sprite.animation
@@ -619,6 +691,9 @@ func _on_transition_sprite_animation_finished() -> void:
 		sprite.play("Idle")
 
 	transition_sprite.visible = false
+
+func _on_transition_sprite_animation_finished() -> void:
+	return
 
 
 func _on_hitbox_area_entered(area: Area2D):

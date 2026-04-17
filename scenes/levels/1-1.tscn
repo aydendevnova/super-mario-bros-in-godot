@@ -244,9 +244,6 @@ position = Vector2(1616, 160)
 [node name="KoopaTroopa" parent="LevelBuilder/Main/Entities" unique_id=224703642 instance=ExtResource("14_2i6ik")]
 position = Vector2(1712, 152)
 
-[node name="KoopaTroopa2" parent="LevelBuilder/Main/Entities" unique_id=1636307410 instance=ExtResource("14_2i6ik")]
-position = Vector2(400, 152)
-
 [node name="@CharacterBody2D@703174" parent="LevelBuilder/Main/Entities" unique_id=1892499671 instance=ExtResource("12_fcmsi")]
 position = Vector2(1872, 160)
 

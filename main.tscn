@@ -67,7 +67,7 @@ shader_parameter/scanline_phase_shift = 0.333
 
 [node name="Main" type="Node" unique_id=1024354604]
 script = ExtResource("1_272bh")
-dev_level = "1-4"
+dev_level = "2-3"
 
 [node name="OuterUI" parent="." unique_id=1169496093 instance=ExtResource("2_074og")]
 visible = false

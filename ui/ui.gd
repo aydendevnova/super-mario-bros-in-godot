@@ -65,7 +65,7 @@ func _setup_pause_ui() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 
-	if event is InputEventKey and event.pressed and event.keycode == KEY_ENTER:
+	if event.is_action_pressed("start"):
 		if Game.is_paused:
 			_toggle_pause()
 		elif Game.state == Game.GameState.MENU:

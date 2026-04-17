@@ -20,7 +20,7 @@ var _sfx_on: Array[bool] = [false, false, false, false]
 var _sfx_left: Array[float] = [0.0, 0.0, 0.0, 0.0]
 var _sfx_age: Array[float] = [0.0, 0.0, 0.0, 0.0]
 var _sfx_name: Array[String] = ["", "", "", ""]
-const MIN_SFX_PLAY := 0.096
+const MIN_SFX_PLAY := 0.064
 
 # --- Fade-in on music restore ---
 const FADE_IN_DB := -20.0
@@ -182,6 +182,15 @@ func set_channel_muted(ch: int, muted: bool) -> void:
 		_ch[ch].volume_db = -80.0
 	else:
 		_ch[ch].volume_db = 0.0
+
+
+func is_music_playing() -> bool:
+	if _track == "":
+		return false
+	for v in _voices:
+		if v < CH_COUNT and _ch[v].playing:
+			return true
+	return false
 
 
 func is_channel_muted(ch: int) -> bool:

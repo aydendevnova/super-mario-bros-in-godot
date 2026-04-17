@@ -1,11 +1,24 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://dlldmbgi7syen"]
 
-[ext_resource type="Texture2D" uid="uid://ddlawgx15362a" path="res://assets/textures/player/stand_small_full_0.png" id="tex_0"]
-[ext_resource type="Texture2D" uid="uid://qjkbekoxv73i" path="res://assets/textures/player/stand_medium_full_0.png" id="tex_1"]
-[ext_resource type="Texture2D" uid="uid://dq3fc4j7mheor" path="res://assets/textures/player/stand_large_0.png" id="tex_2"]
+[ext_resource type="Texture2D" uid="uid://c2a84nknagpb8" path="res://assets/textures/player/walk_large_1.png" id="1_qnnf5"]
+[ext_resource type="Texture2D" uid="uid://bpgn5ire2tluh" path="res://assets/textures/player/stand_small_full_0.png" id="tex_0"]
+[ext_resource type="Texture2D" uid="uid://b8frmhycbj6ui" path="res://assets/textures/player/stand_medium_full_0.png" id="tex_1"]
+[ext_resource type="Texture2D" uid="uid://if25l5xd38td" path="res://assets/textures/player/stand_large_0.png" id="tex_2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qv6vm"]
+atlas = ExtResource("1_qnnf5")
+region = Rect2(0, 0, 16, 32)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qv6vm")
+}],
+"loop": false,
+"name": &"fire",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("tex_0")
