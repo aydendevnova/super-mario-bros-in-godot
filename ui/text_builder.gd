@@ -19,7 +19,10 @@ const CHAR_SIZE := 8
 var _atlas: Texture2D
 
 func _ready() -> void:
-	_atlas = preload("res://assets/textures/chr-mapping.png")
+	var base_tex := preload("res://assets/textures/chr-mapping.png")
+	_atlas = AssetLoader.load_texture(base_tex.resource_path)
+	if _atlas == null:
+		_atlas = base_tex
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	_update_size()
 	queue_redraw()

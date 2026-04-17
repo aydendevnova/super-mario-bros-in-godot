@@ -1,17 +1,18 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://dqucvmtl5rux4"]
 
-[ext_resource type="Texture2D" uid="uid://dq3fc4j7mheor" path="res://assets/textures/player/stand_large_0.png" id="tex_0"]
-[ext_resource type="Texture2D" uid="uid://dmur2axcbppnh" path="res://assets/textures/player/climb_large_0.png" id="tex_1"]
-[ext_resource type="Texture2D" uid="uid://cyq8t2qjnphoa" path="res://assets/textures/player/climb_large_1.png" id="tex_2"]
-[ext_resource type="Texture2D" uid="uid://c5pgq8v4rwnj6" path="res://assets/textures/player/crouch_large_0.png" id="tex_3"]
-[ext_resource type="Texture2D" uid="uid://tddyyp415tg7" path="res://assets/textures/player/jump_large_0.png" id="tex_4"]
-[ext_resource type="Texture2D" uid="uid://b3tru5sblc4xr" path="res://assets/textures/player/skid_large_0.png" id="tex_5"]
-[ext_resource type="Texture2D" uid="uid://dmknecs4bfqw6" path="res://assets/textures/player/swim_large_0.png" id="tex_6"]
-[ext_resource type="Texture2D" uid="uid://cjpb40gcs23qm" path="res://assets/textures/player/swim_large_1.png" id="tex_7"]
-[ext_resource type="Texture2D" uid="uid://ddn08co24edjn" path="res://assets/textures/player/swim_large_2.png" id="tex_8"]
-[ext_resource type="Texture2D" uid="uid://1sv7lrw5on" path="res://assets/textures/player/walk_large_0.png" id="tex_9"]
-[ext_resource type="Texture2D" uid="uid://c4r5glanggmka" path="res://assets/textures/player/walk_large_1.png" id="tex_10"]
-[ext_resource type="Texture2D" uid="uid://doog157nw40c0" path="res://assets/textures/player/walk_large_2.png" id="tex_11"]
+[ext_resource type="Texture2D" uid="uid://if25l5xd38td" path="res://assets/textures/player/stand_large_0.png" id="tex_0"]
+[ext_resource type="Texture2D" uid="uid://dlj3ufurh3jmp" path="res://assets/textures/player/climb_large_0.png" id="tex_1"]
+[ext_resource type="Texture2D" uid="uid://cq67cql62vss2" path="res://assets/textures/player/climb_large_1.png" id="tex_2"]
+[ext_resource type="Texture2D" uid="uid://deoq5rw758nyn" path="res://assets/textures/player/crouch_large_0.png" id="tex_3"]
+[ext_resource type="Texture2D" uid="uid://y2gglkaorjn5" path="res://assets/textures/player/jump_large_0.png" id="tex_4"]
+[ext_resource type="Texture2D" uid="uid://bhmnyf36d68ca" path="res://assets/textures/player/skid_large_0.png" id="tex_5"]
+[ext_resource type="Texture2D" uid="uid://rlooog1jt00a" path="res://assets/textures/player/swim_large_0.png" id="tex_6"]
+[ext_resource type="Texture2D" uid="uid://m87lhedj6e5h" path="res://assets/textures/player/swim_large_1.png" id="tex_7"]
+[ext_resource type="Texture2D" uid="uid://dsbyn02r4ubkc" path="res://assets/textures/player/swim_large_2.png" id="tex_8"]
+[ext_resource type="Texture2D" uid="uid://ccascf7ej3r15" path="res://assets/textures/player/walk_large_0.png" id="tex_9"]
+[ext_resource type="Texture2D" uid="uid://c2a84nknagpb8" path="res://assets/textures/player/walk_large_1.png" id="tex_10"]
+[ext_resource type="Texture2D" uid="uid://blrk04nhuaqp6" path="res://assets/textures/player/walk_large_2.png" id="tex_11"]
+[ext_resource type="Texture2D" uid="uid://dnsxyor846gvw" path="res://assets/textures/player/proj_large_0.png" id="tex_proj"]
 
 [resource]
 animations = [{
@@ -57,6 +58,14 @@ animations = [{
 "loop": true,
 "name": &"Flagpole",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_proj")
+}],
+"loop": false,
+"name": &"Flower",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,

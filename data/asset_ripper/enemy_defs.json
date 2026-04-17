@@ -1,0 +1,299 @@
+[
+  {
+	"scene_name": "goomba",
+	"animations": {
+	  "walk": [
+		[
+		  "goomba",
+		  0
+		]
+	  ],
+	  "flat": [
+		[
+		  "goomba_stomped",
+		  0
+		]
+	  ]
+	}
+  },
+  {
+	"scene_name": "koopa_troopa",
+	"animations": {
+	  "walk": [
+		[
+		  "koopa",
+		  0
+		],
+		[
+		  "koopa",
+		  1
+		]
+	  ]
+	}
+  },
+  {
+	"scene_name": "paratroopa",
+	"animations": {
+	  "fly": [
+		[
+		  "koopa_para",
+		  0
+		],
+		[
+		  "koopa_para",
+		  1
+		]
+	  ]
+	}
+  },
+  {
+	"scene_name": "buzzy_beetle",
+	"animations": {
+	  "walk": [
+		[
+		  "buzzy",
+		  0
+		],
+		[
+		  "buzzy",
+		  1
+		]
+	  ]
+	}
+  },
+  {
+	"scene_name": "spiny",
+	"animations": {
+	  "walk": [
+		[
+		  "spiny",
+		  0
+		],
+		[
+		  "spiny",
+		  1
+		]
+	  ]
+	}
+  },
+  {
+	"scene_name": "spiny_egg",
+	"animations": {
+	  "spin": [
+		[
+		  "spiny_egg",
+		  0
+		],
+		[
+		  "spiny_egg",
+		  1
+		]
+	  ]
+	}
+  },
+  {
+	"scene_name": "blooper",
+	"animations": {
+	  "swim": [
+		[
+		  "blooper",
+		  0
+		],
+		[
+		  "blooper",
+		  1
+		]
+	  ]
+	}
+  },
+  {
+	"scene_name": "cheep_cheep",
+	"animations": {
+	  "swim": [
+		[
+		  "cheep",
+		  0
+		],
+		[
+		  "cheep",
+		  1
+		]
+	  ]
+	}
+  },
+  {
+	"scene_name": "hammer_bro",
+	"animations": {
+	  "walk": [
+		[
+		  "hammer_bro_a",
+		  0
+		],
+		[
+		  "hammer_bro_a",
+		  1
+		]
+	  ],
+	  "throw": [
+		[
+		  "hammer_bro_b",
+		  0
+		],
+		[
+		  "hammer_bro_b",
+		  1
+		]
+	  ]
+	}
+  },
+  {
+	"scene_name": "lakitu",
+	"animations": {
+	  "idle": [
+		[
+		  "lakitu",
+		  0
+		]
+	  ],
+	  "duck": [
+		[
+		  "lakitu_duck",
+		  0
+		]
+	  ]
+	}
+  },
+  {
+	"scene_name": "piranha_plant",
+	"animations": {
+	  "bite": [
+		[
+		  "piranha",
+		  0
+		],
+		[
+		  "piranha",
+		  1
+		]
+	  ]
+	}
+  },
+  {
+	"scene_name": "podoboo",
+	"animations": {
+	  "idle": [
+		[
+		  "podoboo",
+		  0
+		]
+	  ]
+	}
+  },
+  {
+	"scene_name": "bowser",
+	"animations": {
+	  "walk": [
+		[
+		  "bowser",
+		  0
+		],
+		[
+		  "bowser",
+		  1
+		],
+		[
+		  "bowser",
+		  2
+		],
+		[
+		  "bowser",
+		  3
+		]
+	  ]
+	}
+  },
+  {
+	"scene_name": "bullet_bill",
+	"animations": {
+	  "idle": [
+		[
+		  "bullet",
+		  0
+		]
+	  ]
+	}
+  },
+  {
+	"scene_name": "koopa_shell",
+	"animations": {
+	  "idle": [
+		[
+		  "koopa_stun",
+		  0
+		],
+		[
+		  "koopa_stun",
+		  1
+		]
+	  ]
+	}
+  },
+  {
+	"scene_name": "buzzy_shell",
+	"animations": {
+	  "idle": [
+		[
+		  "buzzy_stun",
+		  0
+		]
+	  ]
+	}
+  },
+  {
+	"scene_name": "springboard",
+	"animations": {
+	  "idle": [
+		[
+		  "spring_a",
+		  0
+		]
+	  ],
+	  "bounce": [
+		[
+		  "spring_a",
+		  0
+		],
+		[
+		  "spring_b",
+		  0
+		],
+		[
+		  "spring_c",
+		  0
+		]
+	  ]
+	}
+  },
+  {
+	"scene_name": "princess",
+	"animations": {
+	  "idle": [
+		[
+		  "princess",
+		  0
+		]
+	  ]
+	}
+  },
+  {
+	"scene_name": "toad",
+	"animations": {
+	  "idle": [
+		[
+		  "toad",
+		  0
+		]
+	  ]
+	}
+  }
+]

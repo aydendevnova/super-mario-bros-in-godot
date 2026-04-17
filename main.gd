@@ -109,7 +109,6 @@ func _spawn_player() -> void:
 	_player = PLAYER_SCENE.instantiate()
 	_level_container.add_child(_player)
 	_player.position = Vector2(SPAWN_X, _find_spawn_y())
-	
 
 func _despawn_player() -> void:
 	if _player and is_instance_valid(_player):

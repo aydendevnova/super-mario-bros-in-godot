@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MarioRecreation"
-run/main_scene="uid://d0gcn7umn5fmd"
+run/main_scene="res://scenes/rom_generator.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -26,6 +26,7 @@ Physics="*uid://djr531k3ube8i"
 SignalBus="*uid://ec0v50yw7pwa"
 Palette="*uid://yi4o6q2pqb16"
 AudioSystem="*uid://bpqkcqbtqr1oy"
+TextureSwapper="*res://scripts/texture_swapper.gd"
 
 [display]
 

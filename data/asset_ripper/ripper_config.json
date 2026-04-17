@@ -1,0 +1,33 @@
+{
+  "actor_autocrop": [
+	"spring_a",
+	"spring_b",
+	"spring_c",
+	"goomba_stomped",
+	"spiny_egg",
+	"spiny",
+	"goomba",
+	"buzzy",
+	"cheep",
+	"bullet",
+	"podoboo",
+	"koopa_stun",
+	"buzzy_stun",
+	"buzzy_stun_flip",
+    "lakitu_duck"
+  ],
+  "player_autocrop": [
+	"walk_small",
+	"skid_small",
+	"jump_small",
+	"swim_small",
+	"climb_small",
+	"death_small",
+	"stand_small",
+    "stand_medium"
+  ],
+  "player_need_full": [
+	"stand_small",
+    "stand_medium"
+  ]
+}

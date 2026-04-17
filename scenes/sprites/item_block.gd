@@ -5,8 +5,8 @@ extends StaticBody2D
 
 @onready var sprite: Sprite2D = $Sprite2D
 
-const EMPTY_FG := preload("res://assets/block_empty_fg.tres")
-const EMPTY_BG := preload("res://assets/block_empty_bg.tres")
+const _EMPTY_FG_BASE := preload("res://assets/block_empty_fg.tres")
+const _EMPTY_BG_BASE := preload("res://assets/block_empty_bg.tres")
 const POINTS_POPUP := preload("res://scenes/sprites/points_popup.tscn")
 const SCORE_COIN := preload("res://scenes/sprites/score_coin.tscn")
 const MUSHROOM := preload("res://scenes/sprites/mushroom.tscn")
@@ -15,10 +15,14 @@ const STAR := preload("res://scenes/sprites/star.tscn")
 
 const INVISIBLE_LAYER := 6
 
+var EMPTY_FG: AtlasTexture
+var EMPTY_BG: AtlasTexture
 var _used := false
 var _bopping := false
 
 func _ready() -> void:
+	EMPTY_FG = AssetLoader.swap_atlas_texture(_EMPTY_FG_BASE)
+	EMPTY_BG = AssetLoader.swap_atlas_texture(_EMPTY_BG_BASE)
 	if contents.begins_with("invisible"):
 		sprite.visible = false
 		set_collision_layer_value(1, false)

@@ -6,9 +6,19 @@ extends Node
 ## SFX interrupts a single channel and restores music when done.
 
 const CH_COUNT := 4
+const CH_NAMES := ["Pulse1", "Pulse2", "Triangle", "Noise"]
 
-@onready var audio_sys_node = $"/root/Main/AudioSystem"
-@onready var _ch := [audio_sys_node.get_node("Pulse1"), audio_sys_node.get_node("Pulse2"), audio_sys_node.get_node("Triangle"), audio_sys_node.get_node("Noise")]
+var _ch: Array = []
+
+
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	for ch_name in CH_NAMES:
+		var player := AudioStreamPlayer.new()
+		player.name = ch_name
+		player.bus = "Master"
+		add_child(player)
+		_ch.append(player)
 
 # --- Music state ---
 var _track := ""

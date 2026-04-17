@@ -1,25 +1,20 @@
 #!/usr/bin/env python3
 """
-Asset generation pipeline for the SMB Godot project.
+Asset generation pipeline for the SMB Godot project (dev-only).
 
-Options:
-    1) Generate sprites  — requires smb.nes + Pillow
-    2) Generate audio    — requires smb.nsf + vgm2wav (bundled) + ffmpeg
+Generates palette-indexed sprite textures from the NES ROM for editor preview.
+End users do NOT need this — the GDScript ripper in-engine handles ROM extraction.
 
 Usage:
     python3 main.py            (interactive menu)
-    python3 main.py sprites    (skip menu, run sprites only)
-    python3 main.py audio      (skip menu, run audio only)
-    python3 main.py all        (skip menu, run both)
+    python3 main.py sprites    (generate real textures from ROM)
+    python3 main.py placeholders (generate magenta placeholder PNGs)
 """
 
 import csv
 import json
-import math
 import os
 import pathlib
-import shutil
-import subprocess
 import sys
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -27,14 +22,8 @@ PROJECT_ROOT = HERE.parent
 DATA_DIR = HERE / "data"
 
 ROM_PATH = HERE / "smb.nes"
-NSF_PATH = HERE / "smb.nsf"
-VGM2WAV_DIR = HERE / "vgm2wav"
-VGM2WAV_PATH = VGM2WAV_DIR / "vgm2wav"
 
 TEXTURES_OUT = PROJECT_ROOT / "assets" / "textures"
-MUSIC_OUT = PROJECT_ROOT / "assets" / "music"
-SFX_OUT = PROJECT_ROOT / "assets" / "sfx"
-AUDIO_DATA_OUT = PROJECT_ROOT / "audio_system" / "audio_data.gd"
 
 # ═══════════════════════════════════════════════════════════════════════════
 # SPRITES
@@ -276,299 +265,99 @@ def run_sprites() -> None:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# AUDIO
+# PLACEHOLDER GENERATION
 # ═══════════════════════════════════════════════════════════════════════════
 
-CHANNELS = [
-    {"name": "pulse1",   "select": 0},
-    {"name": "pulse2",   "select": 1},
-    {"name": "triangle", "select": 2},
-    {"name": "noise",    "select": 3},
-    {"name": "dmc",      "select": 4},
-]
-CHANNELS_BY_SELECT = {ch["select"]: ch for ch in CHANNELS}
-
-TRACKS = [
-    {"name": "overworld_bgm",             "file": "overworld_bgm",             "group": "music", "duration": 38.3,  "voices": [0, 1, 2, 3], "loop": True},
-    {"name": "underwater_bgm",            "file": "underwater_bgm",            "group": "music", "duration": 25.56, "voices": [0, 1, 2, 3], "loop": True},
-    {"name": "underground_bgm",           "file": "underground_bgm",           "group": "music", "duration": 12.6,  "voices": [1, 2],       "loop": True},
-    {"name": "course_clear_fanfare",      "file": "course_clear_fanfare",      "group": "music", "duration": 6,     "voices": [0, 1, 2],    "loop": False},
-    {"name": "castle_bgm",                "file": "castle_bgm",                "group": "music", "duration": 7.99,  "voices": [0, 1, 2],    "loop": True},
-    {"name": "world_clear_fanfare",       "file": "world_clear_fanfare",       "group": "music", "duration": 5.5,   "voices": [0, 1, 2],    "loop": False},
-    {"name": "invincible_bgm",            "file": "invincible_bgm",            "group": "music", "duration": 6.44,  "voices": [0, 1, 2, 3], "loop": True},
-    {"name": "scene_change_bgm",          "file": "scene_change_bgm",          "group": "music", "duration": 2.5,   "voices": [0, 1, 2, 3], "loop": False},
-    {"name": "time_up_warning_sound",     "file": "time_up_warning_sound",     "group": "music", "duration": 3,     "voices": [0, 1, 2],    "loop": False},
-    {"name": "overworld_bgm_hurry_up",    "file": "overworld_bgm_hurry_up",    "group": "music", "duration": 25.56, "voices": [0, 1, 2, 3], "loop": True},
-    {"name": "underwater_bgm_hurry_up",   "file": "underwater_bgm_hurry_up",   "group": "music", "duration": 19.18, "voices": [0, 1, 2, 3], "loop": True},
-    {"name": "underground_bgm_hurry_up",  "file": "underground_bgm_hurry_up",  "group": "music", "duration": 8.4,   "voices": [1, 2],       "loop": True},
-    {"name": "castle_bgm_hurry_up",       "file": "castle_bgm_hurry_up",       "group": "music", "duration": 6.4,   "voices": [0, 1, 2],    "loop": True},
-    {"name": "invincible_bgm_hurry_up",   "file": "invincible_bgm_hurry_up",   "group": "music", "duration": 3.2,   "voices": [0, 1, 2, 3], "loop": True},
-    {"name": "player_down",               "file": "player_down",               "group": "music", "duration": 2.6,   "voices": [0, 1, 2],    "loop": False},
-    {"name": "game_over",                 "file": "game_over",                 "group": "music", "duration": 3.6,   "voices": [0, 1, 2],    "loop": False},
-    {"name": "smb_ending_bgm",            "file": "smb_ending_bgm",            "group": "music", "duration": 6.4,   "voices": [0, 1, 2],    "loop": False},
-    {"name": "vs_smb_ending_bgm",         "file": "vs_smb_ending_bgm",         "group": "music", "duration": 6.4,   "voices": [0, 1, 2],    "loop": False},
-    {"name": "worker_mario_name_entry",   "file": "worker_mario_name_entry",   "group": "music", "duration": 7.2,   "voices": [0, 1, 2, 3], "loop": False},
-    {"name": "game_over_unused",          "file": "game_over_unused",          "group": "music", "duration": 3.2,   "voices": [0, 1, 2],    "loop": False},
-    {"name": "smb2_ending_bgm",           "file": "smb2_ending_bgm",           "group": "music", "duration": 7.2,   "voices": [0, 1, 2, 3], "loop": False},
-    {"name": "pause",                     "file": "sfx_1",  "group": "sfx", "duration": 0.65, "voices": [0]},
-    {"name": "brick_smash",               "file": "sfx_2",  "group": "sfx", "duration": 0.5,  "voices": [3]},
-    {"name": "bowsers_fire",              "file": "sfx_3",  "group": "sfx", "duration": 1.1,  "voices": [3]},
-    {"name": "sfx_4",                     "file": "sfx_4",  "group": "sfx", "duration": 0.15, "voices": [2]},
-    {"name": "coin",                      "file": "sfx_5",  "group": "sfx", "duration": 0.9,  "voices": [1]},
-    {"name": "powerup_appears",           "file": "sfx_6",  "group": "sfx", "duration": 0.55, "voices": [1]},
-    {"name": "vine_growing",              "file": "sfx_7",  "group": "sfx", "duration": 0.65, "voices": [1]},
-    {"name": "fireworks",                 "file": "sfx_8",  "group": "sfx", "duration": 0.43, "voices": [1]},
-    {"name": "select",                    "file": "sfx_9",  "group": "sfx", "duration": 0.15, "voices": [1]},
-    {"name": "power_up",                  "file": "sfx_10", "group": "sfx", "duration": 1,    "voices": [1]},
-    {"name": "one_up",                    "file": "sfx_11", "group": "sfx", "duration": 0.84, "voices": [1]},
-    {"name": "bowser_falls",              "file": "sfx_12", "group": "sfx", "duration": 1,    "voices": [1]},
-    {"name": "jump_small",               "file": "sfx_13", "group": "sfx", "duration": 0.6,  "voices": [0]},
-    {"name": "jump_super",               "file": "sfx_14", "group": "sfx", "duration": 0.6,  "voices": [0]},
-    {"name": "bump",                     "file": "sfx_15", "group": "sfx", "duration": 0.5,  "voices": [0]},
-    {"name": "stomp",                    "file": "sfx_16", "group": "sfx", "duration": 0.3,  "voices": [0]},
-    {"name": "kick",                     "file": "sfx_17", "group": "sfx", "duration": 0.2,  "voices": [0]},
-    {"name": "pipe",                     "file": "sfx_18", "group": "sfx", "duration": 0.8,  "voices": [0]},
-    {"name": "fireball",                 "file": "sfx_19", "group": "sfx", "duration": 0.1,  "voices": [0]},
-    {"name": "down_the_flagpole",        "file": "sfx_20", "group": "sfx", "duration": 2,    "voices": [0]},
-]
-
-SAMPLE_RATE = 44100
-
-
-def _run_cmd(cmd: list[str], timeout: float | None = None) -> subprocess.CompletedProcess:
-    return subprocess.run(cmd, check=True, timeout=timeout, capture_output=True, text=True)
-
-
-def _resolve_ffmpeg() -> str:
-    path = shutil.which("ffmpeg")
-    if path:
-        return path
-    raise SystemExit(
-        "ERROR: ffmpeg not found in PATH.\n"
-        "Install ffmpeg (brew install ffmpeg / apt install ffmpeg) and try again."
-    )
-
-
-def _resolve_ogg_codec(ffmpeg: str) -> tuple[list[str], bool]:
-    """Returns (codec_args, supports_mono)."""
-    result = subprocess.run(
-        [ffmpeg, "-hide_banner", "-encoders"],
-        capture_output=True, text=True, check=True,
-    )
-    encoders = result.stdout
-    if " libvorbis " in encoders or encoders.rstrip().endswith(" libvorbis"):
-        return ["-c:a", "libvorbis", "-q:a", "5"], True
-    if " vorbis " in encoders or encoders.rstrip().endswith(" vorbis"):
-        return ["-strict", "-2", "-c:a", "vorbis", "-q:a", "5"], False
-    raise SystemExit("ERROR: ffmpeg has no usable Vorbis encoder (need libvorbis or vorbis).")
+TEXTURE_DIMENSIONS = {
+    "chr-mapping.png": (432, 232),
+    "spritesheet.png": (224, 176),
+    "enemies/blooper_swim_0.png": (16, 24),
+    "enemies/blooper_swim_1.png": (16, 24),
+    "enemies/bowser_walk_0.png": (32, 32),
+    "enemies/bowser_walk_1.png": (32, 32),
+    "enemies/bowser_walk_2.png": (32, 32),
+    "enemies/bowser_walk_3.png": (32, 32),
+    "enemies/bullet_bill_idle_0.png": (16, 16),
+    "enemies/buzzy_beetle_walk_0.png": (16, 16),
+    "enemies/buzzy_beetle_walk_1.png": (16, 16),
+    "enemies/buzzy_shell_idle_0.png": (16, 16),
+    "enemies/cheep_cheep_swim_0.png": (16, 16),
+    "enemies/cheep_cheep_swim_1.png": (16, 16),
+    "enemies/goomba_flat_0.png": (16, 8),
+    "enemies/goomba_walk_0.png": (16, 16),
+    "enemies/hammer_bro_throw_0.png": (16, 24),
+    "enemies/hammer_bro_throw_1.png": (16, 24),
+    "enemies/hammer_bro_walk_0.png": (16, 24),
+    "enemies/hammer_bro_walk_1.png": (16, 24),
+    "enemies/koopa_shell_idle_0.png": (16, 16),
+    "enemies/koopa_shell_idle_1.png": (16, 16),
+    "enemies/koopa_troopa_walk_0.png": (16, 24),
+    "enemies/koopa_troopa_walk_1.png": (16, 24),
+    "enemies/lakitu_duck_0.png": (16, 16),
+    "enemies/lakitu_idle_0.png": (16, 24),
+    "enemies/paratroopa_fly_0.png": (16, 24),
+    "enemies/paratroopa_fly_1.png": (16, 24),
+    "enemies/piranha_plant_bite_0.png": (16, 24),
+    "enemies/piranha_plant_bite_1.png": (16, 32),
+    "enemies/podoboo_idle_0.png": (16, 16),
+    "enemies/princess_idle_0.png": (16, 24),
+    "enemies/spiny_egg_spin_0.png": (16, 16),
+    "enemies/spiny_egg_spin_1.png": (16, 16),
+    "enemies/spiny_walk_0.png": (16, 16),
+    "enemies/spiny_walk_1.png": (16, 16),
+    "enemies/springboard_bounce_0.png": (16, 24),
+    "enemies/springboard_bounce_1.png": (16, 16),
+    "enemies/springboard_bounce_2.png": (16, 8),
+    "enemies/springboard_idle_0.png": (16, 24),
+    "enemies/toad_idle_0.png": (16, 24),
+    "player/climb_large_0.png": (16, 32),
+    "player/climb_large_1.png": (16, 32),
+    "player/climb_small_0.png": (16, 16),
+    "player/climb_small_1.png": (16, 16),
+    "player/crouch_large_0.png": (16, 32),
+    "player/death_small_0.png": (16, 16),
+    "player/jump_large_0.png": (16, 32),
+    "player/jump_small_0.png": (16, 16),
+    "player/proj_large_0.png": (16, 32),
+    "player/skid_large_0.png": (16, 32),
+    "player/skid_small_0.png": (16, 16),
+    "player/stand_large_0.png": (16, 32),
+    "player/stand_medium_0.png": (16, 24),
+    "player/stand_medium_full_0.png": (16, 32),
+    "player/stand_small_0.png": (16, 16),
+    "player/stand_small_full_0.png": (16, 32),
+    "player/swim_large_0.png": (16, 32),
+    "player/swim_large_1.png": (16, 32),
+    "player/swim_large_2.png": (16, 32),
+    "player/swim_small_0.png": (16, 16),
+    "player/swim_small_1.png": (16, 16),
+    "player/swim_small_2.png": (16, 16),
+    "player/walk_large_0.png": (16, 32),
+    "player/walk_large_1.png": (16, 32),
+    "player/walk_large_2.png": (16, 32),
+    "player/walk_small_0.png": (16, 16),
+    "player/walk_small_1.png": (16, 16),
+    "player/walk_small_2.png": (16, 16),
+}
 
 
-def _render_track(
-    *,
-    track_index: int,
-    duration: float,
-    track_name: str,
-    ffmpeg: str,
-    ogg_codec_args: list[str],
-    ogg_supports_mono: bool,
-    channel_select: int,
-    channel_name: str,
-    out_dest: pathlib.Path,
-) -> None:
-    """Render one channel of one track.
+def run_placeholders() -> None:
+    """Generate magenta placeholder PNGs at correct dimensions for every texture."""
+    from PIL import Image
 
-    Runs vgm2wav from inside VGM2WAV_DIR using relative paths (the binary
-    is sensitive to path format).  The NSF must already be copied into that
-    directory.  The finished .ogg is moved to out_dest afterwards.
-    """
-    render_secs = math.ceil(duration)
-    wav_name = f".tmp_{track_name}_{channel_name}_{os.getpid()}.wav"
-    ogg_name = f"{track_name}__{channel_name}.ogg"
+    TEXTURES_OUT.mkdir(parents=True, exist_ok=True)
+    (TEXTURES_OUT / "enemies").mkdir(parents=True, exist_ok=True)
+    (TEXTURES_OUT / "player").mkdir(parents=True, exist_ok=True)
 
-    vgm_cmd = [
-        "./vgm2wav",
-        "-i", "smb.nsf",
-        "-o", wav_name,
-        "-t", str(render_secs),
-        "-r", str(track_index),
-        "-s", str(channel_select),
-    ]
+    count = 0
+    for rel_path, (w, h) in sorted(TEXTURE_DIMENSIONS.items()):
+        out = TEXTURES_OUT / rel_path
+        img = Image.new("RGBA", (w, h), (255, 0, 255, 255))
+        img.save(out)
+        count += 1
 
-    end_sample = int(round(duration * SAMPLE_RATE))
-    af = f"atrim=end_sample={end_sample},asetpts=PTS-STARTPTS"
-
-    ffmpeg_cmd = [
-        ffmpeg, "-y", "-v", "error",
-        "-i", wav_name,
-        "-af", af,
-    ]
-    if ogg_supports_mono:
-        ffmpeg_cmd += ["-ac", "1"]
-    ffmpeg_cmd += [*ogg_codec_args, ogg_name]
-
-    print(f"  rendering {track_name}__{channel_name} (track {track_index}, voice {channel_select}, {render_secs}s) ...")
-
-    work_dir = str(VGM2WAV_DIR)
-    wav_path = VGM2WAV_DIR / wav_name
-    ogg_path = VGM2WAV_DIR / ogg_name
-
-    try:
-        result = subprocess.run(vgm_cmd, check=True, timeout=90,
-                                capture_output=True, text=True, cwd=work_dir)
-        if result.stderr:
-            print(f"    vgm2wav stderr: {result.stderr.strip()}")
-
-        result = subprocess.run(ffmpeg_cmd, check=True, timeout=90,
-                                capture_output=True, text=True, cwd=work_dir)
-        if result.stderr:
-            print(f"    ffmpeg stderr: {result.stderr.strip()}")
-    except subprocess.TimeoutExpired:
-        print(f"    TIMEOUT rendering {track_name}__{channel_name} — skipping")
-        return
-    except subprocess.CalledProcessError as exc:
-        print(f"    FAILED {track_name}__{channel_name} (exit={exc.returncode}): {exc.stderr or ''}")
-        return
-    finally:
-        if wav_path.exists():
-            wav_path.unlink()
-
-    if not ogg_path.exists():
-        print(f"    WARNING: no output produced for {ogg_name}")
-        return
-
-    out_dest.parent.mkdir(parents=True, exist_ok=True)
-    shutil.move(str(ogg_path), str(out_dest))
-
-    size_kb = out_dest.stat().st_size / 1024
-    print(f"    -> {ogg_name} ({size_kb:.0f} KB)")
-
-
-def _generate_audio_data_gd() -> None:
-    lines = [
-        "# AUTO-GENERATED by _gen_assets/main.py — do not edit manually",
-        "class_name AudioData",
-        "",
-        'const CHANNEL_NAMES: PackedStringArray = ["pulse1", "pulse2", "triangle", "noise"]',
-        "",
-        "const TRACKS := {",
-    ]
-    for track in TRACKS:
-        voices = ", ".join(str(v) for v in track["voices"])
-        loop = track.get("loop", False)
-        lines.append(
-            f'\t"{track["name"]}": {{"group": "{track["group"]}", '
-            f'"duration": {track["duration"]}, "voices": [{voices}], '
-            f'"loop": {"true" if loop else "false"}}},'
-        )
-    lines.append("}")
-    lines.append("")
-    AUDIO_DATA_OUT.parent.mkdir(parents=True, exist_ok=True)
-    AUDIO_DATA_OUT.write_text("\n".join(lines))
-    print(f"Generated {AUDIO_DATA_OUT}")
-
-
-def _validate_nsf(path: pathlib.Path) -> bool:
-    """Check that the NSF has enough tracks for all entries in TRACKS."""
-    data = path.read_bytes()
-    if len(data) < 0x80 or data[:5] != b"NESM\x1a":
-        print(f"ERROR: {path.name} is not a valid NSF file (bad header).")
-        return False
-    track_count = data[6]
-    required = len(TRACKS)
-    if track_count < required:
-        print(f"ERROR: smb.nsf has {track_count} tracks but {required} are needed.")
-        print("       This is likely the wrong NSF. The expected file is the")
-        print("       'Super Mario Bros. 1+2+VS+Extra Tracks' NSF from Zophar's Domain")
-        return False
-    print(f"NSF validated: {track_count} tracks available ({required} needed)")
-    return True
-
-
-def run_audio() -> None:
-    # --- Preflight checks ---
-    if not NSF_PATH.exists():
-        print(f"ERROR: smb.nsf not found at {NSF_PATH}")
-        print("Place the Super Mario Bros. NSF file as 'smb.nsf' in the _gen_assets/ directory.")
-        print("Download from: https://www.zophar.net/music/nintendo-nes-nsf/super-mario-bros-1-2-vs-extra-tracks")
-        return
-
-    if not _validate_nsf(NSF_PATH):
-        return
-
-    if not VGM2WAV_PATH.exists():
-        print(f"ERROR: vgm2wav binary not found at {VGM2WAV_PATH}")
-        return
-
-    if os.name != "nt":
-        st = os.stat(VGM2WAV_PATH)
-        os.chmod(VGM2WAV_PATH, st.st_mode | 0o111)
-
-    ffmpeg = _resolve_ffmpeg()
-    ogg_codec_args, ogg_supports_mono = _resolve_ogg_codec(ffmpeg)
-
-    print(f"Using vgm2wav: {VGM2WAV_DIR}/")
-    print(f"Using ffmpeg:  {ffmpeg}")
-    print(f"Encoder: {'libvorbis (mono)' if ogg_supports_mono else 'vorbis (stereo fallback)'}")
-
-    # Copy NSF into the vgm2wav working directory so the binary gets a
-    # simple relative path (it's picky about path formats).
-    nsf_work = VGM2WAV_DIR / "smb.nsf"
-    if not nsf_work.exists() or nsf_work.stat().st_mtime < NSF_PATH.stat().st_mtime:
-        shutil.copy2(NSF_PATH, nsf_work)
-
-    failed = []
-    music_count = 0
-    sfx_count = 0
-
-    for idx, track in enumerate(TRACKS):
-        print(f"\n[{idx + 1}/{len(TRACKS)}] {track['name']} ({track['group']}, {track['duration']}s)")
-
-        if track["group"] == "music":
-            dest_dir = MUSIC_OUT
-        else:
-            dest_dir = SFX_OUT
-
-        for voice_id in track["voices"]:
-            channel = CHANNELS_BY_SELECT[voice_id]
-            ogg_name = f"{track['name']}__{channel['name']}.ogg"
-            out_dest = dest_dir / ogg_name
-            try:
-                _render_track(
-                    track_index=idx,
-                    duration=track["duration"],
-                    track_name=track["name"],
-                    ffmpeg=ffmpeg,
-                    ogg_codec_args=ogg_codec_args,
-                    ogg_supports_mono=ogg_supports_mono,
-                    channel_select=voice_id,
-                    channel_name=channel["name"],
-                    out_dest=out_dest,
-                )
-                if out_dest.exists():
-                    if track["group"] == "music":
-                        music_count += 1
-                    else:
-                        sfx_count += 1
-            except Exception as exc:
-                failed.append(f"{track['name']}__{channel['name']}: {exc}")
-                print(f"    ERROR: {exc}")
-
-    # Clean up the NSF copy from the working directory
-    if nsf_work.exists():
-        nsf_work.unlink()
-
-    # --- Generate audio_data.gd ---
-    _generate_audio_data_gd()
-
-    print(f"\n  {music_count} music files -> {MUSIC_OUT}/")
-    print(f"  {sfx_count} sfx files -> {SFX_OUT}/")
-
-    if failed:
-        print(f"\nWARNING: {len(failed)} track(s) failed:")
-        for f in failed:
-            print(f"  - {f}")
-    else:
-        print("\nAudio done — all tracks rendered successfully.")
+    print(f"Generated {count} magenta placeholder PNGs in {TEXTURES_OUT}/")
+    print("Run 'python3 main.py sprites' with smb.nes to overwrite with real textures.")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -579,21 +368,20 @@ def main() -> None:
     args = [a.lower() for a in sys.argv[1:]]
 
     if args:
-        if "sprites" in args or "all" in args:
+        if "sprites" in args:
             run_sprites()
-        if "audio" in args or "all" in args:
-            run_audio()
-        if not any(a in ("sprites", "audio", "all") for a in args):
-            print("Usage: python3 main.py [sprites|audio|all]")
+        elif "placeholders" in args:
+            run_placeholders()
+        else:
+            print("Usage: python3 main.py [sprites|placeholders]")
         return
 
     print("=" * 50)
-    print("  SMB Godot — Asset Generator")
+    print("  SMB Godot — Asset Generator (dev-only)")
     print("=" * 50)
     print()
-    print("  1) Generate sprites  (requires smb.nes + Pillow)")
-    print("  2) Generate audio    (requires smb.nsf + ffmpeg)")
-    print("  3) Generate all")
+    print("  1) Generate sprites      (requires smb.nes + Pillow)")
+    print("  2) Generate placeholders (magenta PNGs, no ROM needed)")
     print("  q) Quit")
     print()
 
@@ -601,11 +389,8 @@ def main() -> None:
 
     if choice in ("1", "sprites"):
         run_sprites()
-    elif choice in ("2", "audio"):
-        run_audio()
-    elif choice in ("3", "all"):
-        run_sprites()
-        run_audio()
+    elif choice in ("2", "placeholders"):
+        run_placeholders()
     elif choice in ("q", "quit", "exit"):
         print("Bye.")
     else:

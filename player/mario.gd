@@ -103,11 +103,13 @@ var star_power := false
 var _star_timer := 0.0
 var _star_palette_timer := 0.0
 var _star_palette_index := 0
-var _is_transitioning = false
-var _is_fire_transition = false
+var _is_transitioning := false
+var _is_fire_transition := false
 var _transition_palette_timer := 0.0
 var _transition_palette_index := 0
 var _blink_timer: float = 0.0
+var _flower_anim_timer: float = 0.0
+const FLOWER_ANIM_DURATION := 0.4
 const COOLDOWN_BLINK_INTERVAL = 0.025
 const TRANSITION_BLINK_INTERVAL = 0.05
 var _death_tween: Tween
@@ -453,6 +455,18 @@ func _get_walk_animation_speed_scale() -> float:
 	return WALK_ANIM_FPS_FAST / WALK_ANIM_BASE_FPS
 
 func process_animation():
+	if _flower_anim_timer > 0.0:
+		_flower_anim_timer -= get_process_delta_time()
+		if _flower_anim_timer <= 0.0:
+			_flower_anim_timer = 0.0
+			sprite.play("Idle")
+		elif sprite.animation != &"Flower":
+			sprite.play("Flower")
+		sprite.flip_h = is_facing_left
+		sprite.speed_scale = 1.0
+		modulate.a = 1.0
+		return
+
 	if is_locked and not auto_walk_right:
 		if not has_cooldown and not _is_transitioning:
 			modulate.a = 1.0
@@ -587,6 +601,7 @@ func reset() -> void:
 	camera_frozen = false
 	camera.position_smoothing_enabled = false
 	_is_transitioning = false
+	_flower_anim_timer = 0.0
 	_blink_timer = 0.0
 	modulate.a = 1.0
 
@@ -674,6 +689,7 @@ func play_transition():
 func _finish_transition() -> void:
 	if not _is_transitioning:
 		return
+	var was_fire_transition: bool = _is_fire_transition
 	get_tree().paused = false
 	_is_transitioning = false
 	_is_fire_transition = false
@@ -681,14 +697,18 @@ func _finish_transition() -> void:
 	_transition_palette_index = 0
 	_blink_timer = 0.0
 	modulate.a = 1.0
-	var animation_name = sprite.animation
 
 	_update_tree()
 
-	if sprite.sprite_frames.has_animation(animation_name):
-		sprite.play(animation_name)
+	if was_fire_transition and sprite == big_sprite and sprite.sprite_frames.has_animation("Flower"):
+		_flower_anim_timer = FLOWER_ANIM_DURATION
+		sprite.play("Flower")
 	else:
-		sprite.play("Idle")
+		var animation_name = sprite.animation
+		if sprite.sprite_frames.has_animation(animation_name):
+			sprite.play(animation_name)
+		else:
+			sprite.play("Idle")
 
 	transition_sprite.visible = false
 
