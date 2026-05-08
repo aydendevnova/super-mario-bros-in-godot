@@ -2,6 +2,7 @@ extends PlayerMovementState
 
 const PHASE_SLIDE := &"slide"
 const PHASE_BOTTOM := &"bottom"
+const PHASE_TURN := &"turn"
 const PHASE_WALK := &"walk"
 
 var _flag: Node2D
@@ -17,7 +18,8 @@ var _top_y := 8.0
 var _bottom_y := 136.0
 var _flag_bottom_y := 128.0
 var _slide_speed := 120.0
-var _bottom_pause := 0.5
+var _bottom_pause := 0.25
+var _turn_pause := 0.6
 
 func enter(_previous_state: StringName) -> void:
 	var data: Dictionary = player._flag_pole_data
@@ -66,6 +68,8 @@ func enter(_previous_state: StringName) -> void:
 	_sequence_tween.set_parallel(false)
 	_sequence_tween.tween_callback(_at_pole_bottom)
 	_sequence_tween.tween_interval(_bottom_pause)
+	_sequence_tween.tween_callback(_at_turn)
+	_sequence_tween.tween_interval(_turn_pause)
 	_sequence_tween.tween_callback(_start_walk)
 
 func exit(_next_state: StringName) -> void:
@@ -74,7 +78,7 @@ func exit(_next_state: StringName) -> void:
 		_sequence_tween = null
 
 func physics_update(_delta: float) -> void:
-	if _phase == PHASE_BOTTOM or _phase == PHASE_WALK:
+	if _phase in [PHASE_BOTTOM, PHASE_TURN, PHASE_WALK]:
 		player.apply_gravity(_delta, false)
 	if _walking:
 		player.velocity.x = player.auto_walk_speed
@@ -93,6 +97,13 @@ func update_animation() -> bool:
 			player.sprite.speed_scale = 1.0
 			player.sprite.play("Flagpole")
 		PHASE_BOTTOM:
+			player.sprite.offset.x = 0
+			player.sprite.flip_h = false
+			player.sprite.speed_scale = 0.0
+			player.sprite.play("Flagpole")
+			player.sprite.frame = 0
+			player.sprite.frame_progress = 0.0
+		PHASE_TURN:
 			player.sprite.offset.x = 16
 			player.sprite.flip_h = true
 			player.sprite.speed_scale = 0.0
@@ -111,6 +122,9 @@ func _at_pole_bottom() -> void:
 	_phase = PHASE_BOTTOM
 	player.set_collision_layer_value(2, true)
 	player.set_collision_mask_value(1, true)
+
+func _at_turn() -> void:
+	_phase = PHASE_TURN
 
 func _start_walk() -> void:
 	_phase = PHASE_WALK

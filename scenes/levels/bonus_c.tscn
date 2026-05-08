@@ -1,0 +1,311 @@
+[gd_scene format=4 uid="uid://drpeb1nvftljq"]
+
+[ext_resource type="Script" uid="uid://c2sosdnv3pv24" path="res://scripts/level_builder.gd" id="1_osg5y"]
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="2_tjrgg"]
+[ext_resource type="TileSet" uid="uid://bimohwyjhw0v2" path="res://tilesets/background_tileset.tres" id="3_hb3ky"]
+[ext_resource type="Script" uid="uid://cfrk1lq3vq2qg" path="res://scripts/palette_swap.gd" id="4_jb24h"]
+[ext_resource type="TileSet" uid="uid://dm6v8on7ggv0l" path="res://tilesets/scenery_tileset.tres" id="5_y5fw1"]
+[ext_resource type="TileSet" uid="uid://drbqyvcwe1wl8" path="res://tilesets/atmospheric_tileset.tres" id="6_67fyi"]
+[ext_resource type="TileSet" uid="uid://dnylvyjtr38fk" path="res://tilesets/red_enemies.tres" id="7_dpx01"]
+[ext_resource type="PackedScene" uid="uid://bkywjeu2574u0" path="res://scenes/sprites/brick_bg.tscn" id="8_hs6gf"]
+[ext_resource type="Script" uid="uid://cnuf8qxvj258v" path="res://scenes/sprites/brick_bg.gd" id="9_os7x8"]
+[ext_resource type="PackedScene" uid="uid://msccydg1llh0" path="res://scenes/sprites/coin_a.tscn" id="10_ttht0"]
+[ext_resource type="Script" uid="uid://cblui35fkdsbp" path="res://scenes/sprites/coin.gd" id="11_kxatt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_osg5y"]
+shader = ExtResource("2_tjrgg")
+shader_parameter/palette_id = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tjrgg"]
+shader = ExtResource("2_tjrgg")
+shader_parameter/palette_id = 13
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hb3ky"]
+shader = ExtResource("2_tjrgg")
+shader_parameter/palette_id = 18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jb24h"]
+shader = ExtResource("2_tjrgg")
+shader_parameter/palette_id = 27
+
+[node name="Level" type="Node2D" unique_id=1226794753]
+
+[node name="LevelBuilder" type="Node2D" parent="." unique_id=235941376]
+script = ExtResource("1_osg5y")
+level_json_path = "res://data/levels/bonus-C.json"
+world_theme = 1
+
+[node name="Background" type="TileMapLayer" parent="LevelBuilder" unique_id=1695291108]
+material = SubResource("ShaderMaterial_osg5y")
+tile_map_data = PackedByteArray("AAAAAAsAAAAAAAAAAAABAAsAAAAAAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAGAAsAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAsAAAAAAAAAAAAJAAsAAAAAAAAAAAAKAAsAAAAAAAAAAAALAAsAAAAAAAAAAAAMAAsAAAAAAAAAAAANAAsAAAAAAAAAAAAOAAsAAAAAAAAAAAAPAAsAAAAAAAAAAAAQAAsAAAAAAAAAAAARAAsAAAAAAAAAAAASAAsAAAAAAAAAAAATAAsAAAAAAAAAAAAUAAsAAAAAAAAAAAAVAAsAAAAAAAAAAAAWAAsAAAAAAAAAAAAXAAsAAAAAAAAAAAAYAAsAAAAAAAAAAAAZAAsAAAAAAAAAAAAaAAsAAAAAAAAAAAAbAAsAAAAAAAAAAAAcAAsAAAAAAAAAAAAdAAsAAAAAAAAAAAAeAAsAAAAAAAAAAAAfAAsAAAAAAAAAAAAAAAwAAAAAAAAAAAABAAwAAAAAAAAAAAACAAwAAAAAAAAAAAADAAwAAAAAAAAAAAAEAAwAAAAAAAAAAAAFAAwAAAAAAAAAAAAGAAwAAAAAAAAAAAAHAAwAAAAAAAAAAAAIAAwAAAAAAAAAAAAJAAwAAAAAAAAAAAAKAAwAAAAAAAAAAAALAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAANAAwAAAAAAAAAAAAOAAwAAAAAAAAAAAAPAAwAAAAAAAAAAAAQAAwAAAAAAAAAAAARAAwAAAAAAAAAAAASAAwAAAAAAAAAAAATAAwAAAAAAAAAAAAUAAwAAAAAAAAAAAAVAAwAAAAAAAAAAAAWAAwAAAAAAAAAAAAXAAwAAAAAAAAAAAAYAAwAAAAAAAAAAAAZAAwAAAAAAAAAAAAaAAwAAAAAAAAAAAAbAAwAAAAAAAAAAAAcAAwAAAAAAAAAAAAdAAwAAAAAAAAAAAAeAAwAAAAAAAAAAAAfAAwAAAAAAAAAAAA=")
+tile_set = ExtResource("3_hb3ky")
+script = ExtResource("4_jb24h")
+sprite_type = 1
+
+[node name="Scenery" type="TileMapLayer" parent="LevelBuilder" unique_id=342687710]
+material = SubResource("ShaderMaterial_tjrgg")
+tile_map_data = PackedByteArray("AAAPAAAAAAAHAAYAAAAQAAAAAAAIAAYAAAAPAAEAAAAHAAYAAAAQAAEAAAAIAAYAAAAPAAIAAAAHAAYAAAAQAAIAAAAIAAYAAAAPAAMAAAAHAAYAAAAQAAMAAAAIAAYAAAAPAAQAAAAHAAYAAAAQAAQAAAAIAAYAAAAPAAUAAAAHAAYAAAAQAAUAAAAIAAYAAAAPAAYAAAAHAAYAAAAQAAYAAAAIAAYAAAAPAAcAAAAHAAYAAAAQAAcAAAAIAAYAAAAPAAgAAAAHAAYAAAAQAAgAAAAIAAYAAAANAAkAAAAFAAcAAAAOAAkAAAAGAAcAAAAPAAkAAAAHAAcAAAAQAAkAAAAIAAYAAAANAAoAAAAFAAgAAAAOAAoAAAAGAAgAAAAPAAoAAAAHAAgAAAAQAAoAAAAIAAYAAAA=")
+tile_set = ExtResource("5_y5fw1")
+script = ExtResource("4_jb24h")
+sprite_type = 3
+
+[node name="Atmospheric" type="TileMapLayer" parent="LevelBuilder" unique_id=190114825]
+material = SubResource("ShaderMaterial_hb3ky")
+tile_set = ExtResource("6_67fyi")
+script = ExtResource("4_jb24h")
+sprite_type = 6
+
+[node name="RedEnemies" type="TileMapLayer" parent="LevelBuilder" unique_id=2115822581]
+material = SubResource("ShaderMaterial_jb24h")
+tile_set = ExtResource("7_dpx01")
+script = ExtResource("4_jb24h")
+sprite_type = 7
+
+[node name="Scenes" type="Node2D" parent="LevelBuilder" unique_id=88443419]
+
+[node name="BrickBg" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1947564881 instance=ExtResource("8_hs6gf")]
+z_index = 1
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60032" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1708849859 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(0, 16)
+script = ExtResource("9_os7x8")
+
+[node name="CoinA" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1778436762 instance=ExtResource("10_ttht0")]
+position = Vector2(112, 16)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_kxatt")
+
+[node name="@Area2D@60033" type="Area2D" parent="LevelBuilder/Scenes" unique_id=312014200 instance=ExtResource("10_ttht0")]
+position = Vector2(128, 16)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_kxatt")
+
+[node name="@StaticBody2D@60034" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=707095563 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(0, 32)
+script = ExtResource("9_os7x8")
+
+[node name="@Area2D@60035" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1211579635 instance=ExtResource("10_ttht0")]
+position = Vector2(96, 32)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_kxatt")
+
+[node name="@Area2D@60036" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1006324183 instance=ExtResource("10_ttht0")]
+position = Vector2(112, 32)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_kxatt")
+
+[node name="@Area2D@60037" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1351959273 instance=ExtResource("10_ttht0")]
+position = Vector2(128, 32)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_kxatt")
+
+[node name="@Area2D@60038" type="Area2D" parent="LevelBuilder/Scenes" unique_id=347398917 instance=ExtResource("10_ttht0")]
+position = Vector2(144, 32)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_kxatt")
+
+[node name="@StaticBody2D@60039" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=726629044 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(0, 48)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60040" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1802838511 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(48, 48)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60041" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=309134491 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(64, 48)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60042" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1980753667 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(80, 48)
+script = ExtResource("9_os7x8")
+contents = "star"
+
+[node name="@StaticBody2D@60043" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=670382003 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(112, 48)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60044" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=833553771 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(128, 48)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60045" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1610302491 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(160, 48)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60046" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=6270097 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(176, 48)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60047" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1767775029 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(192, 48)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60048" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1955106875 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(0, 64)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60049" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1443003918 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(48, 64)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60050" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1257221543 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(64, 64)
+script = ExtResource("9_os7x8")
+
+[node name="@Area2D@60051" type="Area2D" parent="LevelBuilder/Scenes" unique_id=20227103 instance=ExtResource("10_ttht0")]
+position = Vector2(96, 64)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_kxatt")
+
+[node name="@StaticBody2D@60052" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=871360213 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(112, 64)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60053" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1149593386 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(128, 64)
+script = ExtResource("9_os7x8")
+
+[node name="@Area2D@60054" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1786096894 instance=ExtResource("10_ttht0")]
+position = Vector2(144, 64)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_kxatt")
+
+[node name="@StaticBody2D@60055" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1954733589 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(176, 64)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60056" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=260571965 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(192, 64)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60057" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=918418377 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(0, 80)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60058" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1303031976 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(48, 80)
+script = ExtResource("9_os7x8")
+
+[node name="@Area2D@60059" type="Area2D" parent="LevelBuilder/Scenes" unique_id=945465235 instance=ExtResource("10_ttht0")]
+position = Vector2(80, 80)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_kxatt")
+
+[node name="@StaticBody2D@60060" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1087212414 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(96, 80)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60061" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=822000418 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(144, 80)
+script = ExtResource("9_os7x8")
+
+[node name="@Area2D@60062" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1032266937 instance=ExtResource("10_ttht0")]
+position = Vector2(160, 80)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_kxatt")
+
+[node name="@StaticBody2D@60063" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=902222915 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(192, 80)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60064" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2051882168 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(0, 96)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60065" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1476789351 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(48, 96)
+script = ExtResource("9_os7x8")
+
+[node name="@Area2D@60066" type="Area2D" parent="LevelBuilder/Scenes" unique_id=2053076528 instance=ExtResource("10_ttht0")]
+position = Vector2(64, 96)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_kxatt")
+
+[node name="@StaticBody2D@60067" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1793275113 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(80, 96)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60068" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=267319985 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(160, 96)
+script = ExtResource("9_os7x8")
+
+[node name="@Area2D@60069" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1087487383 instance=ExtResource("10_ttht0")]
+position = Vector2(176, 96)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_kxatt")
+
+[node name="@StaticBody2D@60070" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=776341803 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(192, 96)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60071" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1091124080 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(0, 112)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60072" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1679255666 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(64, 112)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60073" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=818519136 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(176, 112)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60074" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=990457668 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(0, 128)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60075" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1442473790 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(0, 144)
+script = ExtResource("9_os7x8")
+
+[node name="@StaticBody2D@60076" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1867048928 instance=ExtResource("8_hs6gf")]
+z_index = 1
+position = Vector2(0, 160)
+script = ExtResource("9_os7x8")

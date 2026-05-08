@@ -1,0 +1,60 @@
+[gd_scene format=4 uid="uid://dua226gtkvm0y"]
+
+[ext_resource type="Script" uid="uid://c2sosdnv3pv24" path="res://scripts/level_builder.gd" id="1_apji2"]
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="2_rxrg8"]
+[ext_resource type="TileSet" uid="uid://bimohwyjhw0v2" path="res://tilesets/background_tileset.tres" id="3_xr0ap"]
+[ext_resource type="Script" uid="uid://cfrk1lq3vq2qg" path="res://scripts/palette_swap.gd" id="4_bjfal"]
+[ext_resource type="TileSet" uid="uid://dm6v8on7ggv0l" path="res://tilesets/scenery_tileset.tres" id="5_kx5kf"]
+[ext_resource type="TileSet" uid="uid://drbqyvcwe1wl8" path="res://tilesets/atmospheric_tileset.tres" id="6_mv8wp"]
+[ext_resource type="TileSet" uid="uid://dnylvyjtr38fk" path="res://tilesets/red_enemies.tres" id="7_3432b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_neois"]
+shader = ExtResource("2_rxrg8")
+shader_parameter/palette_id = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1yhul"]
+shader = ExtResource("2_rxrg8")
+shader_parameter/palette_id = 12
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u2ver"]
+shader = ExtResource("2_rxrg8")
+shader_parameter/palette_id = 17
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_efo0b"]
+shader = ExtResource("2_rxrg8")
+shader_parameter/palette_id = 27
+
+[node name="Level" type="Node2D" unique_id=1226794753]
+
+[node name="LevelBuilder" type="Node2D" parent="." unique_id=235941376]
+script = ExtResource("1_apji2")
+level_json_path = "res://data/levels/misc-underground-transition.json"
+
+[node name="Background" type="TileMapLayer" parent="LevelBuilder" unique_id=1315585952]
+material = SubResource("ShaderMaterial_neois")
+tile_map_data = PackedByteArray("AAABAAYAAAAEAAAAAAACAAYAAAAEAAAAAAADAAYAAAAEAAAAAAABAAcAAAADAAEAAAACAAcAAAACAAAAAAADAAcAAAAFAAEAAAAAAAgAAAAEAAAAAAABAAgAAAAFAAAAAAACAAgAAAAFAAAAAAADAAgAAAAFAAAAAAAEAAgAAAAEAAAAAAAAAAkAAAACAAAAAAABAAkAAAACAAAAAAACAAkAAAAGAAAAAAADAAkAAAACAAAAAAAEAAkAAAACAAAAAAAAAAoAAAACAAAAAAABAAoAAAACAAAAAAACAAoAAAAGAAEAAAADAAoAAAACAAAAAAAEAAoAAAACAAAAAAAAAAsAAAAAAAAAAAABAAsAAAAAAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAGAAsAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAsAAAAAAAAAAAAJAAsAAAAAAAAAAAAKAAsAAAAAAAAAAAALAAsAAAAAAAAAAAAMAAsAAAAAAAAAAAANAAsAAAAAAAAAAAAOAAsAAAAAAAAAAAAPAAsAAAAAAAAAAAAQAAsAAAAAAAAAAAARAAsAAAAAAAAAAAASAAsAAAAAAAAAAAATAAsAAAAAAAAAAAAUAAsAAAAAAAAAAAAVAAsAAAAAAAAAAAAWAAsAAAAAAAAAAAAXAAsAAAAAAAAAAAAYAAsAAAAAAAAAAAAZAAsAAAAAAAAAAAAaAAsAAAAAAAAAAAAbAAsAAAAAAAAAAAAcAAsAAAAAAAAAAAAdAAsAAAAAAAAAAAAAAAwAAAAAAAAAAAABAAwAAAAAAAAAAAACAAwAAAAAAAAAAAADAAwAAAAAAAAAAAAEAAwAAAAAAAAAAAAFAAwAAAAAAAAAAAAGAAwAAAAAAAAAAAAHAAwAAAAAAAAAAAAIAAwAAAAAAAAAAAAJAAwAAAAAAAAAAAAKAAwAAAAAAAAAAAALAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAANAAwAAAAAAAAAAAAOAAwAAAAAAAAAAAAPAAwAAAAAAAAAAAAQAAwAAAAAAAAAAAARAAwAAAAAAAAAAAASAAwAAAAAAAAAAAATAAwAAAAAAAAAAAAUAAwAAAAAAAAAAAAVAAwAAAAAAAAAAAAWAAwAAAAAAAAAAAAXAAwAAAAAAAAAAAAYAAwAAAAAAAAAAAAZAAwAAAAAAAAAAAAaAAwAAAAAAAAAAAAbAAwAAAAAAAAAAAAcAAwAAAAAAAAAAAAdAAwAAAAAAAAAAAA=")
+tile_set = ExtResource("3_xr0ap")
+script = ExtResource("4_bjfal")
+sprite_type = 1
+
+[node name="Scenery" type="TileMapLayer" parent="LevelBuilder" unique_id=77469056]
+material = SubResource("ShaderMaterial_1yhul")
+tile_map_data = PackedByteArray("AAAMAAcAAAAHAAUAAAANAAcAAAAIAAUAAAAMAAgAAAAHAAYAAAANAAgAAAAIAAYAAAAKAAkAAAAFAAcAAAALAAkAAAAGAAcAAAAMAAkAAAAHAAcAAAANAAkAAAAIAAYAAAAKAAoAAAAFAAgAAAALAAoAAAAGAAgAAAAMAAoAAAAHAAgAAAANAAoAAAAIAAYAAAA=")
+tile_set = ExtResource("5_kx5kf")
+script = ExtResource("4_bjfal")
+sprite_type = 3
+
+[node name="Atmospheric" type="TileMapLayer" parent="LevelBuilder" unique_id=1454078758]
+material = SubResource("ShaderMaterial_u2ver")
+tile_map_data = PackedByteArray("AAASAAAAAAAMAAAAAAATAAAAAAANAAAAAAAUAAAAAAANAAAAAAAVAAAAAAAOAAAAAAADAAEAAAAMAAAAAAAEAAEAAAANAAAAAAAFAAEAAAANAAAAAAAGAAEAAAAOAAAAAAASAAEAAAAMAAEAAAATAAEAAAANAAEAAAAUAAEAAAANAAEAAAAVAAEAAAAOAAEAAAADAAIAAAAMAAEAAAAEAAIAAAANAAEAAAAFAAIAAAANAAEAAAAGAAIAAAAOAAEAAAAJAAUAAAAMAAAAAAAKAAUAAAANAAAAAAALAAUAAAAOAAAAAAAJAAYAAAAMAAEAAAAKAAYAAAANAAEAAAALAAYAAAAOAAEAAAAcAAkAAAAMAAAAAAAdAAkAAAANAAAAAAAcAAoAAAAMAAEAAAAdAAoAAAANAAEAAAA=")
+tile_set = ExtResource("6_mv8wp")
+script = ExtResource("4_bjfal")
+sprite_type = 6
+
+[node name="RedEnemies" type="TileMapLayer" parent="LevelBuilder" unique_id=1205905991]
+material = SubResource("ShaderMaterial_efo0b")
+tile_set = ExtResource("7_3432b")
+script = ExtResource("4_bjfal")
+sprite_type = 7
+
+[node name="Scenes" type="Node2D" parent="LevelBuilder" unique_id=622103129]

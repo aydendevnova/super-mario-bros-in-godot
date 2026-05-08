@@ -37,7 +37,7 @@ func enter(_previous_state: StringName) -> void:
 		0:
 			sink_offset = Vector2(0, _sink_distance)
 		1:
-			sink_offset = Vector2(_sink_distance - 4, 0)
+			sink_offset = Vector2(_sink_distance-2, 0)
 
 	_tween = player.create_tween()
 	_tween.tween_property(player, "global_position", player.global_position + sink_offset, _sink_duration)
