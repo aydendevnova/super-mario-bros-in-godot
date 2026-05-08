@@ -8,10 +8,12 @@ const MAX_WALK_SPEED = 96.0
 const MAX_FALL_SPEED = 270.0
 const MIN_SLOW_DOWN_SPEED = 33.75
 
-const WALK_ACCELERATION = 133.59375
-const RUN_ACCELERATION = 200.390625
-const WALK_FRICTION = 182.8125
-const SKID_FRICTION = 365.625
+const WALK_ACCELERATION = 240.0
+const RUN_ACCELERATION = 75.0
+const WALK_FRICTION = 180.0
+const SKID_FRICTION = 480.0
+const AIR_ACCELERATION = 180.0
+const AIR_SKID_ACCELERATION = 90.0
 
 # Jump physics vary based on horizontal speed thresholds
 const JUMP_SPEED = [-240.0, -240.0, -300.0]
@@ -42,21 +44,63 @@ const POINTS_POPUP := preload("res://scenes/sprites/points_popup.tscn")
 const FIREBALL_SCENE := preload("res://scenes/sprites/fireball.tscn")
 const FIREBALL_MIN_DISTANCE := 112
 const MAX_FIREBALLS := 2
+const SPAWN_GROUND_SNAP_MAX_PX := 256
+const AUTO_WALK_SPEED_DEFAULT_DIVISOR := 1.4
 
 # Input
 var spawnpoint = Vector2(48, -7)
 
 var is_facing_left = false
 var is_running = false
-var is_jumping = false
-var is_falling = false
-var is_skiding = false
+var is_jumping: bool:
+	get:
+		return movement_state_name == &"jump"
+var is_falling: bool:
+	get:
+		return movement_state_name == &"fall"
+var is_skiding: bool:
+	get:
+		return movement_state_name == &"skid"
 var is_crouching = false
-var entering_pipe = false
-var is_locked = false
 var auto_walk_right = false
+var auto_walk_speed: float = MAX_WALK_SPEED / AUTO_WALK_SPEED_DEFAULT_DIVISOR
 var camera_frozen := false
 var _camera_frozen_pos := Vector2.ZERO
+var movement_state_name: StringName = &"idle"
+enum MoveState { IDLE, WALK, SPRINT, JUMP, FALL, SKID, CROUCH, LOCKED, AUTO_WALK, ENTER_PIPE, EXIT_PIPE, CLIMB_VINE, FLAG_POLE, UNKNOWN }
+const MOVE_STATE_FROM_NAME := {
+	&"idle": MoveState.IDLE,
+	&"walk": MoveState.WALK,
+	&"sprint": MoveState.SPRINT,
+	&"jump": MoveState.JUMP,
+	&"fall": MoveState.FALL,
+	&"skid": MoveState.SKID,
+	&"crouch": MoveState.CROUCH,
+	&"locked": MoveState.LOCKED,
+	&"auto_walk": MoveState.AUTO_WALK,
+	&"enter_pipe": MoveState.ENTER_PIPE,
+	&"exit_pipe": MoveState.EXIT_PIPE,
+	&"climb_vine": MoveState.CLIMB_VINE,
+	&"flag_pole": MoveState.FLAG_POLE
+}
+var move_state: MoveState:
+	get:
+		return MOVE_STATE_FROM_NAME.get(movement_state_name, MoveState.UNKNOWN)
+var _flag_pole_data: Dictionary = {}
+var _enter_pipe_data: Dictionary = {}
+var _exit_pipe_data: Dictionary = {}
+var entering_pipe: bool:
+	get:
+		return move_state == MoveState.ENTER_PIPE
+var exiting_pipe: bool:
+	get:
+		return move_state == MoveState.EXIT_PIPE
+var climbing_vine: bool:
+	get:
+		return move_state == MoveState.CLIMB_VINE
+var is_locked: bool:
+	get:
+		return move_state in [MoveState.LOCKED, MoveState.AUTO_WALK, MoveState.ENTER_PIPE, MoveState.EXIT_PIPE]
 
 var _old_velocity = Vector2.ZERO
 
@@ -76,28 +120,8 @@ var is_dead = false
 
 enum State { SMALL, BIG, FIRE }
 
-var state = State.SMALL:
-	set(value):
-		if state != value:
-			var previous_state = state
-			state = value
-			_is_fire_transition = previous_state == State.BIG and state == State.FIRE
-			
-			match state:
-				State.SMALL:
-					transition_sprite.animation = "shrink"
-					
-				State.BIG:
-					transition_sprite.animation = "grow"
-				
-				State.FIRE:
-					transition_sprite.animation = "fire" if _is_fire_transition else "grow"
-
-			play_transition()
-			transition_sprite.flip_h = sprite.flip_h
-			
-			
-
+var state: State = State.SMALL
+var power_state_name: StringName = &"small"
 var has_cooldown = false
 var star_power := false
 var _star_timer := 0.0
@@ -133,11 +157,26 @@ signal points_scored(points: int)
 
 @onready var small_collision_shape: CollisionShape2D = $SmallCollisionShape
 @onready var big_collision_shape: CollisionShape2D = $BigCollisionShape
+@onready var movement_state_machine = $MovementStateMachine
+@onready var power_state_machine = $PowerStateMachine
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	power_state_machine.setup(self)
 	_update_tree()
+	movement_state_machine.setup(self)
+	call_deferred("snap_to_ground")
 	camera.make_current()
+
+func snap_to_ground() -> void:
+	for _i in range(SPAWN_GROUND_SNAP_MAX_PX):
+		if test_move(global_transform, Vector2.DOWN):
+			velocity.y = 0.0
+			return
+		global_position.y += 1.0
+
+func reset_auto_walk_speed() -> void:
+	auto_walk_speed = MAX_WALK_SPEED / AUTO_WALK_SPEED_DEFAULT_DIVISOR
 
 func _process(delta):
 	_process_transition_palette(delta)
@@ -148,29 +187,16 @@ func _process(delta):
 	if get_tree().paused:
 		sprite.pause()
 		return
-	if not is_locked:
-		process_input()
+	process_input()
 	process_animation()
 
 func _physics_process(delta):
 	if get_tree().paused:
 		return
-
-	if auto_walk_right:
-		velocity.x = MAX_WALK_SPEED / 1.8
-		velocity.y += GRAVITY[0] * delta
-		if velocity.y > MAX_FALL_SPEED:
-			velocity.y = MAX_FALL_SPEED
-		move_and_slide()
+	if is_dead:
 		return
 
-	if is_locked:
-		return
-
-	process_jump(delta)
-	process_walk(delta)
-	#process_camera_bounds()
-	
+	movement_state_machine.physics_update(delta)
 	_old_velocity = velocity
 
 	move_and_slide()
@@ -192,6 +218,10 @@ func process_camera_bounds():
 		global_position.x = camera_left_bound + .001
 
 func process_input():
+	if is_locked or movement_state_name == &"flag_pole":
+		input_axis = Vector2.ZERO
+		return
+
 	input_axis.x = Input.get_axis("move_left", "move_right")
 	input_axis.y = Input.get_axis("jump", "crouch")
 
@@ -203,100 +233,151 @@ func process_input():
 		elif run_timer > 0.0:
 			run_timer -= get_process_delta_time()
 		is_running = run_timer > 0.0
-		is_crouching = Input.is_action_pressed("crouch")
-
-		if is_crouching and input_axis.x:
-			is_crouching = false
-			input_axis.x = 0.0
-
-		if was_crouching and not is_crouching and state != State.SMALL:
-			if not _can_stand_up():
-				is_crouching = true
+		var wants_crouch: bool = Input.is_action_pressed("crouch") and input_axis.x == 0.0 and state != State.SMALL
+		if wants_crouch:
+			set_crouching(true)
+		elif was_crouching:
+			set_crouching(false)
+	elif was_crouching:
+		set_crouching(false)
 
 	if is_crouching != was_crouching:
 		_update_tree()
+	power_state_machine.process_input()
 
-	if state == State.FIRE and Input.is_action_just_pressed("run"):
-		_try_shoot_fireball()
+func set_movement_state_name(next_state: StringName) -> void:
+	movement_state_name = next_state
 
-func process_jump(delta: float):
-	if is_on_floor():
-		if Input.is_action_just_pressed("jump"):
-			is_jumping = true
-			AudioSystem.play_sfx("jump_small" if state == State.SMALL else "jump_super")
-			var speed = abs(velocity.x)
+func _request_movement_state(next_state: StringName) -> void:
+	if not movement_state_machine or not is_inside_tree():
+		movement_state_name = next_state
+		return
+	movement_state_machine.transition_to(next_state)
 
-			speed_threshold = SPEED_THRESHOLDS.size()
 
-			for i in SPEED_THRESHOLDS.size():
-				if speed < SPEED_THRESHOLDS[i]:
-					speed_threshold = i
-					break
-			
-			velocity.y = JUMP_SPEED[speed_threshold]
-	else:
-		var gravity = GRAVITY[speed_threshold]
-		
-		if Input.is_action_pressed("jump") and not is_falling:
-			gravity = LONG_JUMP_GRAVITY[speed_threshold]
-		
-		velocity.y = velocity.y + gravity * delta
-		
-		if velocity.y > MAX_FALL_SPEED:
-			velocity.y = MAX_FALL_SPEED
-	
-	if velocity.y > 0:
-		is_jumping = false
-		is_falling = true
-	elif is_on_floor():
-		is_falling = false
+func start_flag_pole_sequence(sequence_data: Dictionary) -> void:
+	_flag_pole_data = sequence_data.duplicate()
+	_request_movement_state(&"flag_pole")
 
-func process_walk(delta: float):
-	if input_axis.x:
-		if is_on_floor():
-			if velocity.x:
-				is_facing_left = input_axis.x < 0.0
-				is_skiding = velocity.x < 0.0 != is_facing_left
-				
-			if is_skiding:
-				min_speed = MIN_SLOW_DOWN_SPEED
-				max_speed = MAX_WALK_SPEED
-				acceleration = SKID_FRICTION
-			elif is_running:
-				min_speed = MIN_SPEED
-				max_speed = MAX_SPEED
-				acceleration = RUN_ACCELERATION
-			else:
-				min_speed = MIN_SPEED
-				max_speed = MAX_WALK_SPEED
-				acceleration = WALK_ACCELERATION
-		elif is_running and abs(velocity.x) > MAX_WALK_SPEED:
-			max_speed = MAX_SPEED
-		else:
-			max_speed = MAX_WALK_SPEED
-		
-		var target_speed = input_axis.x * max_speed
-		
-		velocity.x = move_toward(velocity.x, target_speed, acceleration * delta)
-		
-	elif is_on_floor() and velocity.x:
-		if not is_skiding:
-			acceleration = WALK_FRICTION
-		
-		if input_axis.y:
-			min_speed = MIN_SLOW_DOWN_SPEED
-		else:
-			min_speed = MIN_SPEED
-		
-		if abs(velocity.x) < min_speed:
-			velocity.x = 0.0
-		else:
-			velocity.x = move_toward(velocity.x, 0.0, acceleration * delta)
-	
+func start_enter_pipe(pipe_data: Dictionary) -> void:
+	_enter_pipe_data = pipe_data.duplicate()
+	_request_movement_state(&"enter_pipe")
+
+func start_exit_pipe(pipe_data: Dictionary) -> void:
+	_exit_pipe_data = pipe_data.duplicate()
+	_request_movement_state(&"exit_pipe")
+
+func set_power_state_name(next_state: StringName) -> void:
+	power_state_name = next_state
+
+func apply_power_state(next_state: State, previous_state_name: StringName = StringName(), skip_transition: bool = false) -> void:
+	var previous_state: State = state
+	if previous_state_name != StringName():
+		previous_state = _power_state_name_to_enum(previous_state_name)
+
+	if previous_state == next_state:
+		return
+
+	state = next_state
+	_is_fire_transition = previous_state == State.BIG and state == State.FIRE
+	if skip_transition:
+		_update_tree()
+		return
+
+	match state:
+		State.SMALL:
+			transition_sprite.animation = "shrink"
+		State.BIG:
+			transition_sprite.animation = "grow"
+		State.FIRE:
+			transition_sprite.animation = "fire" if _is_fire_transition else "grow"
+
+	play_transition()
+	transition_sprite.flip_h = sprite.flip_h
+
+func set_crouching(value: bool) -> bool:
+	if value:
+		if state == State.SMALL:
+			is_crouching = false
+			return false
+		is_crouching = true
+		return true
+	if not is_crouching:
+		return true
+	if state != State.SMALL and not _can_stand_up():
+		is_crouching = true
+		return false
+	is_crouching = false
+	return true
+
+func should_jump() -> bool:
+	return is_on_floor() and Input.is_action_just_pressed("jump")
+
+func should_sprint() -> bool:
+	return is_running and input_axis.x != 0.0
+
+func should_crouch() -> bool:
+	return is_crouching and state != State.SMALL and is_on_floor()
+
+func should_skid() -> bool:
+	if input_axis.x == 0.0:
+		return false
 	if abs(velocity.x) < MIN_SLOW_DOWN_SPEED:
-		is_skiding = false
-	
-	speed_scale = abs(velocity.x) / MAX_SPEED / 2
+		return false
+	return sign(velocity.x) != sign(input_axis.x)
+
+func update_facing_from_input() -> void:
+	if input_axis.x == 0.0:
+		return
+	is_facing_left = input_axis.x < 0.0
+
+func begin_jump() -> void:
+	AudioSystem.play_sfx("jump_small" if state == State.SMALL else "jump_super")
+	var speed: float = abs(velocity.x)
+	speed_threshold = SPEED_THRESHOLDS.size()
+	for i in SPEED_THRESHOLDS.size():
+		if speed < SPEED_THRESHOLDS[i]:
+			speed_threshold = i
+			break
+	velocity.y = JUMP_SPEED[speed_threshold]
+
+func apply_gravity(delta: float, can_hold_jump: bool) -> void:
+	var gravity: float = GRAVITY[speed_threshold]
+	if can_hold_jump and Input.is_action_pressed("jump") and velocity.y < 0.0:
+		gravity = LONG_JUMP_GRAVITY[speed_threshold]
+	velocity.y += gravity * delta
+	if velocity.y > MAX_FALL_SPEED:
+		velocity.y = MAX_FALL_SPEED
+
+func apply_ground_movement(delta: float, desired_max_speed: float, desired_acceleration: float) -> void:
+	max_speed = desired_max_speed
+	acceleration = desired_acceleration
+	var target_speed: float = input_axis.x * max_speed
+	velocity.x = move_toward(velocity.x, target_speed, acceleration * delta)
+	speed_scale = abs(velocity.x) / MAX_SPEED / 2.0
+
+func apply_air_movement(delta: float) -> void:
+	if input_axis.x == 0.0:
+		speed_scale = abs(velocity.x) / MAX_SPEED / 2.0
+		return
+	if sign(velocity.x) != sign(input_axis.x) and abs(velocity.x) > 0.0:
+		velocity.x = move_toward(velocity.x, input_axis.x, AIR_SKID_ACCELERATION * delta)
+	var air_max_speed := MAX_SPEED if is_running and abs(velocity.x) >= MAX_WALK_SPEED else MAX_WALK_SPEED
+	velocity.x = move_toward(velocity.x, input_axis.x * air_max_speed, AIR_ACCELERATION * delta)
+	speed_scale = abs(velocity.x) / MAX_SPEED / 2.0
+
+func apply_floor_friction(delta: float, floor_min_speed: float = MIN_SPEED) -> void:
+	acceleration = WALK_FRICTION
+	if abs(velocity.x) < floor_min_speed:
+		velocity.x = 0.0
+	else:
+		velocity.x = move_toward(velocity.x, 0.0, acceleration * delta)
+	speed_scale = abs(velocity.x) / MAX_SPEED / 2.0
+
+func apply_skid_friction(delta: float) -> void:
+	acceleration = SKID_FRICTION
+	velocity.x = move_toward(velocity.x, 0.0, acceleration * delta)
+	speed_scale = abs(velocity.x) / MAX_SPEED / 2.0
 	
 func _can_stand_up() -> bool:
 	small_collision_shape.disabled = true
@@ -305,20 +386,6 @@ func _can_stand_up() -> bool:
 	big_collision_shape.disabled = true
 	small_collision_shape.disabled = false
 	return not blocked
-
-func _try_shoot_fireball() -> void:
-	var nearby := 0
-	for fb in get_tree().get_nodes_in_group("fireballs"):
-		if fb.global_position.distance_to(global_position) < FIREBALL_MIN_DISTANCE:
-			nearby += 1
-	if nearby >= MAX_FIREBALLS:
-		return
-	var fireball := FIREBALL_SCENE.instantiate()
-	fireball.add_to_group("fireballs")
-	fireball.direction = -1.0 if is_facing_left else 1.0
-	fireball.position = Game.current_level.to_local(global_position) + Vector2(8 if not is_facing_left else -4, 4)
-	Game.current_level.add_child(fireball)
-	AudioSystem.play_sfx("fireball")
 
 func _corner_correct() -> bool:
 	if _old_velocity.y >= 0 or velocity.y < 0:
@@ -444,15 +511,8 @@ func _get_transition_duration(animation_name: StringName) -> float:
 	return (frame_duration / speed) + TRANSITION_DURATION_PADDING
 
 func _get_walk_animation_speed_scale() -> float:
-	var abs_speed = abs(velocity.x)
-	if abs_speed <= 0.0:
-		return WALK_ANIM_FPS_SLOW / WALK_ANIM_BASE_FPS
-	var walk_t := clampf(abs_speed / MAX_WALK_SPEED, 0.0, 1.0)
-	if walk_t < 0.35:
-		return WALK_ANIM_FPS_SLOW / WALK_ANIM_BASE_FPS
-	if walk_t < 0.70:
-		return WALK_ANIM_FPS_MID / WALK_ANIM_BASE_FPS
-	return WALK_ANIM_FPS_FAST / WALK_ANIM_BASE_FPS
+	var abs_speed: float = abs(velocity.x)
+	return clampf(abs_speed / 40.0, 0.8, 4.0)
 
 func process_animation():
 	if _flower_anim_timer > 0.0:
@@ -479,27 +539,7 @@ func process_animation():
 		sprite.play("Dying")
 		return
 
-	if auto_walk_right:
-		sprite.flip_h = false
-		sprite.speed_scale = 1
-		sprite.play("Walk")
-		if not has_cooldown and not _is_transitioning:
-			modulate.a = 1.0
-		return
-	
-	if is_falling:
-		sprite.stop()
-	elif is_crouching and state:
-		sprite.play("Crouch")
-	elif is_jumping:
-		sprite.play("Jump")
-	elif is_skiding:
-		sprite.play("Skid")
-	elif input_axis.x or velocity.x:
-		sprite.play("Walk")
-		sprite.speed_scale = _get_walk_animation_speed_scale()
-	else:
-		sprite.play("Idle")
+	movement_state_machine.update_animation()
 
 	if not has_cooldown and not _is_transitioning:
 		modulate.a = 1.0
@@ -528,18 +568,19 @@ func _update_tree():
 	small_sprite.material.set_shader_parameter("palette_id", palette_id)
 
 func lock_player() -> void:
-	is_locked = true
 	velocity = Vector2.ZERO
 	input_axis = Vector2.ZERO
-	is_jumping = false
-	is_falling = false
-	is_skiding = false
-	is_crouching = false
+	set_crouching(false)
+	_request_movement_state(&"auto_walk" if auto_walk_right else &"locked")
 
 func unlock_player() -> void:
-	is_locked = false
 	auto_walk_right = false
+	reset_auto_walk_speed()
 	camera_frozen = false
+	if is_on_floor():
+		_request_movement_state(&"idle")
+	else:
+		_request_movement_state(&"fall")
 
 func freeze_camera() -> void:
 	camera_frozen = true
@@ -559,8 +600,15 @@ func snap_camera() -> void:
 	camera.reset_smoothing()
 	camera.force_update_scroll()
 
+func _power_state_name_to_enum(state_name: StringName) -> State:
+	if state_name == &"small":
+		return State.SMALL
+	if state_name == &"big":
+		return State.BIG
+	return State.FIRE
+
 func transform(to_state: State):
-	state = to_state	
+	power_state_machine.transition_to_enum(to_state)
 	
 func handle_death():
 	tranistion_timer.start()
@@ -596,14 +644,16 @@ func reset() -> void:
 	has_cooldown = false
 	star_power = false
 	_star_timer = 0.0
-	is_locked = false
 	auto_walk_right = false
+	reset_auto_walk_speed()
 	camera_frozen = false
 	camera.position_smoothing_enabled = false
 	_is_transitioning = false
 	_flower_anim_timer = 0.0
 	_blink_timer = 0.0
 	modulate.a = 1.0
+	power_state_machine.transition_to(&"small", true)
+	movement_state_machine.transition_to(&"idle")
 
 func take_hit():
 	if is_dead or star_power:

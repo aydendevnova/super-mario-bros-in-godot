@@ -3,7 +3,6 @@ extends Node
 enum WorldTheme { OVERWORLD, UNDERGROUND, CASTLE, UNDERWATER }
 enum SceneryType { DEFAULT, SNOW, MUSHROOM }
 
-
 # sprite_type → palette_id per WorldTheme index [overworld, underground, castle, underwater]
 const PALETTE_TABLE := {
 	1: [4, 5, 6, 7],       # BACKGROUND

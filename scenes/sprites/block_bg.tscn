@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c68jbo5yo82ba"]
+
+[ext_resource type="Shape2D" uid="uid://ccy5o4jglbeso" path="res://assets/16x16_collision.tres" id="2_lv154"]
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="3_2jrng"]
+[ext_resource type="Script" uid="uid://cfrk1lq3vq2qg" path="res://scripts/palette_swap.gd" id="5_lgbj4"]
+[ext_resource type="Texture2D" uid="uid://cqmskpby07x1a" path="res://assets/textures/chr-mapping.png" id="6_t0vlb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("3_2jrng")
+shader_parameter/palette_id = 4
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("6_t0vlb")
+region = Rect2(0, 0, 16, 16)
+
+[node name="BlockBg" type="StaticBody2D" unique_id=1947564881]
+editor_description = "Used for sideways pipes to block the characters feet from being visible."
+z_index = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=988472227]
+position = Vector2(8, 8)
+shape = ExtResource("2_lv154")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1419061206]
+z_index = 99
+material = SubResource("ShaderMaterial_1")
+texture = SubResource("AtlasTexture_1")
+centered = false
+script = ExtResource("5_lgbj4")
+sprite_type = 1

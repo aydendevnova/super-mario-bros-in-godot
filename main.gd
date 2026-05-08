@@ -109,6 +109,7 @@ func _spawn_player() -> void:
 	_player = PLAYER_SCENE.instantiate()
 	_level_container.add_child(_player)
 	_player.position = Vector2(SPAWN_X, _find_spawn_y())
+	_player.call_deferred("snap_to_ground")
 
 func _despawn_player() -> void:
 	if _player and is_instance_valid(_player):
@@ -237,6 +238,7 @@ func _dev_start() -> void:
 		_player.global_position = quick_start.global_position
 	else:
 		_player.position = Vector2(SPAWN_X, _find_spawn_y())
+		_player.call_deferred("snap_to_ground")
 
 	_current_bgm = THEME_BGM.get(Game.lvl_palette, "overworld_bgm")
 	if _has_auto_enter_pipe():

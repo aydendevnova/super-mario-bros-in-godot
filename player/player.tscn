@@ -6,6 +6,24 @@
 [ext_resource type="SpriteFrames" uid="uid://ccvpk871d3nvq" path="res://player/small_sprite_frames.tres" id="3_qjkh3"]
 [ext_resource type="SpriteFrames" uid="uid://dqucvmtl5rux4" path="res://player/big_sprite_frames.tres" id="4_g6k8r"]
 [ext_resource type="SpriteFrames" uid="uid://dlldmbgi7syen" path="res://player/transition_sprite_frames.tres" id="6_boad6"]
+[ext_resource type="Script" uid="uid://df5ohca37r6bu" path="res://player/movement_states/movement_state_machine.gd" id="7_mvsm"]
+[ext_resource type="Script" uid="uid://dk1qihmdu46nb" path="res://player/movement_states/idle_state.gd" id="8_msidle"]
+[ext_resource type="Script" uid="uid://bb58g6cdo7680" path="res://player/movement_states/walk_state.gd" id="9_mswalk"]
+[ext_resource type="Script" uid="uid://bki5atk7g52yn" path="res://player/movement_states/sprint_state.gd" id="10_mssprint"]
+[ext_resource type="Script" uid="uid://i1n3ebsme5yw" path="res://player/movement_states/jump_state.gd" id="11_msjump"]
+[ext_resource type="Script" uid="uid://bgpjfy26y23t8" path="res://player/movement_states/fall_state.gd" id="12_msfall"]
+[ext_resource type="Script" uid="uid://cwo1j2ulio2oj" path="res://player/movement_states/skid_state.gd" id="13_mssk"]
+[ext_resource type="Script" uid="uid://7bndrgqd7bi4" path="res://player/movement_states/crouch_state.gd" id="14_mscr"]
+[ext_resource type="Script" uid="uid://bkocv742vulr5" path="res://player/movement_states/locked_state.gd" id="15_msl"]
+[ext_resource type="Script" uid="uid://bus5k1jkjvhpb" path="res://player/movement_states/auto_walk_state.gd" id="16_msaw"]
+[ext_resource type="Script" uid="uid://62utmf6lahid" path="res://player/movement_states/enter_pipe_state.gd" id="17_msep"]
+[ext_resource type="Script" uid="uid://oo2x7blyttor" path="res://player/movement_states/exit_pipe_state.gd" id="18_msxp"]
+[ext_resource type="Script" uid="uid://5t6bjml3bmvk" path="res://player/movement_states/climb_vine_state.gd" id="19_mscv"]
+[ext_resource type="Script" uid="uid://cd7a3tgl87tm2" path="res://player/power_states/power_state_machine.gd" id="20_psm"]
+[ext_resource type="Script" uid="uid://hflk655hn3t6" path="res://player/power_states/small_power_state.gd" id="21_pssmall"]
+[ext_resource type="Script" uid="uid://mssr675r1geh" path="res://player/power_states/big_power_state.gd" id="22_psbig"]
+[ext_resource type="Script" uid="uid://cmk00j5hqbmrc" path="res://player/power_states/fire_power_state.gd" id="23_psfire"]
+[ext_resource type="Script" uid="uid://c4ogp77wj46lc" path="res://player/movement_states/flag_pole_state.gd" id="24_msfp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_161q0"]
 size = Vector2(14, 25.25)
@@ -50,7 +68,7 @@ centered = false
 material = SubResource("ShaderMaterial_qjkh3")
 position = Vector2(0, -16)
 sprite_frames = ExtResource("4_g6k8r")
-animation = &"Walk"
+animation = &"Flagpole"
 autoplay = "Idle"
 centered = false
 
@@ -88,6 +106,76 @@ drag_vertical_enabled = true
 drag_top_margin = 1.0
 drag_right_margin = 1.0
 script = ExtResource("2_rkbax")
+
+[node name="MovementStateMachine" type="Node" parent="." unique_id=692153168]
+script = ExtResource("7_mvsm")
+
+[node name="IdleState" type="Node" parent="MovementStateMachine" unique_id=314659978]
+script = ExtResource("8_msidle")
+state_name = &"idle"
+
+[node name="WalkState" type="Node" parent="MovementStateMachine" unique_id=1261560356]
+script = ExtResource("9_mswalk")
+state_name = &"walk"
+
+[node name="SprintState" type="Node" parent="MovementStateMachine" unique_id=1442748382]
+script = ExtResource("10_mssprint")
+state_name = &"sprint"
+
+[node name="JumpState" type="Node" parent="MovementStateMachine" unique_id=821645760]
+script = ExtResource("11_msjump")
+state_name = &"jump"
+
+[node name="FallState" type="Node" parent="MovementStateMachine" unique_id=1243243194]
+script = ExtResource("12_msfall")
+state_name = &"fall"
+
+[node name="SkidState" type="Node" parent="MovementStateMachine" unique_id=1096903798]
+script = ExtResource("13_mssk")
+state_name = &"skid"
+
+[node name="CrouchState" type="Node" parent="MovementStateMachine" unique_id=95650772]
+script = ExtResource("14_mscr")
+state_name = &"crouch"
+
+[node name="LockedState" type="Node" parent="MovementStateMachine" unique_id=1212322585]
+script = ExtResource("15_msl")
+state_name = &"locked"
+
+[node name="AutoWalkState" type="Node" parent="MovementStateMachine" unique_id=1639279613]
+script = ExtResource("16_msaw")
+state_name = &"auto_walk"
+
+[node name="EnterPipeState" type="Node" parent="MovementStateMachine" unique_id=1933604712]
+script = ExtResource("17_msep")
+state_name = &"enter_pipe"
+
+[node name="ExitPipeState" type="Node" parent="MovementStateMachine" unique_id=771562464]
+script = ExtResource("18_msxp")
+state_name = &"exit_pipe"
+
+[node name="ClimbVineState" type="Node" parent="MovementStateMachine" unique_id=27425104]
+script = ExtResource("19_mscv")
+state_name = &"climb_vine"
+
+[node name="FlagPoleState" type="Node" parent="MovementStateMachine" unique_id=29228263]
+script = ExtResource("24_msfp")
+state_name = &"flag_pole"
+
+[node name="PowerStateMachine" type="Node" parent="." unique_id=1039892269]
+script = ExtResource("20_psm")
+
+[node name="SmallPowerState" type="Node" parent="PowerStateMachine" unique_id=815364249]
+script = ExtResource("21_pssmall")
+state_name = &"small"
+
+[node name="BigPowerState" type="Node" parent="PowerStateMachine" unique_id=503663283]
+script = ExtResource("22_psbig")
+state_name = &"big"
+
+[node name="FirePowerState" type="Node" parent="PowerStateMachine" unique_id=2049423593]
+script = ExtResource("23_psfire")
+state_name = &"fire"
 
 [connection signal="animation_finished" from="TransitionSprite" to="." method="_on_transition_sprite_animation_finished"]
 [connection signal="ready" from="TransitionSprite" to="." method="_on_transition_sprite_ready"]

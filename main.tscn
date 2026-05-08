@@ -67,7 +67,7 @@ shader_parameter/scanline_phase_shift = 0.333
 
 [node name="Main" type="Node" unique_id=1024354604]
 script = ExtResource("1_272bh")
-dev_level = "2-3"
+dev_quick_start = true
 
 [node name="OuterUI" parent="." unique_id=1169496093 instance=ExtResource("2_074og")]
 visible = false
@@ -103,6 +103,8 @@ unique_name_in_owner = true
 [node name="LevelBuilder" type="Node2D" parent="SubViewportContainer/SubViewport/Level" unique_id=126977250]
 script = ExtResource("2_1bvp3")
 level_json_path = "res://data/levels/1-1.json"
+subarea_1_theme = 2
+subarea_2_theme = 2
 
 [node name="Main" type="Node2D" parent="SubViewportContainer/SubViewport/Level/LevelBuilder" unique_id=1447463487]
 
@@ -542,6 +544,7 @@ position = Vector2(160, 160)
 [node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport" unique_id=1869532882]
 
 [node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport/CanvasLayer" unique_id=2045531880]
+visible = false
 material = SubResource("ShaderMaterial_2cqfq")
 anchors_preset = 15
 anchor_right = 1.0

@@ -63,9 +63,11 @@ func _build_debug_text() -> String:
 	var player = get_tree().root.find_child("Player", true, false) as Player
 	if player:
 		var pstate := {0: "SMALL", 1: "BIG", 2: "FIRE"}
+		var movement_state_label := String(player.movement_state_name).to_upper().replace("_", " ")
 		lines.append("")
 		lines.append("=== PLAYER ===")
-		lines.append("State: %s" % pstate.get(player.state, "?"))
+		lines.append("PState: %s" % pstate.get(player.state, "?"))
+		lines.append("MState: %s" % movement_state_label)
 		lines.append("Star: %s" % player.star_power)
 		lines.append("Cooldown: %s" % player.has_cooldown)
 		lines.append("Locked: %s" % player.is_locked)
