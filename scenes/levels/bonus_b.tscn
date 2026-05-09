@@ -35,774 +35,774 @@ script = ExtResource("1_ayl17")
 level_json_path = "res://data/levels/bonus-B.json"
 world_theme = 1
 
-[node name="Background" type="TileMapLayer" parent="LevelBuilder" unique_id=221911666]
+[node name="Background" type="TileMapLayer" parent="LevelBuilder" unique_id=251940873]
 material = SubResource("ShaderMaterial_ayl17")
 tile_map_data = PackedByteArray("AAAAAAsAAAAAAAAAAAABAAsAAAAAAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAGAAsAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAsAAAAAAAAAAAAJAAsAAAAAAAAAAAAKAAsAAAAAAAAAAAALAAsAAAAAAAAAAAAMAAsAAAAAAAAAAAANAAsAAAAAAAAAAAAOAAsAAAAAAAAAAAAPAAsAAAAAAAAAAAAQAAsAAAAAAAAAAAARAAsAAAAAAAAAAAASAAsAAAAAAAAAAAATAAsAAAAAAAAAAAAUAAsAAAAAAAAAAAAVAAsAAAAAAAAAAAAWAAsAAAAAAAAAAAAXAAsAAAAAAAAAAAAYAAsAAAAAAAAAAAAZAAsAAAAAAAAAAAAaAAsAAAAAAAAAAAAbAAsAAAAAAAAAAAAcAAsAAAAAAAAAAAAdAAsAAAAAAAAAAAAeAAsAAAAAAAAAAAAfAAsAAAAAAAAAAAAAAAwAAAAAAAAAAAABAAwAAAAAAAAAAAACAAwAAAAAAAAAAAADAAwAAAAAAAAAAAAEAAwAAAAAAAAAAAAFAAwAAAAAAAAAAAAGAAwAAAAAAAAAAAAHAAwAAAAAAAAAAAAIAAwAAAAAAAAAAAAJAAwAAAAAAAAAAAAKAAwAAAAAAAAAAAALAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAANAAwAAAAAAAAAAAAOAAwAAAAAAAAAAAAPAAwAAAAAAAAAAAAQAAwAAAAAAAAAAAARAAwAAAAAAAAAAAASAAwAAAAAAAAAAAATAAwAAAAAAAAAAAAUAAwAAAAAAAAAAAAVAAwAAAAAAAAAAAAWAAwAAAAAAAAAAAAXAAwAAAAAAAAAAAAYAAwAAAAAAAAAAAAZAAwAAAAAAAAAAAAaAAwAAAAAAAAAAAAbAAwAAAAAAAAAAAAcAAwAAAAAAAAAAAAdAAwAAAAAAAAAAAAeAAwAAAAAAAAAAAAfAAwAAAAAAAAAAAA=")
 tile_set = ExtResource("3_5sblf")
 script = ExtResource("4_ns0lu")
 sprite_type = 1
 
-[node name="Scenery" type="TileMapLayer" parent="LevelBuilder" unique_id=431390593]
+[node name="Scenery" type="TileMapLayer" parent="LevelBuilder" unique_id=1493554938]
 material = SubResource("ShaderMaterial_qn4mn")
 tile_map_data = PackedByteArray("AAAPAAAAAAAHAAYAAAAQAAAAAAAIAAYAAAAPAAEAAAAHAAYAAAAQAAEAAAAIAAYAAAAPAAIAAAAHAAYAAAAQAAIAAAAIAAYAAAAPAAMAAAAHAAYAAAAQAAMAAAAIAAYAAAAPAAQAAAAHAAYAAAAQAAQAAAAIAAYAAAAPAAUAAAAHAAYAAAAQAAUAAAAIAAYAAAAPAAYAAAAHAAYAAAAQAAYAAAAIAAYAAAAPAAcAAAAHAAYAAAAQAAcAAAAIAAYAAAAPAAgAAAAHAAYAAAAQAAgAAAAIAAYAAAANAAkAAAAFAAcAAAAOAAkAAAAGAAcAAAAPAAkAAAAHAAcAAAAQAAkAAAAIAAYAAAANAAoAAAAFAAgAAAAOAAoAAAAGAAgAAAAPAAoAAAAHAAgAAAAQAAoAAAAIAAYAAAA=")
 tile_set = ExtResource("5_habuy")
 script = ExtResource("4_ns0lu")
 sprite_type = 3
 
-[node name="Atmospheric" type="TileMapLayer" parent="LevelBuilder" unique_id=911282906]
+[node name="Atmospheric" type="TileMapLayer" parent="LevelBuilder" unique_id=1313484460]
 material = SubResource("ShaderMaterial_5sblf")
 tile_set = ExtResource("6_3ux0m")
 script = ExtResource("4_ns0lu")
 sprite_type = 6
 
-[node name="RedEnemies" type="TileMapLayer" parent="LevelBuilder" unique_id=137317095]
+[node name="RedEnemies" type="TileMapLayer" parent="LevelBuilder" unique_id=524416466]
 material = SubResource("ShaderMaterial_ns0lu")
 tile_set = ExtResource("7_6h3bd")
 script = ExtResource("4_ns0lu")
 sprite_type = 7
 
-[node name="Scenes" type="Node2D" parent="LevelBuilder" unique_id=1862578098]
+[node name="Scenes" type="Node2D" parent="LevelBuilder" unique_id=600868254]
 
 [node name="BrickBg" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1947564881 instance=ExtResource("8_u3hk1")]
 z_index = 1
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58675" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=42920306 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473335" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=765756548 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(48, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58676" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1946395502 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473336" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1540060111 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(64, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58677" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=823755168 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473337" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=820979782 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(80, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58678" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=552016502 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473338" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2063988933 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(96, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58679" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1721339348 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473339" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=862509265 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(112, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58680" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=185691383 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473340" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1465690954 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(128, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58681" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1423054126 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473341" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=838541631 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(144, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58682" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=539319775 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473342" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1200614898 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(160, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58683" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=741088281 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473343" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=13521837 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(176, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58684" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=670563060 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473344" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1847819559 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(192, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58685" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2129139756 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473345" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=481616370 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(208, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58686" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=257698006 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473346" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2088584253 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(224, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58687" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1845907154 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473347" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1218552888 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(272, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58688" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=602422924 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473348" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=154714651 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(288, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58689" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1714342013 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473349" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=916399552 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(304, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58690" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=909584148 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473350" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1610129528 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(320, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58691" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1538396689 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473351" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2028713332 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(336, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58692" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=212998966 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473352" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=116842153 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(352, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58693" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=131883213 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473353" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=761525595 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(368, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58694" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=825363170 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473354" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=267569023 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(384, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58695" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=854356658 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473355" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=661033756 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(400, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58696" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=608829282 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473356" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=635016065 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(416, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58697" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=653151605 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473357" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=696451646 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(432, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58698" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=976995604 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473358" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=275421774 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(448, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58699" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1268230419 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473359" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1128373264 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(464, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58700" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1803158266 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473360" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1439397047 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(480, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58701" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1176093549 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473361" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=721594743 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(496, 0)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58702" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=434855355 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473362" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=131130039 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(0, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58703" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1570753267 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473363" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1123940297 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(48, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58704" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=635683999 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473364" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1859145904 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(64, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58705" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1453931399 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473365" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1772144370 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(80, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58706" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1818626686 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473366" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1328351021 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(96, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58707" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=647171140 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473367" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1912248437 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(112, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58708" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=833586052 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473368" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=712518568 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(128, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58709" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=229111046 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473369" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=919760805 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(144, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58710" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1085351940 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473370" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=201201898 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(160, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58711" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1525611237 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473371" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=778928395 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(176, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58712" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1223774404 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473372" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1776365762 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(192, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58713" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1481321783 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473373" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=393413540 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(208, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58714" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=374618697 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473374" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=902360708 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(224, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58715" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=145976136 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473375" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1628531341 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(272, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58716" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1927561491 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473376" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=545542000 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(288, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58717" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1933214854 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473377" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1272242422 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(304, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58718" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1088925681 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473378" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=614449652 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(320, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58719" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=353285949 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473379" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1991748310 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(336, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58720" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1288629446 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473380" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1956071450 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(352, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58721" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1927461885 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473381" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2001583349 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(368, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58722" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=720246971 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473382" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1386963421 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(384, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58723" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1991338359 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473383" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1304612007 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(400, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58724" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=439590302 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473384" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1769577877 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(416, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58725" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=256245440 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473385" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1861498200 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(432, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58726" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1393734549 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473386" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1857324773 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(448, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58727" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2100577567 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473387" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1807310278 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(464, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58728" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=243231647 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473388" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1120391287 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(480, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58729" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=101447132 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473389" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=789125000 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(496, 16)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58730" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=734326441 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473390" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1116109487 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(0, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58731" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1593213272 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473391" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1209412592 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(48, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58732" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=579016312 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473392" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1065369098 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(64, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58733" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=634170570 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473393" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=812303316 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(80, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58734" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1403779967 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473394" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=976006887 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(96, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58735" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=928458275 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473395" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1674801344 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(112, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58736" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1123938784 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473396" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=899476084 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(128, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58737" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=610859425 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473397" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=601528748 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(144, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58738" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=995298336 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473398" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=489403203 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(160, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58739" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1483860586 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473399" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1092391102 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(176, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58740" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1121346206 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473400" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1231991627 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(192, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58741" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1110939497 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473401" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1900940101 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(208, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58742" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2040140371 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473402" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2117802239 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(224, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58743" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=614008240 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473403" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1418540652 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(272, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58744" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1731222963 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473404" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=311885073 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(288, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58745" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1197280060 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473405" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1367152123 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(304, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58746" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=671301815 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473406" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=520085280 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(320, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58747" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1660935295 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473407" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1493009918 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(336, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58748" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1611013481 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473408" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=474534078 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(352, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58749" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1883970123 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473409" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=116809381 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(368, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58750" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1202615997 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473410" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1824042789 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(384, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58751" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=763432573 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473411" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1634308347 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(400, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58752" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1379763701 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473412" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=563839020 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(416, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58753" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=991519838 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473413" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1328640431 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(432, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58754" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=158517552 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473414" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=489994541 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(448, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58755" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=457912297 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473415" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1832596735 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(464, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58756" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1260127168 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473416" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1601842461 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(480, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58757" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=135694520 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473417" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1278583454 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(496, 32)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58758" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=67308514 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473418" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1443450957 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(0, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58759" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1975761254 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473419" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1965369571 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(48, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58760" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=202895263 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473420" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=320575688 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(64, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58761" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1566441231 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473421" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=900568904 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(80, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58762" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=376261507 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473422" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=481100034 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(96, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58763" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1701341487 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473423" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1285358057 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(112, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58764" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=233084254 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473424" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1789198991 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(128, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58765" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1172654752 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473425" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=279003146 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(144, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58766" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1705347064 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473426" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=566438327 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(160, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58767" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=9797331 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473427" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1497391700 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(176, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58768" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1204345100 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473428" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1467100164 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(192, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58769" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=168160142 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473429" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=36497114 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(208, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58770" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=769023583 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473430" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1251833367 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(224, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58771" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=20291880 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473431" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=796505789 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(272, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58772" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1177938709 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473432" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1220577250 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(288, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58773" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1107520048 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473433" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=267306507 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(304, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58774" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1612501488 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473434" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1394461094 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(320, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58775" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1878943104 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473435" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1111793830 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(336, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58776" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=489175468 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473436" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2015501088 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(352, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58777" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1674306621 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473437" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1076788760 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(368, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58778" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=117158773 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473438" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1175165262 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(384, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58779" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1004298669 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473439" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1401602634 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(400, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58780" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1094799423 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473440" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=274898280 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(416, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58781" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=732854812 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473441" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1382899547 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(432, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58782" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1474537331 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473442" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=923947762 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(448, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58783" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=12621832 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473443" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=343711385 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(464, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58784" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1709910057 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473444" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1947664149 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(480, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58785" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=95902305 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473445" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=851625019 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(496, 48)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58786" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1606854804 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473446" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=911159893 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(0, 64)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58787" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=267243330 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473447" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1741369760 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(208, 64)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58788" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1270485616 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473448" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1208255578 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(224, 64)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58789" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=30009929 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473449" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=528351690 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(272, 64)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58790" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1953437314 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473450" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=582230244 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(288, 64)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58791" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=169785613 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473451" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1022698431 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(304, 64)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58792" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1173285022 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473452" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1136279947 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(320, 64)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58793" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=774237153 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473453" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=738858866 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(336, 64)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58794" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2090754970 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473454" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=292951762 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(352, 64)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58795" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1633452724 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473455" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=273516581 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(368, 64)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58796" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1695810454 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473456" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1108458768 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(384, 64)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58797" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=173720711 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473457" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=926859740 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(400, 64)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58798" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=757917540 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473458" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1173324052 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(416, 64)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58799" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=295486299 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473459" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1406648200 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(432, 64)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58800" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=197773867 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473460" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1851335087 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(448, 64)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58801" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=455719233 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473461" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1983168362 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(464, 64)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58802" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1807511989 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473462" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1451781563 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(480, 64)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58803" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=598140271 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473463" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=829050272 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(496, 64)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58804" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1628939109 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473464" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=573990886 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(0, 80)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58805" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=82413745 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473465" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=584001152 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(208, 80)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58806" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1089289926 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473466" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1994571997 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(224, 80)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58807" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=881653787 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473467" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=440371834 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(272, 80)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58808" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=4026823 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473468" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=432445697 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(288, 80)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58809" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=979040379 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473469" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1149033065 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(304, 80)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58810" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=654560939 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473470" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1220531971 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(320, 80)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58811" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=640898951 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473471" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=181700563 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(336, 80)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58812" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1236919139 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473472" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1178457505 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(352, 80)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58813" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1942921889 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473473" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1197792300 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(368, 80)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58814" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=891622526 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473474" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1674527039 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(384, 80)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58815" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1537233219 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473475" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1207120916 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(400, 80)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58816" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2081254666 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473476" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1743625467 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(416, 80)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58817" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=977263737 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473477" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1441222496 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(432, 80)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58818" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2085500452 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473478" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1802542088 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(448, 80)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58819" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2066174007 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473479" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1828659144 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(464, 80)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58820" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2126463329 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473480" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1590500213 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(480, 80)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58821" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=338602141 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473481" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1944966356 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(496, 80)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58822" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=882321532 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473482" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=683138671 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(0, 96)
 script = ExtResource("9_xt62b")
@@ -813,576 +813,577 @@ collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_3vnen")
 
-[node name="@Area2D@58823" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1135378193 instance=ExtResource("10_m6csl")]
+[node name="@Area2D@473483" type="Area2D" parent="LevelBuilder/Scenes" unique_id=663948229 instance=ExtResource("10_m6csl")]
 position = Vector2(80, 96)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_3vnen")
 
-[node name="@Area2D@58824" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1401836963 instance=ExtResource("10_m6csl")]
+[node name="@Area2D@473484" type="Area2D" parent="LevelBuilder/Scenes" unique_id=2052263785 instance=ExtResource("10_m6csl")]
 position = Vector2(96, 96)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_3vnen")
 
-[node name="@Area2D@58825" type="Area2D" parent="LevelBuilder/Scenes" unique_id=438016868 instance=ExtResource("10_m6csl")]
+[node name="@Area2D@473485" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1271637835 instance=ExtResource("10_m6csl")]
 position = Vector2(112, 96)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_3vnen")
 
-[node name="@Area2D@58826" type="Area2D" parent="LevelBuilder/Scenes" unique_id=281750638 instance=ExtResource("10_m6csl")]
+[node name="@Area2D@473486" type="Area2D" parent="LevelBuilder/Scenes" unique_id=2066356179 instance=ExtResource("10_m6csl")]
 position = Vector2(128, 96)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_3vnen")
 
-[node name="@Area2D@58827" type="Area2D" parent="LevelBuilder/Scenes" unique_id=587112410 instance=ExtResource("10_m6csl")]
+[node name="@Area2D@473487" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1940196539 instance=ExtResource("10_m6csl")]
 position = Vector2(144, 96)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_3vnen")
 
-[node name="@Area2D@58828" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1331482431 instance=ExtResource("10_m6csl")]
+[node name="@Area2D@473488" type="Area2D" parent="LevelBuilder/Scenes" unique_id=689526461 instance=ExtResource("10_m6csl")]
 position = Vector2(160, 96)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_3vnen")
 
-[node name="@Area2D@58829" type="Area2D" parent="LevelBuilder/Scenes" unique_id=158767018 instance=ExtResource("10_m6csl")]
+[node name="@Area2D@473489" type="Area2D" parent="LevelBuilder/Scenes" unique_id=308937189 instance=ExtResource("10_m6csl")]
 position = Vector2(176, 96)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_3vnen")
 
-[node name="@StaticBody2D@58830" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=781668646 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473490" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2030307562 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(208, 96)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58831" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=298070644 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473491" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2013648220 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(224, 96)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58832" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=997576625 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473492" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1086446420 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(272, 96)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58833" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1229031634 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473493" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=883801905 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(288, 96)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58834" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1415793183 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473494" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=694308464 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(304, 96)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58835" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1416368366 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473495" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=96937292 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(320, 96)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58836" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1555420836 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473496" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1224222411 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(336, 96)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58837" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=397667756 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473497" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1459298269 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(352, 96)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58838" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1650691934 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473498" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=912473602 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(368, 96)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58839" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=902024678 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473499" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1505218190 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(384, 96)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58840" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=698809267 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473500" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=461730550 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(400, 96)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58841" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=214774714 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473501" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1470059814 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(416, 96)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58842" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=686999369 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473502" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=196550177 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(432, 96)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58843" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1059452077 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473503" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2025475603 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(448, 96)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58844" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=204149484 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473504" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=223947784 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(464, 96)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58845" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1887720549 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473505" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=473876866 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(480, 96)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58846" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=234495982 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473506" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1632501170 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(496, 96)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58847" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1627231321 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473507" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1662122295 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(0, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58848" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1046225843 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473508" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2038912583 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(48, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58849" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1042993194 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473509" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2065104979 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(64, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58850" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1182764960 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473510" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=180998192 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(80, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58851" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1088316207 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473511" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1791763955 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(96, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58852" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=36099362 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473512" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=367992853 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(112, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58853" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2037722008 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473513" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=930614870 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(128, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58854" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=325612315 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473514" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=515937368 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(144, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58855" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1754611149 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473515" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2113586354 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(160, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58856" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1521103935 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473516" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1601267666 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(176, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58857" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=365900965 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473517" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1548503123 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(192, 112)
 script = ExtResource("9_xt62b")
+contents = "multi_coin"
 
-[node name="@StaticBody2D@58858" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2144785452 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473518" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1784780865 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(208, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58859" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=964704037 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473519" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=59019306 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(224, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58860" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1739031379 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473520" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1376926261 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(272, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58861" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=451924907 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473521" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1286855973 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(288, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58862" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1944897699 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473522" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=179248811 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(304, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58863" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2073852221 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473523" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=810724292 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(320, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58864" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1474389469 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473524" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1081798828 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(336, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58865" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1528717259 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473525" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1254527025 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(352, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58866" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1047910720 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473526" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1126128325 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(368, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58867" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=84309947 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473527" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=54118717 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(384, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58868" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1866502589 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473528" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=643374155 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(400, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58869" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1956535410 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473529" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1832013305 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(416, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58870" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1081993096 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473530" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=744062448 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(432, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58871" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=936497268 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473531" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1855032532 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(448, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58872" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=928563378 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473532" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=194875636 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(464, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58873" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1083481547 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473533" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1537488781 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(480, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58874" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1839414713 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473534" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=712357298 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(496, 112)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58875" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=776016331 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473535" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1400673159 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(0, 128)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58876" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=203085436 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473536" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=225677543 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(208, 128)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58877" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=97717746 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473537" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=472873775 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(224, 128)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58878" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=993080410 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473538" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1553768510 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(272, 128)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58879" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=110791806 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473539" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1676755393 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(288, 128)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58880" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1209252363 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473540" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1941632775 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(304, 128)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58881" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1964165384 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473541" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=742688251 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(320, 128)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58882" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=531969005 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473542" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1223678086 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(336, 128)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58883" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1814387595 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473543" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1671529339 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(352, 128)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58884" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1545083671 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473544" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1366741677 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(368, 128)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58885" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1868497178 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473545" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2020737268 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(384, 128)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58886" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1915036298 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473546" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1549886113 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(400, 128)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58887" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=445120555 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473547" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1326154897 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(416, 128)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58888" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1145895391 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473548" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=149038508 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(432, 128)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58889" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1156309511 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473549" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1992670952 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(448, 128)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58890" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1583269835 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473550" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1787368229 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(464, 128)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58891" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1229727766 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473551" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1258284455 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(480, 128)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58892" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=440425255 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473552" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2067275770 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(496, 128)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58893" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1137500948 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473553" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=839390205 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(0, 144)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58894" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=772726250 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473554" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1520647295 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(272, 144)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58895" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1878241424 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473555" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=364326931 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(288, 144)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58896" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1770655836 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473556" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2108777524 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(304, 144)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58897" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1404965981 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473557" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=671294863 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(320, 144)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58898" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1247478013 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473558" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1657160484 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(336, 144)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58899" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1356950619 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473559" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=650357605 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(352, 144)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58900" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1900360348 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473560" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=458092061 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(368, 144)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58901" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1396904789 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473561" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1968638785 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(384, 144)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58902" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1870881280 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473562" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=980188737 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(400, 144)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58903" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1968276822 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473563" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1881102378 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(416, 144)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58904" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1912574172 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473564" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1043951152 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(432, 144)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58905" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=601113333 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473565" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=867884153 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(448, 144)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58906" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1648750594 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473566" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1140646253 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(464, 144)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58907" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=689402182 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473567" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=228279708 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(480, 144)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58908" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1635268135 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473568" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=107433222 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(496, 144)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58909" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1266180589 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473569" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1575721575 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(0, 160)
 script = ExtResource("9_xt62b")
 
-[node name="@Area2D@58910" type="Area2D" parent="LevelBuilder/Scenes" unique_id=10586883 instance=ExtResource("10_m6csl")]
+[node name="@Area2D@473570" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1531708295 instance=ExtResource("10_m6csl")]
 position = Vector2(48, 160)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_3vnen")
 
-[node name="@Area2D@58911" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1533507817 instance=ExtResource("10_m6csl")]
+[node name="@Area2D@473571" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1493103381 instance=ExtResource("10_m6csl")]
 position = Vector2(64, 160)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_3vnen")
 
-[node name="@Area2D@58912" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1695724592 instance=ExtResource("10_m6csl")]
+[node name="@Area2D@473572" type="Area2D" parent="LevelBuilder/Scenes" unique_id=544660525 instance=ExtResource("10_m6csl")]
 position = Vector2(80, 160)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_3vnen")
 
-[node name="@Area2D@58913" type="Area2D" parent="LevelBuilder/Scenes" unique_id=617354790 instance=ExtResource("10_m6csl")]
+[node name="@Area2D@473573" type="Area2D" parent="LevelBuilder/Scenes" unique_id=2125053796 instance=ExtResource("10_m6csl")]
 position = Vector2(96, 160)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_3vnen")
 
-[node name="@Area2D@58914" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1310697694 instance=ExtResource("10_m6csl")]
+[node name="@Area2D@473574" type="Area2D" parent="LevelBuilder/Scenes" unique_id=2100554937 instance=ExtResource("10_m6csl")]
 position = Vector2(112, 160)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_3vnen")
 
-[node name="@Area2D@58915" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1315411848 instance=ExtResource("10_m6csl")]
+[node name="@Area2D@473575" type="Area2D" parent="LevelBuilder/Scenes" unique_id=995785590 instance=ExtResource("10_m6csl")]
 position = Vector2(128, 160)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_3vnen")
 
-[node name="@Area2D@58916" type="Area2D" parent="LevelBuilder/Scenes" unique_id=744130347 instance=ExtResource("10_m6csl")]
+[node name="@Area2D@473576" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1490077128 instance=ExtResource("10_m6csl")]
 position = Vector2(144, 160)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_3vnen")
 
-[node name="@Area2D@58917" type="Area2D" parent="LevelBuilder/Scenes" unique_id=297484586 instance=ExtResource("10_m6csl")]
+[node name="@Area2D@473577" type="Area2D" parent="LevelBuilder/Scenes" unique_id=384364567 instance=ExtResource("10_m6csl")]
 position = Vector2(160, 160)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_3vnen")
 
-[node name="@Area2D@58918" type="Area2D" parent="LevelBuilder/Scenes" unique_id=2015772559 instance=ExtResource("10_m6csl")]
+[node name="@Area2D@473578" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1386534243 instance=ExtResource("10_m6csl")]
 position = Vector2(176, 160)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_3vnen")
 
-[node name="@StaticBody2D@58919" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=403581227 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473579" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=916306503 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(272, 160)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58920" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=800843943 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473580" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=314369248 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(288, 160)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58921" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1037207957 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473581" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1242054972 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(304, 160)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58922" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=11227070 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473582" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=652223774 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(320, 160)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58923" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1851443622 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473583" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=160438149 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(336, 160)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58924" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=995263614 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473584" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1858998920 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(352, 160)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58925" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=2928449 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473585" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1849298700 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(368, 160)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58926" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=440316997 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473586" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1523489529 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(384, 160)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58927" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1015708178 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473587" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1086918072 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(400, 160)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58928" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=558426986 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473588" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=254349579 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(416, 160)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58929" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=898680784 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473589" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=38670440 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(432, 160)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58930" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=211880368 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473590" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1852216068 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(448, 160)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58931" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=324467428 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473591" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1878841686 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(464, 160)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58932" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1301323074 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473592" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=368988903 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(480, 160)
 script = ExtResource("9_xt62b")
 
-[node name="@StaticBody2D@58933" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1133466468 instance=ExtResource("8_u3hk1")]
+[node name="@StaticBody2D@473593" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1198597330 instance=ExtResource("8_u3hk1")]
 z_index = 1
 position = Vector2(496, 160)
 script = ExtResource("9_xt62b")
 
-[node name="SpawnPoint" type="Marker2D" parent="."]
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=780545514]
 position = Vector2(32, 144)

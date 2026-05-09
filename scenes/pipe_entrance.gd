@@ -18,8 +18,8 @@ enum Direction { DOWN, RIGHT }
 @export var dest_exit_direction: Direction = Direction.DOWN
 @export var dest_warp_level: String = ""
 
-const SINK_DISTANCE_ENTER_V := 32.0
-const SINK_DISTANCE_ENTER_H := 18.0
+const SINK_DISTANCE_ENTER_V := 36.0
+const SINK_DISTANCE_ENTER_H := 20.0
 const SINK_DURATION := 0.5
 const RISE_DURATION := 0.5
 const PAUSE_AFTER_SINK := 0.35

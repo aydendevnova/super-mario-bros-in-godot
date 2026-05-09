@@ -30,6 +30,7 @@ func _start_moving() -> void:
 	_emerging = false
 	collision_shape.set_deferred("disabled", false)
 	set_physics_process(true)
+	z_index = 3
 
 func _physics_process(delta: float) -> void:
 	velocity.y = min(Physics.MAX_FALL_SPEED, velocity.y + Physics.GRAVITY * delta)

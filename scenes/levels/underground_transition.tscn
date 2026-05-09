@@ -11,19 +11,19 @@
 [ext_resource type="Script" uid="uid://cmj2cjq8ebebg" path="res://scenes/levels/underground_transition.gd" id="9_trans"]
 [ext_resource type="PackedScene" uid="uid://c68jbo5yo82ba" path="res://scenes/sprites/block_bg.tscn" id="10_efo0b"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_neois"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_efo0b"]
 shader = ExtResource("2_rxrg8")
 shader_parameter/palette_id = 4
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1yhul"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e7fm2"]
 shader = ExtResource("2_rxrg8")
 shader_parameter/palette_id = 12
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_u2ver"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_apji2"]
 shader = ExtResource("2_rxrg8")
 shader_parameter/palette_id = 17
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_efo0b"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxrg8"]
 shader = ExtResource("2_rxrg8")
 shader_parameter/palette_id = 27
 
@@ -35,34 +35,34 @@ script = ExtResource("1_apji2")
 level_json_path = "res://data/levels/misc-underground-transition.json"
 bgm_override = "scene_change_bgm"
 
-[node name="Background" type="TileMapLayer" parent="LevelBuilder" unique_id=1315585952]
-material = SubResource("ShaderMaterial_neois")
+[node name="Background" type="TileMapLayer" parent="LevelBuilder" unique_id=1105557058]
+material = SubResource("ShaderMaterial_efo0b")
 tile_map_data = PackedByteArray("AAABAAYAAAAEAAAAAAACAAYAAAAEAAAAAAADAAYAAAAEAAAAAAABAAcAAAADAAEAAAACAAcAAAACAAAAAAADAAcAAAAFAAEAAAAAAAgAAAAEAAAAAAABAAgAAAAFAAAAAAACAAgAAAAFAAAAAAADAAgAAAAFAAAAAAAEAAgAAAAEAAAAAAAAAAkAAAACAAAAAAABAAkAAAACAAAAAAACAAkAAAAGAAAAAAADAAkAAAACAAAAAAAEAAkAAAACAAAAAAAAAAoAAAACAAAAAAABAAoAAAACAAAAAAACAAoAAAAGAAEAAAADAAoAAAACAAAAAAAEAAoAAAACAAAAAAAAAAsAAAAAAAAAAAABAAsAAAAAAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAGAAsAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAsAAAAAAAAAAAAJAAsAAAAAAAAAAAAKAAsAAAAAAAAAAAALAAsAAAAAAAAAAAAMAAsAAAAAAAAAAAANAAsAAAAAAAAAAAAOAAsAAAAAAAAAAAAPAAsAAAAAAAAAAAAQAAsAAAAAAAAAAAARAAsAAAAAAAAAAAASAAsAAAAAAAAAAAATAAsAAAAAAAAAAAAUAAsAAAAAAAAAAAAVAAsAAAAAAAAAAAAWAAsAAAAAAAAAAAAXAAsAAAAAAAAAAAAYAAsAAAAAAAAAAAAZAAsAAAAAAAAAAAAaAAsAAAAAAAAAAAAbAAsAAAAAAAAAAAAcAAsAAAAAAAAAAAAdAAsAAAAAAAAAAAAAAAwAAAAAAAAAAAABAAwAAAAAAAAAAAACAAwAAAAAAAAAAAADAAwAAAAAAAAAAAAEAAwAAAAAAAAAAAAFAAwAAAAAAAAAAAAGAAwAAAAAAAAAAAAHAAwAAAAAAAAAAAAIAAwAAAAAAAAAAAAJAAwAAAAAAAAAAAAKAAwAAAAAAAAAAAALAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAANAAwAAAAAAAAAAAAOAAwAAAAAAAAAAAAPAAwAAAAAAAAAAAAQAAwAAAAAAAAAAAARAAwAAAAAAAAAAAASAAwAAAAAAAAAAAATAAwAAAAAAAAAAAAUAAwAAAAAAAAAAAAVAAwAAAAAAAAAAAAWAAwAAAAAAAAAAAAXAAwAAAAAAAAAAAAYAAwAAAAAAAAAAAAZAAwAAAAAAAAAAAAaAAwAAAAAAAAAAAAbAAwAAAAAAAAAAAAcAAwAAAAAAAAAAAAdAAwAAAAAAAAAAAA=")
 tile_set = ExtResource("3_xr0ap")
 script = ExtResource("4_bjfal")
 sprite_type = 1
 
-[node name="Scenery" type="TileMapLayer" parent="LevelBuilder" unique_id=77469056]
-material = SubResource("ShaderMaterial_1yhul")
+[node name="Scenery" type="TileMapLayer" parent="LevelBuilder" unique_id=105595777]
+material = SubResource("ShaderMaterial_e7fm2")
 tile_map_data = PackedByteArray("AAAMAAcAAAAHAAUAAAANAAcAAAAIAAUAAAAMAAgAAAAHAAYAAAANAAgAAAAIAAYAAAAKAAkAAAAFAAcAAAALAAkAAAAGAAcAAAAMAAkAAAAHAAcAAAANAAkAAAAIAAYAAAAKAAoAAAAFAAgAAAALAAoAAAAGAAgAAAAMAAoAAAAHAAgAAAANAAoAAAAIAAYAAAA=")
 tile_set = ExtResource("5_kx5kf")
 script = ExtResource("4_bjfal")
 sprite_type = 3
 
-[node name="Atmospheric" type="TileMapLayer" parent="LevelBuilder" unique_id=1454078758]
-material = SubResource("ShaderMaterial_u2ver")
+[node name="Atmospheric" type="TileMapLayer" parent="LevelBuilder" unique_id=1287780322]
+material = SubResource("ShaderMaterial_apji2")
 tile_map_data = PackedByteArray("AAASAAAAAAAMAAAAAAATAAAAAAANAAAAAAAUAAAAAAANAAAAAAAVAAAAAAAOAAAAAAADAAEAAAAMAAAAAAAEAAEAAAANAAAAAAAFAAEAAAANAAAAAAAGAAEAAAAOAAAAAAASAAEAAAAMAAEAAAATAAEAAAANAAEAAAAUAAEAAAANAAEAAAAVAAEAAAAOAAEAAAADAAIAAAAMAAEAAAAEAAIAAAANAAEAAAAFAAIAAAANAAEAAAAGAAIAAAAOAAEAAAAJAAUAAAAMAAAAAAAKAAUAAAANAAAAAAALAAUAAAAOAAAAAAAJAAYAAAAMAAEAAAAKAAYAAAANAAEAAAALAAYAAAAOAAEAAAAcAAkAAAAMAAAAAAAdAAkAAAANAAAAAAAcAAoAAAAMAAEAAAAdAAoAAAANAAEAAAA=")
 tile_set = ExtResource("6_mv8wp")
 script = ExtResource("4_bjfal")
 sprite_type = 6
 
-[node name="RedEnemies" type="TileMapLayer" parent="LevelBuilder" unique_id=1205905991]
-material = SubResource("ShaderMaterial_efo0b")
+[node name="RedEnemies" type="TileMapLayer" parent="LevelBuilder" unique_id=1147074748]
+material = SubResource("ShaderMaterial_rxrg8")
 tile_set = ExtResource("7_3432b")
 script = ExtResource("4_bjfal")
 sprite_type = 7
 
-[node name="Scenes" type="Node2D" parent="LevelBuilder" unique_id=622103129]
+[node name="Scenes" type="Node2D" parent="LevelBuilder" unique_id=609026010]
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=380892775]
 position = Vector2(40, 160)

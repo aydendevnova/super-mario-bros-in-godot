@@ -26,10 +26,10 @@
 [ext_resource type="Script" uid="uid://c4ogp77wj46lc" path="res://player/movement_states/flag_pole_state.gd" id="24_msfp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_161q0"]
-size = Vector2(14, 25.25)
+size = Vector2(14, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yw30f"]
-size = Vector2(10, 13)
+size = Vector2(10, 12)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qjkh3"]
 shader = ExtResource("2_yw30f")
@@ -39,7 +39,7 @@ shader_parameter/palette_id = 21
 size = Vector2(0.75, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qjkh3"]
-size = Vector2(1, 1)
+size = Vector2(0.8, 1.5)
 
 [node name="Player" type="CharacterBody2D" unique_id=1306588497]
 z_index = 2
@@ -65,7 +65,6 @@ autoplay = "Idle"
 centered = false
 
 [node name="BigSprite" type="AnimatedSprite2D" parent="." unique_id=201910012]
-visible = false
 material = SubResource("ShaderMaterial_qjkh3")
 position = Vector2(0, -16)
 sprite_frames = ExtResource("4_g6k8r")
@@ -78,7 +77,7 @@ visible = false
 material = SubResource("ShaderMaterial_qjkh3")
 position = Vector2(0, -16)
 sprite_frames = ExtResource("6_boad6")
-animation = &"shrink"
+animation = &"fire"
 centered = false
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1862369667]
@@ -90,7 +89,7 @@ scale = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_lvrnd")
 
 [node name="BigHitbox" type="CollisionShape2D" parent="Hitbox" unique_id=2124894357]
-position = Vector2(6, 8)
+position = Vector2(8, 4)
 scale = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_qjkh3")
 
