@@ -35,6 +35,7 @@ const STAR_PALETTE_INTERVAL := 0.05
 const STAR_WARNING_PALETTE_INTERVAL := 0.15
 const STAR_PALETTES := [27, 24, 44, 27]
 const DEFAULT_TRANSITION_DURATION := 0.6
+const SHRINK_CANCEL_WINDOW := 24.0 / 60.0
 const TRANSITION_DURATION_PADDING := 0.12
 const WALK_ANIM_FPS_SLOW := 8
 const WALK_ANIM_FPS_MID := 14.0
@@ -137,6 +138,8 @@ const FLOWER_ANIM_DURATION := 0.4
 const COOLDOWN_BLINK_INTERVAL = 0.025
 const TRANSITION_BLINK_INTERVAL = 0.05
 var _death_tween: Tween
+var _shrink_cancel_timer := 0.0
+var _is_shrink_transition := false
 
 var collected_item_ref: Node = null
 
@@ -187,6 +190,12 @@ func _process(delta):
 	_process_blink(delta)
 	if camera_frozen:
 		camera.global_position.x = _camera_frozen_pos.x
+	if _is_shrink_transition:
+		if _shrink_cancel_timer > 0.0:
+			_shrink_cancel_timer -= delta
+		elif Input.is_action_just_pressed("jump"):
+			_cancel_shrink_with_jump()
+			return
 	if get_tree().paused:
 		sprite.pause()
 		return
@@ -653,6 +662,8 @@ func reset() -> void:
 	camera_frozen = false
 	camera.position_smoothing_enabled = false
 	_is_transitioning = false
+	_is_shrink_transition = false
+	_shrink_cancel_timer = 0.0
 	_flower_anim_timer = 0.0
 	_blink_timer = 0.0
 	modulate.a = 1.0
@@ -743,6 +754,8 @@ func play_transition():
 	_transition_palette_timer = 0.0
 	_transition_palette_index = 0
 	_blink_timer = 0.0
+	_is_shrink_transition = (transition_sprite.animation == "shrink")
+	_shrink_cancel_timer = SHRINK_CANCEL_WINDOW if _is_shrink_transition else 0.0
 	
 	sprite.visible = false
 	transition_sprite.visible = true
@@ -767,6 +780,8 @@ func _finish_transition() -> void:
 	get_tree().paused = false
 	_is_transitioning = false
 	_is_fire_transition = false
+	_is_shrink_transition = false
+	_shrink_cancel_timer = 0.0
 	_transition_palette_timer = 0.0
 	_transition_palette_index = 0
 	_blink_timer = 0.0
@@ -785,6 +800,17 @@ func _finish_transition() -> void:
 			sprite.play("Idle")
 
 	transition_sprite.visible = false
+
+func _cancel_shrink_with_jump() -> void:
+	_is_shrink_transition = false
+	_shrink_cancel_timer = 0.0
+	_is_transitioning = false
+	_is_fire_transition = false
+	get_tree().paused = false
+	transition_sprite.visible = false
+	_update_tree()
+	begin_jump()
+	_request_movement_state(&"jump")
 
 func _on_transition_sprite_animation_finished() -> void:
 	return
