@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://y0sklbgxekhb" path="res://assets/cursor_atlas.tres" id="5_tf0e0"]
 [ext_resource type="Texture2D" uid="uid://suotrbf0iuex" path="res://ui/small_mario_display.tres" id="6_bo1jx"]
 [ext_resource type="Script" uid="uid://b6p3et14aan2l" path="res://ui/ui.gd" id="7_ui_gd"]
+[ext_resource type="Script" uid="uid://b6mas8uqj1jdd" path="res://ui/controls.gd" id="8_controls"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xuqvo"]
 shader = ExtResource("1_vkava")
@@ -45,7 +46,7 @@ region = Rect2(208, 192, 8, 8)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tf0e0"]
 shader = ExtResource("1_vkava")
-shader_parameter/palette_id = 8
+shader_parameter/palette_id = 9
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vkava"]
 atlas = ExtResource("2_tf0e0")
@@ -53,6 +54,9 @@ region = Rect2(193, 192, 8, 8)
 
 [node name="InnerUI" type="CanvasLayer" unique_id=1955268887]
 script = ExtResource("7_ui_gd")
+
+[node name="Controls" type="Node" parent="." unique_id=38432485]
+script = ExtResource("8_controls")
 
 [node name="MainMenu" type="CenterContainer" parent="." unique_id=375531848]
 anchors_preset = 5

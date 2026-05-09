@@ -11,9 +11,18 @@ enum MovementType {
 }
 
 @export var movement_type: MovementType = MovementType.HORIZONTAL
+@export var phase_shift: bool = false
 
 var _origin := Vector2.ZERO
 var _time := 0.0
+var _vel_x := 0.0
+var _h_logical_x := 0.0
+var _h_dwell := 0.0
+var _x_switch := 0.0
+var _vel_y := 0.0
+var _v_logical_y := 0.0
+var _v_dwell := 0.0
+var _y_switch := 0.0
 var _drop_active := false
 var _drop_speed := 0.0
 var _rider_count := 0
@@ -22,15 +31,26 @@ var _bal_velocity := 0.0
 var _bal_offset := 0.0
 var _wrap_frames := 0
 
-# Horizontal floater: NES speed counter 0-14, steps every 4 frames.
-# Full cycle = 224 frames / 60fps ≈ 3.73s. Travel per half ≈ 49px.
-const H_HALF_RANGE := 24.0
-const H_PERIOD := 3.73
+# Horizontal oscillation: gravity-bounce like vertical but half range
+const H_ACCEL := 70.3
+const H_MAX_SPEED := 180.0
+const H_THRESHOLD := 34.0
+const H_X_OFFSET := -60.0
+const H_DWELL_LEFT := 0.45
+const H_DWELL_RIGHT := 0.2
+const H_DWELL_ACCEL := 0.12
 
-# Vertical oscillation: PLAT_V_INC = 64 pixel range,
-# gravity accel 5/256 px/frame², decel 10/256.
-const V_HALF_RANGE := 32.0
-const V_PERIOD := 2.7
+# Vertical oscillation: NES gravity-based bounce.
+# PLAT_V_INC=64 is distance from spawn to switching threshold.
+# accel_y_inc=5/256 px/frame², max_vel=3 px/frame.
+# Total range ≈ 128px (64 each side of threshold).
+const V_ACCEL := 70.3     # 5/256 * 3600 px/s²
+const V_MAX_SPEED := 180.0 # 3 px/frame * 60
+const V_THRESHOLD := 64.0+4  # PLAT_V_INC + 24px for offset compensation
+const V_Y_OFFSET := -24.0  # shift vertical oscillation upward
+const V_DWELL_TOP := 0.45   # linger at top before descending
+const V_DWELL_BOTTOM := 0.2 # linger at bottom before ascending
+const V_DWELL_ACCEL := 0.12 # fraction of normal accel during dwell
 
 # Lift: veloc_y=±1, accel_y_grav=±16 → effective 15/16 px/frame
 const LIFT_SPEED := 56.25
@@ -55,6 +75,15 @@ func _ready():
 	_origin = position
 	if Engine.is_editor_hint():
 		return
+	if movement_type == MovementType.HORIZONTAL:
+		_x_switch = _origin.x + H_THRESHOLD
+		if phase_shift:
+			_h_logical_x = _origin.x + 2.0 * H_THRESHOLD
+		else:
+			_h_logical_x = _origin.x
+	if movement_type == MovementType.VERTICAL:
+		_v_logical_y = _origin.y
+		_y_switch = _origin.y + V_THRESHOLD
 	if movement_type == MovementType.DROP or movement_type == MovementType.BALANCE:
 		_create_rider_sensor()
 	if movement_type == MovementType.BALANCE:
@@ -74,11 +103,39 @@ func _physics_process(delta: float):
 
 	match movement_type:
 		MovementType.HORIZONTAL:
-			_time += delta
-			position.x = _origin.x + sin(_time * TAU / H_PERIOD) * H_HALF_RANGE
+			var h_accel := H_ACCEL
+			if _h_dwell > 0.0:
+				_h_dwell -= delta
+				h_accel *= H_DWELL_ACCEL
+			var prev_vel_x := _vel_x
+			if _h_logical_x >= _x_switch:
+				_vel_x -= h_accel * delta
+			else:
+				_vel_x += h_accel * delta
+			if prev_vel_x < 0.0 and _vel_x >= 0.0:
+				_h_dwell = H_DWELL_LEFT
+			elif prev_vel_x > 0.0 and _vel_x <= 0.0:
+				_h_dwell = H_DWELL_RIGHT
+			_vel_x = clamp(_vel_x, -H_MAX_SPEED, H_MAX_SPEED)
+			_h_logical_x += _vel_x * delta
+			position.x = round(_h_logical_x + H_X_OFFSET)
 		MovementType.VERTICAL:
-			_time += delta
-			position.y = _origin.y + sin(_time * TAU / V_PERIOD) * V_HALF_RANGE
+			var accel := V_ACCEL
+			if _v_dwell > 0.0:
+				_v_dwell -= delta
+				accel *= V_DWELL_ACCEL
+			var prev_vel := _vel_y
+			if _v_logical_y >= _y_switch:
+				_vel_y -= accel * delta
+			else:
+				_vel_y += accel * delta
+			if prev_vel < 0.0 and _vel_y >= 0.0:
+				_v_dwell = V_DWELL_TOP
+			elif prev_vel > 0.0 and _vel_y <= 0.0:
+				_v_dwell = V_DWELL_BOTTOM
+			_vel_y = clamp(_vel_y, -V_MAX_SPEED, V_MAX_SPEED)
+			_v_logical_y += _vel_y * delta
+			position.y = round(_v_logical_y + V_Y_OFFSET)
 		MovementType.UP:
 			_move_lift(delta, -1.0)
 		MovementType.DOWN:
@@ -97,12 +154,16 @@ func _move_lift(delta: float, direction: float):
 	position.y += direction * LIFT_SPEED * delta
 	if _wrap_frames > 0:
 		return
-	if direction < 0.0 and position.y < _origin.y - LIFT_WRAP_RANGE:
-		position.y += LIFT_WRAP_RANGE * 2.0
+
+	const SCREEN_TOP := -24.0
+	const SCREEN_BOTTOM := 224.0
+
+	if direction < 0.0 and position.y < SCREEN_TOP:
+		position.y = SCREEN_BOTTOM
 		_col_shape.disabled = true
 		_wrap_frames = 2
-	elif direction > 0.0 and position.y > _origin.y + LIFT_WRAP_RANGE:
-		position.y -= LIFT_WRAP_RANGE * 2.0
+	elif direction > 0.0 and position.y > SCREEN_BOTTOM:
+		position.y = SCREEN_TOP
 		_col_shape.disabled = true
 		_wrap_frames = 2
 

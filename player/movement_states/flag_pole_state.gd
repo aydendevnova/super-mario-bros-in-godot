@@ -19,7 +19,7 @@ var _flag_sprite: Sprite2D
 var _phase: StringName = PHASE_SLIDE
 var _walking := false
 var _walk_start_x := 0.0
-var _hide_distance := 64.0
+var _hide_x := 0.0
 var _countdown_done := false
 var _advancing := false
 var _sequence_tween: Tween
@@ -35,7 +35,7 @@ func enter(_previous_state: StringName) -> void:
 	var data: Dictionary = player._flag_pole_data
 	_flag = data.get("flag", null) as Node2D
 	_flag_sprite = data.get("flag_sprite", null) as Sprite2D
-	_hide_distance = float(data.get("hide_distance", 64.0))
+	_hide_x = float(data.get("hide_x", 0.0))
 	_top_y = float(data.get("pole_top_y", 8.0))
 	_bottom_y = float(data.get("pole_bottom_y", 136.0))
 	_flag_bottom_y = float(data.get("flag_bottom_y", 128.0))
@@ -98,7 +98,7 @@ func physics_update(_delta: float) -> void:
 		player.apply_gravity(_delta, false)
 	if _walking:
 		player.velocity.x = player.auto_walk_speed
-		if player.visible and player.global_position.x - _walk_start_x >= _hide_distance:
+		if player.visible and player.global_position.x >= _hide_x - 16:
 			player.visible = false
 			Game.countdown_time_to_score(_on_countdown_finished)
 	if _countdown_done and not _advancing and not AudioSystem.is_music_playing():

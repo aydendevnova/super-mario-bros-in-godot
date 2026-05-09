@@ -18,6 +18,8 @@ extends CanvasLayer
 @onready var trans_lives: Control = $Transition/Transition/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/HBoxContainer2/MarginContainer/HBoxContainer/LivesLabel
 @onready var load_timer: Timer = $Transition/Transition/LoadTimer
 
+@onready var coin_bottom_sprite: TextureRect = $HUD/MarginContainer/UI/BottomLine/CoinDiv/CoinBottomSprite
+
 @onready var menu_top_score: Control = $MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Label
 
 
@@ -64,6 +66,7 @@ func _show_menu() -> void:
 	main_menu.visible = true
 	hud.visible = true
 	transition.visible = false
+	coin_bottom_sprite.visible = true
 	menu_selection = 0
 	_update_cursor()
 	_refresh_hud()
@@ -74,6 +77,7 @@ func _show_transition() -> void:
 	hud.visible = true
 	transition_content.visible = true
 	transition.visible = true
+	coin_bottom_sprite.visible = false
 	trans_world.text = "WORLD %s" % Game.get_level_key()
 	trans_lives.text = str(Game.lives)
 	_refresh_hud()
@@ -84,6 +88,7 @@ func _show_gameplay() -> void:
 	main_menu.visible = false
 	hud.visible = true
 	transition.visible = false
+	coin_bottom_sprite.visible = true
 	_refresh_hud()
 
 func _on_state_changed(new_state) -> void:

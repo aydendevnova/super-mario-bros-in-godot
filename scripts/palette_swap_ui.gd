@@ -1,5 +1,4 @@
-# DO NOT EDIT - JUST COPY FROM PALETTE_SWAP FOR NODE2D
-# TODO ? EXEND FROM NODE2D and CONTROL?
+
 extends Control
 
 enum SpriteType { FOREGROUND, BACKGROUND, GOLD, SCENERY, SCENERY_SNOW, SCENERY_MUSHROOM, ATMOSPHERIC, ENEMIES, ENEMY_GREEN, ENEMY_RED, ENEMY_DARK, PRINCESS, TOAD }
@@ -67,7 +66,10 @@ func _physics_process(_delta: float) -> void:
 func _apply_palette() -> void:
 	var palette_id: int
 	if sprite_type == SpriteType.GOLD:
-		palette_id = GOLD_CYCLE[Game.lvl_palette][_gold_step]
+		var pal = Game.lvl_palette
+		if Game.state == Game.GameState.TRANSITION:
+			pal = 1
+		palette_id = GOLD_CYCLE[pal][_gold_step]
 	else:
 		palette_id = PALETTE_TABLE[sprite_type][Game.lvl_palette]
 	

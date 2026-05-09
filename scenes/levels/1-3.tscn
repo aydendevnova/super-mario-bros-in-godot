@@ -8,19 +8,13 @@
 [ext_resource type="TileSet" uid="uid://drbqyvcwe1wl8" path="res://tilesets/atmospheric_tileset.tres" id="6_fi1pe"]
 [ext_resource type="TileSet" uid="uid://dnylvyjtr38fk" path="res://tilesets/red_enemies.tres" id="7_ro563"]
 [ext_resource type="PackedScene" uid="uid://d30imi6y61x0s" path="res://scenes/sprites/question_block.tscn" id="8_fqs0t"]
-[ext_resource type="Script" uid="uid://cblui35fkdsbp" path="res://scenes/sprites/coin.gd" id="9_ro563"]
 [ext_resource type="PackedScene" uid="uid://bkywjeu2574u0" path="res://scenes/sprites/brick_bg.tscn" id="10_3eooj"]
-[ext_resource type="Script" uid="uid://camdoy7lfi5ae" path="res://scenes/sprites/question_block.gd" id="11_fqs0t"]
 [ext_resource type="PackedScene" uid="uid://m3rjnpg6jkkm" path="res://scenes/enemies/goomba.tscn" id="12_uj1rh"]
-[ext_resource type="Script" uid="uid://cnuf8qxvj258v" path="res://scenes/sprites/brick_bg.gd" id="13_qiids"]
 [ext_resource type="PackedScene" uid="uid://bfhfvpy4jj5k4" path="res://scenes/enemies/koopa_troopa.tscn" id="14_itj6l"]
-[ext_resource type="Script" uid="uid://btegidpj6gll5" path="res://scenes/enemies/koopa_troopa.gd" id="15_3eooj"]
 [ext_resource type="PackedScene" uid="uid://msccydg1llh0" path="res://scenes/sprites/coin_a.tscn" id="15_o4x2y"]
 [ext_resource type="PackedScene" uid="uid://ce2pfugcn4ybx" path="res://scenes/sprites/flag.tscn" id="15_puyrc"]
 [ext_resource type="PackedScene" uid="uid://c3ygp1o6r1ygu" path="res://scenes/sprites/platform_moving_longer.tscn" id="16_lcgg3"]
-[ext_resource type="Script" uid="uid://br3iosgwiqdk4" path="res://scenes/enemies/goomba.gd" id="17_tsiq4"]
 [ext_resource type="PackedScene" path="res://scenes/enemies/paratroopa.tscn" id="18_fi1pe"]
-[ext_resource type="Script" uid="uid://dt2piqcr5264o" path="res://scenes/sprites/platform.gd" id="19_uj1rh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ro563"]
 shader = ExtResource("2_u6frk")
@@ -73,220 +67,128 @@ sprite_type = 7
 
 [node name="Scenes" type="Node2D" parent="LevelBuilder" unique_id=963380892]
 
-[node name="CoinA" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1778436762 instance=ExtResource("15_o4x2y")]
+[node name="CoinA" parent="LevelBuilder/Scenes" unique_id=1778436762 instance=ExtResource("15_o4x2y")]
 position = Vector2(592, 0)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433286" type="Area2D" parent="LevelBuilder/Scenes" unique_id=587064522 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433286" parent="LevelBuilder/Scenes" unique_id=587064522 instance=ExtResource("15_o4x2y")]
 position = Vector2(608, 0)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433287" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1238218900 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433287" parent="LevelBuilder/Scenes" unique_id=1238218900 instance=ExtResource("15_o4x2y")]
 position = Vector2(432, 32)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433288" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1634321629 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433288" parent="LevelBuilder/Scenes" unique_id=1634321629 instance=ExtResource("15_o4x2y")]
 position = Vector2(448, 32)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433289" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1211681740 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433289" parent="LevelBuilder/Scenes" unique_id=1211681740 instance=ExtResource("15_o4x2y")]
 position = Vector2(464, 32)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433290" type="Area2D" parent="LevelBuilder/Scenes" unique_id=664053381 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433290" parent="LevelBuilder/Scenes" unique_id=664053381 instance=ExtResource("15_o4x2y")]
 position = Vector2(960, 32)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433291" type="Area2D" parent="LevelBuilder/Scenes" unique_id=2041524501 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433291" parent="LevelBuilder/Scenes" unique_id=2041524501 instance=ExtResource("15_o4x2y")]
 position = Vector2(976, 32)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433292" type="Area2D" parent="LevelBuilder/Scenes" unique_id=2131002123 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433292" parent="LevelBuilder/Scenes" unique_id=2131002123 instance=ExtResource("15_o4x2y")]
 position = Vector2(992, 32)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433293" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1788704399 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433293" parent="LevelBuilder/Scenes" unique_id=1788704399 instance=ExtResource("15_o4x2y")]
 position = Vector2(1008, 32)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433294" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1917315076 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433294" parent="LevelBuilder/Scenes" unique_id=1917315076 instance=ExtResource("15_o4x2y")]
 position = Vector2(1488, 32)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433295" type="Area2D" parent="LevelBuilder/Scenes" unique_id=167509713 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433295" parent="LevelBuilder/Scenes" unique_id=167509713 instance=ExtResource("15_o4x2y")]
 position = Vector2(1504, 32)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433296" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1630230735 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433296" parent="LevelBuilder/Scenes" unique_id=1630230735 instance=ExtResource("15_o4x2y")]
 position = Vector2(1552, 32)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433297" type="Area2D" parent="LevelBuilder/Scenes" unique_id=6575410 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433297" parent="LevelBuilder/Scenes" unique_id=6575410 instance=ExtResource("15_o4x2y")]
 position = Vector2(1568, 32)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433298" type="Area2D" parent="LevelBuilder/Scenes" unique_id=2056205472 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433298" parent="LevelBuilder/Scenes" unique_id=2056205472 instance=ExtResource("15_o4x2y")]
 position = Vector2(1360, 48)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433299" type="Area2D" parent="LevelBuilder/Scenes" unique_id=715644525 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433299" parent="LevelBuilder/Scenes" unique_id=715644525 instance=ExtResource("15_o4x2y")]
 position = Vector2(1376, 48)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433300" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1291599960 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433300" parent="LevelBuilder/Scenes" unique_id=1291599960 instance=ExtResource("15_o4x2y")]
 position = Vector2(1920, 48)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433301" type="Area2D" parent="LevelBuilder/Scenes" unique_id=301310502 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433301" parent="LevelBuilder/Scenes" unique_id=301310502 instance=ExtResource("15_o4x2y")]
 position = Vector2(1936, 48)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433302" type="Area2D" parent="LevelBuilder/Scenes" unique_id=2065753205 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433302" parent="LevelBuilder/Scenes" unique_id=2065753205 instance=ExtResource("15_o4x2y")]
 position = Vector2(800, 64)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433303" type="Area2D" parent="LevelBuilder/Scenes" unique_id=977835076 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433303" parent="LevelBuilder/Scenes" unique_id=977835076 instance=ExtResource("15_o4x2y")]
 position = Vector2(816, 64)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="QuestionBlock" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=442592255 instance=ExtResource("8_fqs0t")]
-z_index = 1
+[node name="QuestionBlock" parent="LevelBuilder/Scenes" unique_id=442592255 instance=ExtResource("8_fqs0t")]
 position = Vector2(944, 128)
-script = ExtResource("11_fqs0t")
 contents = "powerup"
 
-[node name="@Area2D@433304" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1013279394 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433304" parent="LevelBuilder/Scenes" unique_id=1013279394 instance=ExtResource("15_o4x2y")]
 position = Vector2(528, 144)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433305" type="Area2D" parent="LevelBuilder/Scenes" unique_id=636489313 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433305" parent="LevelBuilder/Scenes" unique_id=636489313 instance=ExtResource("15_o4x2y")]
 position = Vector2(1808, 160)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433306" type="Area2D" parent="LevelBuilder/Scenes" unique_id=302193735 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433306" parent="LevelBuilder/Scenes" unique_id=302193735 instance=ExtResource("15_o4x2y")]
 position = Vector2(1824, 160)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="@Area2D@433307" type="Area2D" parent="LevelBuilder/Scenes" unique_id=1127338962 instance=ExtResource("15_o4x2y")]
+[node name="@Area2D@433307" parent="LevelBuilder/Scenes" unique_id=1127338962 instance=ExtResource("15_o4x2y")]
 position = Vector2(1840, 160)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("9_ro563")
 
-[node name="BrickBg" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1947564881 instance=ExtResource("10_3eooj")]
-z_index = 1
+[node name="EndBlock" parent="LevelBuilder/Scenes" unique_id=1947564881 instance=ExtResource("10_3eooj")]
 position = Vector2(2528, 160)
-script = ExtResource("13_qiids")
 
-[node name="@StaticBody2D@433308" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=45108319 instance=ExtResource("10_3eooj")]
-z_index = 1
+[node name="@StaticBody2D@433308" parent="LevelBuilder/Scenes" unique_id=45108319 instance=ExtResource("10_3eooj")]
 position = Vector2(2560, 160)
-script = ExtResource("13_qiids")
 
 [node name="Entities" type="Node2D" parent="LevelBuilder" unique_id=1849879695]
 
-[node name="KoopaTroopa" type="CharacterBody2D" parent="LevelBuilder/Entities" unique_id=1636307410 groups=["Enemies"] instance=ExtResource("14_itj6l")]
+[node name="KoopaTroopa" parent="LevelBuilder/Entities" unique_id=1636307410 instance=ExtResource("14_itj6l")]
 position = Vector2(480, 24)
-collision_layer = 4
-collision_mask = 21
-script = ExtResource("15_3eooj")
 
-[node name="Goomba" type="CharacterBody2D" parent="LevelBuilder/Entities" unique_id=836737039 groups=["Enemies"] instance=ExtResource("12_uj1rh")]
+[node name="Goomba" parent="LevelBuilder/Entities" unique_id=836737039 instance=ExtResource("12_uj1rh")]
 position = Vector2(704, 16)
-collision_layer = 4
-collision_mask = 21
-script = ExtResource("17_tsiq4")
 
-[node name="@CharacterBody2D@433309" type="CharacterBody2D" parent="LevelBuilder/Entities" unique_id=1366615476 groups=["Enemies"] instance=ExtResource("12_uj1rh")]
+[node name="@CharacterBody2D@433309" parent="LevelBuilder/Entities" unique_id=1366615476 instance=ExtResource("12_uj1rh")]
 position = Vector2(736, 16)
-collision_layer = 4
-collision_mask = 21
-script = ExtResource("17_tsiq4")
 
-[node name="PlatformMovingLonger" type="AnimatableBody2D" parent="LevelBuilder/Entities" unique_id=1372714624 instance=ExtResource("16_lcgg3")]
+[node name="PlatformMovingLonger" parent="LevelBuilder/Entities" unique_id=1372714624 instance=ExtResource("16_lcgg3")]
 position = Vector2(880, 80)
-script = ExtResource("19_uj1rh")
 movement_type = 1
 
-[node name="Paratroopa" type="Area2D" parent="LevelBuilder/Entities" unique_id=920226971 instance=ExtResource("18_fi1pe")]
+[node name="Paratroopa" parent="LevelBuilder/Entities" unique_id=920226971 instance=ExtResource("18_fi1pe")]
 position = Vector2(1184, 24)
 
-[node name="@CharacterBody2D@433310" type="CharacterBody2D" parent="LevelBuilder/Entities" unique_id=1624390067 groups=["Enemies"] instance=ExtResource("12_uj1rh")]
+[node name="@CharacterBody2D@433310" parent="LevelBuilder/Entities" unique_id=1624390067 instance=ExtResource("12_uj1rh")]
 position = Vector2(1280, 32)
-collision_layer = 4
-collision_mask = 21
-script = ExtResource("17_tsiq4")
 
-[node name="@AnimatableBody2D@433311" type="AnimatableBody2D" parent="LevelBuilder/Entities" unique_id=592526665 instance=ExtResource("16_lcgg3")]
+[node name="@AnimatableBody2D@433311" parent="LevelBuilder/Entities" unique_id=592526665 instance=ExtResource("16_lcgg3")]
 position = Vector2(1376, 112)
-script = ExtResource("19_uj1rh")
 
-[node name="@AnimatableBody2D@433312" type="AnimatableBody2D" parent="LevelBuilder/Entities" unique_id=610783487 instance=ExtResource("16_lcgg3")]
+[node name="@AnimatableBody2D@433312" parent="LevelBuilder/Entities" unique_id=610783487 instance=ExtResource("16_lcgg3")]
 position = Vector2(1504, 128)
-script = ExtResource("19_uj1rh")
+phase_shift = true
 
-[node name="@CharacterBody2D@433313" type="CharacterBody2D" parent="LevelBuilder/Entities" unique_id=1164144580 groups=["Enemies"] instance=ExtResource("14_itj6l")]
+[node name="@CharacterBody2D@433313" parent="LevelBuilder/Entities" unique_id=1164144580 instance=ExtResource("14_itj6l")]
 position = Vector2(1760, 56)
-collision_layer = 4
-collision_mask = 21
-script = ExtResource("15_3eooj")
 
-[node name="@Area2D@433314" type="Area2D" parent="LevelBuilder/Entities" unique_id=688205477 instance=ExtResource("18_fi1pe")]
+[node name="@Area2D@433314" parent="LevelBuilder/Entities" unique_id=688205477 instance=ExtResource("18_fi1pe")]
 position = Vector2(1824, 40)
 
-[node name="@AnimatableBody2D@433315" type="AnimatableBody2D" parent="LevelBuilder/Entities" unique_id=1287579736 instance=ExtResource("16_lcgg3")]
+[node name="@AnimatableBody2D@433315" parent="LevelBuilder/Entities" unique_id=1287579736 instance=ExtResource("16_lcgg3")]
 position = Vector2(2096, 80)
-script = ExtResource("19_uj1rh")
 
-[node name="@CharacterBody2D@433316" type="CharacterBody2D" parent="LevelBuilder/Entities" unique_id=1775554155 groups=["Enemies"] instance=ExtResource("14_itj6l")]
+[node name="@CharacterBody2D@433316" parent="LevelBuilder/Entities" unique_id=1775554155 instance=ExtResource("14_itj6l")]
 position = Vector2(2128, 152)
-collision_layer = 4
-collision_mask = 21
-script = ExtResource("15_3eooj")
 
-[node name="Flag" parent="." unique_id=1462559492 instance=ExtResource("15_puyrc")]
+[node name="Flag" parent="." unique_id=1462559492 node_paths=PackedStringArray("hide_block") instance=ExtResource("15_puyrc")]
 position = Vector2(2432, 8)
+hide_block = NodePath("../LevelBuilder/Scenes/EndBlock")
+
+[node name="QuickStart" type="Marker2D" parent="." unique_id=858077519]
+position = Vector2(2320, 0)

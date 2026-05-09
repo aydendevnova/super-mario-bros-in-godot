@@ -270,9 +270,6 @@ position = Vector2(3280, 160)
 
 [node name="Entities" type="Node2D" parent="SubViewportContainer/SubViewport/Level/LevelBuilder" unique_id=1117343072]
 
-[node name="Goomba" parent="SubViewportContainer/SubViewport/Level/LevelBuilder/Entities" unique_id=836737039 instance=ExtResource("13_kq58d")]
-position = Vector2(96, 160)
-
 [node name="@CharacterBody2D@226871" parent="SubViewportContainer/SubViewport/Level/LevelBuilder/Entities" unique_id=2137522455 instance=ExtResource("13_kq58d")]
 position = Vector2(384, 160)
 
