@@ -56,7 +56,7 @@ func _build_debug_text() -> String:
 	lines.append("State: %s" % state_names.get(Game.state, "?"))
 	lines.append("World: %s" % Game.get_level_key())
 	lines.append("Time: %d" % Game.time)
-	lines.append("Timer paused: %s" % Game.timer_paused)
+	lines.append("Timer paused: %s" % Game.level_timer_paused)
 	lines.append("Level finished: %s" % Game._level_finished)
 	var theme_names := {0: "OVERWORLD", 1: "UNDERGROUND", 2: "CASTLE", 3: "UNDERWATER"}
 	lines.append("Palette: %s" % theme_names.get(Game.lvl_palette, "?"))

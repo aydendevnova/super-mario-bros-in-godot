@@ -205,3 +205,6 @@ position = Vector2(560, 152)
 
 [node name="@Area2D@62951" type="Area2D" parent="LevelBuilder/Entities" unique_id=123328022 instance=ExtResource("10_2s35e")]
 position = Vector2(720, 152)
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(32, 144)

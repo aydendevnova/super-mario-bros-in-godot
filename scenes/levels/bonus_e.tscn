@@ -289,3 +289,6 @@ script = ExtResource("9_d33jr")
 
 [node name="Start" type="Marker2D" parent="." unique_id=1106212008]
 position = Vector2(40, 16)
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(32, 144)

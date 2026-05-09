@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bos7l8oxbuxkp"]
+
+[ext_resource type="Shader" uid="uid://bemjwueybeq2a" path="res://scripts/palette_swap.gdshader" id="1_mkrpx"]
+[ext_resource type="Script" uid="uid://bnvkmmh28n5lo" path="res://scenes/sprites/end_flag.gd" id="1_n3hk5"]
+[ext_resource type="Script" uid="uid://cfrk1lq3vq2qg" path="res://scripts/palette_swap.gd" id="2_n3hk5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("1_mkrpx")
+shader_parameter/palette_id = 27
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ywjrd"]
+load_path = "res://.godot/imported/chr-mapping.png-584f203d92d81827f06effe007afc559.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2shxn"]
+atlas = SubResource("CompressedTexture2D_ywjrd")
+region = Rect2(336, 96, 16, 16)
+
+[node name="EndFlag" type="Node2D" unique_id=627753475]
+script = ExtResource("1_n3hk5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1176398875]
+z_index = -1
+material = SubResource("ShaderMaterial_1")
+texture = SubResource("AtlasTexture_2shxn")
+centered = false
+script = ExtResource("2_n3hk5")
+sprite_type = 9

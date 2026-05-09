@@ -101,6 +101,7 @@ one_shot = true
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1066653473]
 zoom = Vector2(3.76, 3.76)
 limit_left = 0
+limit_top = -239
 limit_bottom = 0
 drag_vertical_enabled = true
 drag_top_margin = 1.0

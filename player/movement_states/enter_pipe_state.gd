@@ -1,7 +1,7 @@
 extends PlayerMovementState
 
 var _direction: int = 0 # 0 = DOWN, 1 = RIGHT
-var _sink_distance: float = 32.0
+var _sink_distance: float = 34.0
 var _sink_duration: float = 0.5
 var _tween: Tween
 var _done := false
@@ -9,7 +9,7 @@ var _done := false
 func enter(_previous_state: StringName) -> void:
 	var data: Dictionary = player._enter_pipe_data
 	_direction = int(data.get("direction", 0))
-	_sink_distance = float(data.get("sink_distance", 32.0))
+	_sink_distance = float(data.get("sink_distance", 34.0))
 	_sink_duration = float(data.get("sink_duration", 0.5))
 	var show_mask: Callable = data.get("show_mask", Callable())
 	player._enter_pipe_data.clear()
@@ -57,4 +57,5 @@ func get_next_state() -> StringName:
 	return StringName()
 
 func _on_sink_complete() -> void:
+	player.sprite.pause()
 	_done = true

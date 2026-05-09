@@ -7,6 +7,9 @@
 [ext_resource type="TileSet" uid="uid://dm6v8on7ggv0l" path="res://tilesets/scenery_tileset.tres" id="5_kx5kf"]
 [ext_resource type="TileSet" uid="uid://drbqyvcwe1wl8" path="res://tilesets/atmospheric_tileset.tres" id="6_mv8wp"]
 [ext_resource type="TileSet" uid="uid://dnylvyjtr38fk" path="res://tilesets/red_enemies.tres" id="7_3432b"]
+[ext_resource type="PackedScene" uid="uid://bh6xp7x4bqtnv" path="res://scenes/pipe_entrance.tscn" id="8_1yhul"]
+[ext_resource type="Script" uid="uid://cmj2cjq8ebebg" path="res://scenes/levels/underground_transition.gd" id="9_trans"]
+[ext_resource type="PackedScene" uid="uid://c68jbo5yo82ba" path="res://scenes/sprites/block_bg.tscn" id="10_efo0b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_neois"]
 shader = ExtResource("2_rxrg8")
@@ -25,10 +28,12 @@ shader = ExtResource("2_rxrg8")
 shader_parameter/palette_id = 27
 
 [node name="Level" type="Node2D" unique_id=1226794753]
+script = ExtResource("9_trans")
 
 [node name="LevelBuilder" type="Node2D" parent="." unique_id=235941376]
 script = ExtResource("1_apji2")
 level_json_path = "res://data/levels/misc-underground-transition.json"
+bgm_override = "scene_change_bgm"
 
 [node name="Background" type="TileMapLayer" parent="LevelBuilder" unique_id=1315585952]
 material = SubResource("ShaderMaterial_neois")
@@ -58,3 +63,16 @@ script = ExtResource("4_bjfal")
 sprite_type = 7
 
 [node name="Scenes" type="Node2D" parent="LevelBuilder" unique_id=622103129]
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=380892775]
+position = Vector2(40, 160)
+
+[node name="PipeEntrance" parent="." unique_id=1379708215 instance=ExtResource("8_1yhul")]
+position = Vector2(160, 168)
+direction = 1
+is_transition_scene = true
+use_longer_loading_time = true
+dest_marker_name = "PipeDestTransition"
+
+[node name="BlockBg" parent="." unique_id=1947564881 instance=ExtResource("10_efo0b")]
+position = Vector2(160, 176)

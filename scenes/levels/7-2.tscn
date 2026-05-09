@@ -278,26 +278,17 @@ position = Vector2(2864, 152)
 
 [node name="PipeEntrance" parent="." unique_id=1379708215 instance=ExtResource("11_kjyqn")]
 position = Vector2(160, 168)
-exit_point_path = NodePath("../PipeDest")
 direction = 1
-dest_palette = 3
-dest_top_y = 0.0
-dest_bottom_y = 240.0
-dest_is_sub_area = false
-use_longer_loading_time = true
-auto_enter = true
+dest_marker_name = "PipeDest"
 
 [node name="PipeDest" type="Marker2D" parent="." unique_id=55014041]
 position = Vector2(48, 376)
 
 [node name="ReturnPipe" parent="." unique_id=447712481 instance=ExtResource("11_kjyqn")]
 position = Vector2(3024, 344)
-exit_point_path = NodePath("../ReturnPipeDest")
 direction = 1
-exit_from_pipe = true
-dest_palette = 0
-dest_top_y = -256.0
-dest_is_sub_area = false
+dest_marker_name = "ReturnPipeDest"
+dest_rise_from_pipe = true
 
 [node name="ReturnPipeDest" type="Marker2D" parent="." unique_id=1298703442]
 position = Vector2(496, 144)

@@ -23,12 +23,9 @@ extends CanvasLayer
 
 
 var menu_selection: int = 0
-var _pause_container: CenterContainer
 
 
 func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS
-
 	SignalBus.game_state_changed.connect(_on_state_changed)
 	SignalBus.pipe_blackout.connect(_on_pipe_blackout)
 	SignalBus.score_updated.connect(func(_v): _refresh_score())
@@ -42,36 +39,12 @@ func _ready() -> void:
 	load_timer.one_shot = true
 	load_timer.timeout.connect(_on_load_timer_timeout)
 
-	_setup_pause_ui()
-
 	_show_menu()
 
-func _setup_pause_ui() -> void:
-	_pause_container = CenterContainer.new()
-	_pause_container.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_pause_container.visible = false
-	add_child(_pause_container)
-
-	var text_node := Control.new()
-	text_node.set_script(preload("res://ui/text_builder.gd"))
-	text_node.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	var mat := ShaderMaterial.new()
-	mat.shader = preload("res://scripts/palette_swap.gdshader")
-	mat.set_shader_parameter("palette_id", 6)
-	text_node.material = mat
-	_pause_container.add_child(text_node)
-	text_node.text = "PAUSE"
-	text_node.scale_factor = 4
-
 func _unhandled_input(event: InputEvent) -> void:
-
 	if event.is_action_pressed("start"):
-		if Game.is_paused:
-			_toggle_pause()
-		elif Game.state == Game.GameState.MENU:
+		if Game.state == Game.GameState.MENU:
 			Game.start_game()
-		elif Game.state == Game.GameState.PLAYING and not get_tree().paused:
-			_toggle_pause()
 		return
 
 	if Game.state == Game.GameState.MENU:
@@ -81,11 +54,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif event.is_action_pressed("ui_up") or event.is_action_pressed("jump"):
 			menu_selection = 0
 			_update_cursor()
-
-func _toggle_pause() -> void:
-	Game.is_paused = not Game.is_paused
-	get_tree().paused = Game.is_paused
-	_pause_container.visible = Game.is_paused
 
 func _update_cursor() -> void:
 	cursor_1p.modulate.a = 1.0 if menu_selection == 0 else 0.0
@@ -116,6 +84,7 @@ func _show_gameplay() -> void:
 	main_menu.visible = false
 	hud.visible = true
 	transition.visible = false
+	_refresh_hud()
 
 func _on_state_changed(new_state) -> void:
 	match new_state:

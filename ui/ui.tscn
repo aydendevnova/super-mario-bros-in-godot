@@ -52,7 +52,6 @@ atlas = ExtResource("2_tf0e0")
 region = Rect2(193, 192, 8, 8)
 
 [node name="InnerUI" type="CanvasLayer" unique_id=1955268887]
-process_mode = 3
 script = ExtResource("7_ui_gd")
 
 [node name="MainMenu" type="CenterContainer" parent="." unique_id=375531848]

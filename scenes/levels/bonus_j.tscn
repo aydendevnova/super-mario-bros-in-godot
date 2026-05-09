@@ -175,3 +175,6 @@ position = Vector2(576, 112)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("9_ceurq")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(32, 144)

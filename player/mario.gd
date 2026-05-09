@@ -165,7 +165,6 @@ func _ready():
 	power_state_machine.setup(self)
 	_update_tree()
 	movement_state_machine.setup(self)
-	call_deferred("snap_to_ground")
 	camera.make_current()
 
 func snap_to_ground() -> void:
@@ -179,6 +178,9 @@ func reset_auto_walk_speed() -> void:
 	auto_walk_speed = MAX_WALK_SPEED / AUTO_WALK_SPEED_DEFAULT_DIVISOR
 
 func _process(delta):
+	if Game.is_paused:
+		sprite.pause()
+		return
 	_process_transition_palette(delta)
 	_process_star_power(delta)
 	_process_blink(delta)
@@ -191,7 +193,7 @@ func _process(delta):
 	process_animation()
 
 func _physics_process(delta):
-	if get_tree().paused:
+	if Game.is_paused or get_tree().paused:
 		return
 	if is_dead:
 		return
@@ -204,7 +206,7 @@ func _physics_process(delta):
 		handle_last_collision()
 	_check_invisible_blocks()
 	
-	if (position.y > (Game.bottom_of_map_y + 16) && not is_dead):
+	if (position.y > 16 && not is_dead):
 		handle_death()
 	
 func process_camera_bounds():
@@ -279,6 +281,7 @@ func apply_power_state(next_state: State, previous_state_name: StringName = Stri
 		return
 
 	state = next_state
+	Game.player_power_state = state as int
 	_is_fire_transition = previous_state == State.BIG and state == State.FIRE
 	if skip_transition:
 		_update_tree()
@@ -595,8 +598,6 @@ func snap_camera() -> void:
 	camera_frozen = false
 	camera.position_smoothing_enabled = false
 
-	camera.limit_bottom = int(Game.bottom_of_map_y)
-	camera.limit_top = int(Game.bottom_of_map_y) - 244+4
 	camera.reset_smoothing()
 	camera.force_update_scroll()
 
@@ -614,12 +615,14 @@ func handle_death():
 	tranistion_timer.start()
 	is_dead = true
 	Game.state = Game.GameState.DEAD
+	modulate.a = 1.0
 
 	set_physics_process(false)
 	set_collision_layer_value(1, false)
 
-	var fell_off_map := position.y > (Game.bottom_of_map_y + 16)
-
+	var fell_off_map: bool = position.y > 16
+	print("Dying...")
+	print("fell of map? %s", fell_off_map)
 	if not fell_off_map:
 		var start_pos := position
 		_death_tween = get_tree().create_tween()
@@ -678,15 +681,18 @@ func _activate_star_power():
 	_star_timer = STAR_DURATION
 	_star_palette_timer = 0.0
 	_star_palette_index = 0
+	Game.player_star_power = true
+	Game.player_star_timer = STAR_DURATION
 	AudioSystem.play_music("invincible_bgm")
 
 func _process_star_power(delta: float):
 	if not star_power:
 		return
-	_star_timer -= delta
-	if _star_timer <= 0.0:
-		_deactivate_star_power()
-		return
+	if not Game.level_timer_paused:
+		_star_timer -= delta
+		if _star_timer <= 0.0:
+			_deactivate_star_power()
+			return
 	var interval = STAR_WARNING_PALETTE_INTERVAL if _star_timer <= STAR_WARNING_TIME else STAR_PALETTE_INTERVAL
 	_star_palette_timer += delta
 	if _star_palette_timer >= interval:
@@ -697,8 +703,25 @@ func _process_star_power(delta: float):
 func _deactivate_star_power():
 	star_power = false
 	_star_timer = 0.0
+	Game.player_star_power = false
+	Game.player_star_timer = 0.0
 	_update_tree()
 	SignalBus.star_power_ended.emit()
+
+func save_state_to_game() -> void:
+	Game.player_power_state = state as int
+	Game.player_star_power = star_power
+	Game.player_star_timer = _star_timer
+
+func restore_state_from_game() -> void:
+	var target_state: State = Game.player_power_state as State
+	if target_state != State.SMALL:
+		apply_power_state(target_state, StringName(), true)
+	if Game.player_star_power and Game.player_star_timer > 0.0:
+		star_power = true
+		_star_timer = Game.player_star_timer
+		_star_palette_timer = 0.0
+		_star_palette_index = 0
 
 func _check_overlap():
 	for area in hitbox.get_overlapping_areas():

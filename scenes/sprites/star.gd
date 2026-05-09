@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 const MOVE_SPEED := 48.0
-const BOUNCE_SPEED := -300.0
+const BOUNCE_SPEED := -150.0
 const EMERGE_DISTANCE := 16.0
 const EMERGE_DURATION := 0.5
 const PALETTE_CYCLE_INTERVAL := 0.05
@@ -32,7 +32,7 @@ func _start_moving() -> void:
 	velocity.y = BOUNCE_SPEED
 
 func _physics_process(delta: float) -> void:
-	velocity.y = min(Physics.MAX_FALL_SPEED, velocity.y + Physics.GRAVITY * delta)
+	velocity.y = min(Physics.MAX_FALL_SPEED, velocity.y + (Physics.GRAVITY / 2) * delta)
 	velocity.x = _direction * MOVE_SPEED
 
 	move_and_slide()

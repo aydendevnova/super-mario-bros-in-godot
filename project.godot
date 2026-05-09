@@ -27,6 +27,7 @@ SignalBus="*uid://ec0v50yw7pwa"
 Palette="*uid://yi4o6q2pqb16"
 AudioSystem="*uid://bpqkcqbtqr1oy"
 TextureSwapper="*res://scripts/texture_swapper.gd"
+TransitionManager="*res://scripts/transition_manager.gd"
 
 [display]
 

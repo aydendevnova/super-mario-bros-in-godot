@@ -34,6 +34,8 @@ var is_1up: bool = false:
 		if is_node_ready():
 			_update_region()
 
+var static_mode := false
+
 var _camera_start_x: float
 var _spawn_x: float
 
@@ -48,11 +50,14 @@ func _ready() -> void:
 
 	_update_region()
 
-	var tween := create_tween()
-	tween.tween_property(self, "position:y", position.y - FLOAT_DISTANCE, FLOAT_DURATION)
-	tween.tween_callback(queue_free)
+	if not static_mode:
+		var tween := create_tween()
+		tween.tween_property(self, "position:y", position.y - FLOAT_DISTANCE, FLOAT_DURATION)
+		tween.tween_callback(queue_free)
 
 func _process(_delta: float) -> void:
+	if static_mode:
+		return
 	var cam := get_viewport().get_camera_2d()
 	if cam:
 		global_position.x = _spawn_x + (cam.global_position.x - _camera_start_x)

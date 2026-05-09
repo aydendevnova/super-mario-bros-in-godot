@@ -21,12 +21,21 @@ var lvl_scenery_palette = Palette.SceneryType.DEFAULT
 var is_paused := false
 var current_level: Node = null
 
-# may be different depending on subareas, etc
-var bottom_of_map_y: float = 0
+var player_power_state: int = 0
+var player_star_power := false
+var player_star_timer := 0.0
 
+const LEVEL_INTRO_SCENES := {
+	"1-2": "res://scenes/levels/underground_transition.tscn",
+	"2-2": "res://scenes/levels/underground_transition.tscn",
+	"4-2": "res://scenes/levels/underground_transition.tscn",
+	"7-2": "res://scenes/levels/underground_transition.tscn",
+}
+
+var _play_intro_scene := false
 var _time_accumulator: float = 0.0
 var _level_finished := false
-var timer_paused := false
+var level_timer_paused := false
 var _countdown_active := false
 var _countdown_callback: Callable
 const COUNTDOWN_TICK_INTERVAL := 0.014
@@ -47,7 +56,7 @@ func _process(delta: float) -> void:
 				_countdown_callback.call()
 		return
 
-	if state == GameState.PLAYING and not _level_finished and not timer_paused and time > 0:
+	if state == GameState.PLAYING and not _level_finished and not level_timer_paused and time > 0:
 		_time_accumulator += delta
 		if _time_accumulator >= 0.4:
 			_time_accumulator -= 0.4
@@ -60,6 +69,9 @@ func start_game() -> void:
 	lives = 3
 	score = 0
 	coins = 0
+	player_power_state = 0
+	player_star_power = false
+	player_star_timer = 0.0
 	state = GameState.TRANSITION
 
 func begin_level() -> void:
@@ -67,6 +79,7 @@ func begin_level() -> void:
 	_time_accumulator = 0.0
 	_level_finished = false
 	_countdown_active = false
+	level_timer_paused = false
 	state = GameState.PLAYING
 
 func up_score(scr: int) -> void:
@@ -83,6 +96,9 @@ func add_coin() -> void:
 	SignalBus.coins_updated.emit(coins)
 
 func on_player_died() -> void:
+	player_power_state = 0
+	player_star_power = false
+	player_star_timer = 0.0
 	lives -= 1
 	if lives >= 0:
 		state = GameState.TRANSITION
@@ -117,5 +133,6 @@ func advance_level() -> void:
 	if level > 4:
 		level = 1
 		world += 1
+	_play_intro_scene = LEVEL_INTRO_SCENES.has(get_level_key())
 	SignalBus.level_completed.emit()
 	state = GameState.TRANSITION

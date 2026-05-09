@@ -34,6 +34,7 @@ shader_parameter/palette_id = 27
 [node name="LevelBuilder" type="Node2D" parent="." unique_id=235941376]
 script = ExtResource("1_y6tye")
 level_json_path = "res://data/levels/bonus-I.json"
+bgm_override = "invincible_bgm"
 
 [node name="Background" type="TileMapLayer" parent="LevelBuilder" unique_id=1709021025]
 material = SubResource("ShaderMaterial_w1y0s")
@@ -661,3 +662,6 @@ position = Vector2(1312, 176)
 position = Vector2(256, 144)
 script = ExtResource("12_1cnbq")
 movement_type = 6
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(32, 144)

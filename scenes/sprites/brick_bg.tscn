@@ -318,7 +318,7 @@ shader_parameter/palette_id = 4
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1"]
 atlas = ExtResource("3_atlas")
-region = Rect2(32, 0, 16, 16)
+region = Rect2(16, 0, 16, 16)
 
 [node name="BrickBg" type="StaticBody2D" unique_id=1947564881]
 z_index = 1

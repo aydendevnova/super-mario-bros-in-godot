@@ -9,7 +9,7 @@ const BOTTOM_PAUSE := 0.5
 @onready var flag_sprite: Sprite2D = $FlagSprite
 @onready var pole_area: Area2D = $PoleArea
 
-const HIDE_DISTANCE := 96.0-32
+const HIDE_DISTANCE := 96.0-8
 
 var _triggered := false
 

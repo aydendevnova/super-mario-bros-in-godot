@@ -4,40 +4,37 @@ class_name PipeEntrance
 
 enum Direction { DOWN, RIGHT }
 
-@export var exit_point_path: NodePath
+@export_group("This Pipe")
 @export var direction: Direction = Direction.DOWN
-@export var exit_from_pipe: bool = false
-@export var exit_direction: Direction = Direction.DOWN
-@export var dest_palette: Palette.WorldTheme = Palette.WorldTheme.UNDERGROUND
-@export var dest_scenery: Palette.SceneryType = Palette.SceneryType.DEFAULT
-@export var dest_top_y: float = -128.0
-@export var dest_bottom_y: float = 0
-@export var dest_is_sub_area: bool = true
+@export var is_transition_scene: bool = false
 @export var use_longer_loading_time: bool = false
-@export var auto_enter: bool = false
-@export var auto_walk_speed_divisor: float = 2.4
+@export var auto_walk_speed_modf: float = 52
+
+@export_group("Destination")
+@export var dest_scene_path: String = ""
+@export var dest_marker_name: String = "PipeDest"
+@export var dest_is_bonus_room: bool = false
+@export var dest_rise_from_pipe: bool = false
+@export var dest_exit_direction: Direction = Direction.DOWN
+@export var dest_warp_level: String = ""
 
 const SINK_DISTANCE_ENTER_V := 32.0
 const SINK_DISTANCE_ENTER_H := 18.0
-const SINK_DISTANCE_EXIT := 16.0
 const SINK_DURATION := 0.5
 const RISE_DURATION := 0.5
 const PAUSE_AFTER_SINK := 0.35
 const PAUSE_BEFORE_RISE := 1.5
 const PAUSE_BLACKOUT := 0.3
 
-var _exit_point: Node2D
 var _triggered := false
 var _player_ref: Player
 var _player_inside: Player
-var _auto_enter_ready := false
+var _transition_scene_ready := false
 @onready var _mask: Sprite2D = $Mask
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
-	if exit_point_path:
-		_exit_point = get_node_or_null(exit_point_path)
 	_hide_mask()
 	if direction == Direction.RIGHT:
 		$CollisionShape2D.position.x -= 4
@@ -45,7 +42,7 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		_player_inside = body
-		if auto_enter and not _triggered:
+		if is_transition_scene and not _triggered:
 			body.auto_walk_right = false
 			_player_ref = body
 			_triggered = true
@@ -56,16 +53,18 @@ func _on_body_exited(body: Node2D) -> void:
 		_player_inside = null
 
 func _physics_process(_delta: float) -> void:
-	if auto_enter and not _auto_enter_ready and not _triggered:
+	if is_transition_scene and not _transition_scene_ready and not _triggered:
 		var auto_player := get_tree().root.find_child("Player", true, false) as Player
 		if auto_player and not auto_player.is_dead:
-			_auto_enter_ready = true
-			Game.timer_paused = true
-			auto_player.auto_walk_speed = auto_player.MAX_WALK_SPEED / auto_walk_speed_divisor
+			_transition_scene_ready = true
+			Game.level_timer_paused = true
+			auto_player.auto_walk_speed = auto_player.MAX_WALK_SPEED - auto_walk_speed_modf
 			auto_player.auto_walk_right = true
 			auto_player.lock_player()
 
-	if _triggered or not _exit_point or not _player_inside:
+	if _triggered or not _player_inside:
+		return
+	if dest_scene_path.is_empty() and dest_marker_name.is_empty() and dest_warp_level.is_empty():
 		return
 
 	var player := _player_inside
@@ -91,7 +90,7 @@ func _is_pressing_entry(player: Player) -> bool:
 func _enter_pipe() -> void:
 	var player := _player_ref
 	AudioSystem.play_sfx("pipe")
-	Game.timer_paused = true
+	Game.level_timer_paused = true
 
 	var sink_dist := SINK_DISTANCE_ENTER_V if direction == Direction.DOWN else SINK_DISTANCE_ENTER_H
 	player.start_enter_pipe({
@@ -102,71 +101,67 @@ func _enter_pipe() -> void:
 	})
 
 	var total_sink := SINK_DURATION
+
+	if not dest_warp_level.is_empty():
+		var tween := create_tween()
+		tween.tween_interval(total_sink + PAUSE_AFTER_SINK)
+		tween.tween_callback(_request_warp)
+		return
+
 	if use_longer_loading_time:
 		total_sink += PAUSE_AFTER_SINK * 5.4
 	total_sink += PAUSE_AFTER_SINK
 
 	var tween := create_tween()
 	tween.tween_interval(total_sink)
-	tween.tween_callback(func(): SignalBus.pipe_blackout.emit(true))
-	tween.tween_interval(PAUSE_BLACKOUT)
-	tween.tween_callback(_teleport_to_exit)
 
-	if exit_from_pipe:
-		tween.tween_callback(func(): SignalBus.pipe_blackout.emit(false))
-		tween.tween_interval(PAUSE_BEFORE_RISE)
-		tween.tween_callback(_rise_from_exit)
+	if not dest_scene_path.is_empty():
+		tween.tween_callback(_request_cross_scene_transition)
 	else:
-		tween.tween_callback(func(): SignalBus.pipe_blackout.emit(false))
-		tween.tween_callback(_finish_transition)
-		
+		tween.tween_callback(_request_same_scene_teleport)
 
-func _teleport_to_exit() -> void:
-	var player := _player_ref
-	var target := _exit_point.global_position
-	player.visible = not exit_from_pipe
-	player.scale.y = 1.0
-	player.sprite.offset.y = 0
-	player.sprite.flip_h = false
+func _request_warp() -> void:
 	_hide_mask()
-	Game.lvl_palette = dest_palette
-	Game.lvl_scenery_palette = dest_scenery
+	var parts := dest_warp_level.split("-")
+	if parts.size() == 2:
+		Game.world = int(parts[0])
+		Game.level = int(parts[1])
+	TransitionManager.request_warp()
 
-	Game.bottom_of_map_y = dest_bottom_y
-	SignalBus.game_palette_updated.emit()
-
-	if exit_from_pipe:
-		var rise_offset := Vector2.ZERO
-		match exit_direction:
-			Direction.DOWN:
-				rise_offset = Vector2(-8, SINK_DISTANCE_EXIT)
-			Direction.RIGHT:
-				rise_offset = Vector2(-SINK_DISTANCE_EXIT, 0)
-		player.global_position = target + rise_offset
-	else:
-		player.global_position = target + Vector2(-8, 0)
-
-	player.camera.drag_horizontal_enabled = dest_is_sub_area
-	player.snap_camera()
-
-func _rise_from_exit() -> void:
-	var player := _player_ref
-	var target := _exit_point.global_position + Vector2(-8, -16)
-	player.start_exit_pipe({
-		"target": target,
+func _request_cross_scene_transition() -> void:
+	_hide_mask()
+	TransitionManager.request_pipe_transition({
+		"scene_path": dest_scene_path,
+		"marker_name": dest_marker_name,
+		"dest_rise_from_pipe": dest_rise_from_pipe,
+		"dest_exit_direction": dest_exit_direction,
+		"dest_is_bonus_room": dest_is_bonus_room,
 		"rise_duration": RISE_DURATION,
+	})
+
+func _request_same_scene_teleport() -> void:
+	var exit_point := _find_marker_in_scene()
+	if not exit_point:
+		push_error("PipeEntrance: could not find marker '%s' in current scene" % dest_marker_name)
+		return
+	TransitionManager.request_same_scene_teleport({
+		"player": _player_ref,
+		"exit_point": exit_point,
+		"dest_rise_from_pipe": dest_rise_from_pipe,
+		"dest_exit_direction": dest_exit_direction,
+		"pause_before_rise": PAUSE_BEFORE_RISE,
+		"rise_duration": RISE_DURATION,
+		"hide_mask": _hide_mask,
 	})
 	_triggered = false
 
-func _finish_transition() -> void:
-	var player := _player_ref
-	player.sprite.flip_h = false
-	player.is_facing_left = false
-	player.set_collision_layer_value(2, true)
-	player.set_collision_mask_value(1, true)
-	player.unlock_player()
-	Game.timer_paused = false
-	_triggered = false
+func _find_marker_in_scene() -> Node2D:
+	if dest_marker_name.is_empty():
+		return null
+	var level := Game.current_level
+	if not level:
+		return null
+	return level.find_child(dest_marker_name, true, false) as Node2D
 
 func _show_mask() -> void:
 	_mask.modulate = Palette.CLEAR_COLOR[Game.lvl_palette]

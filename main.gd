@@ -43,6 +43,7 @@ func _ready():
 	SignalBus.game_palette_updated.connect(_on_palette_updated)
 	SignalBus.time_updated.connect(_on_time_updated)
 	SignalBus.star_power_ended.connect(_on_star_power_ended)
+	SignalBus.scene_transition_requested.connect(_on_scene_transition_requested)
 
 	if dev_quick_start:
 		_dev_start.call_deferred()
@@ -56,6 +57,8 @@ func _on_state_changed(new_state) -> void:
 				_skip_load = false
 			else:
 				_load_level()
+		Game.GameState.TRANSITION:
+			AudioSystem.stop_music()
 		Game.GameState.DEAD:
 			AudioSystem.stop_music()
 			AudioSystem.play_music("player_down")
@@ -69,7 +72,14 @@ func _load_level() -> void:
 	_despawn_player()
 	_hurry = false
 
-	var scene = load(Game.get_level_scene_path()) as PackedScene
+	var scene_path := Game.get_level_scene_path()
+	if Game._play_intro_scene:
+		Game._play_intro_scene = false
+		var intro = Game.LEVEL_INTRO_SCENES.get(Game.get_level_key(), "")
+		if not intro.is_empty():
+			scene_path = intro
+
+	var scene = load(scene_path) as PackedScene
 	if not scene:
 		push_error("Failed to load level: %s" % Game.get_level_scene_path())
 		return
@@ -77,27 +87,75 @@ func _load_level() -> void:
 	_current_level = scene.instantiate()
 	_current_level.position.y = LEVEL_Y_OFFSET
 	_loading_level = true
-	_level_container.add_child(_current_level)
-	Game.current_level = _current_level
 
 	var level_builder = _current_level.get_node_or_null("LevelBuilder")
 	if level_builder:
 		Game.lvl_palette = level_builder.world_theme
 		Game.lvl_scenery_palette = level_builder.scenery_type
-		SignalBus.game_palette_updated.emit()
 	else:
 		printerr("Error!")
 
+	_level_container.add_child(_current_level)
+	Game.current_level = _current_level
+	SignalBus.game_palette_updated.emit()
+
 	_spawn_player()
 
-	_current_bgm = THEME_BGM.get(Game.lvl_palette, "overworld_bgm")
-	if _has_auto_enter_pipe():
+	if level_builder and not level_builder.bgm_override.is_empty():
+		_current_bgm = level_builder.bgm_override
+	else:
+		_current_bgm = THEME_BGM.get(Game.lvl_palette, "overworld_bgm")
+	if _has_transition_scene_pipe():
 		AudioSystem.play_music("scene_change_bgm")
+	elif Game.player_star_power:
+		AudioSystem.play_music("invincible_bgm")
 	else:
 		AudioSystem.play_music(_current_bgm)
 	_loading_level = false
 
+func _load_scene(scene_path: String) -> void:
+	if _player and is_instance_valid(_player):
+		_player.save_state_to_game()
+	_unload_level()
+	_despawn_player()
 
+	var scene = load(scene_path) as PackedScene
+	if not scene:
+		push_error("Failed to load scene: %s" % scene_path)
+		return
+
+	_current_level = scene.instantiate()
+	_current_level.position.y = LEVEL_Y_OFFSET
+	_loading_level = true
+
+	var level_builder = _current_level.get_node_or_null("LevelBuilder")
+	if level_builder:
+		Game.lvl_palette = level_builder.world_theme
+		Game.lvl_scenery_palette = level_builder.scenery_type
+
+	_level_container.add_child(_current_level)
+	Game.current_level = _current_level
+
+	_player = PLAYER_SCENE.instantiate()
+	_level_container.add_child(_player)
+	_player.restore_state_from_game()
+	_player.visible = false
+	_player.set_collision_layer_value(2, false)
+	_player.set_collision_mask_value(1, false)
+
+	TransitionManager.on_scene_loaded_for_pipe(_player, _current_level)
+
+	if level_builder and not level_builder.bgm_override.is_empty():
+		_current_bgm = level_builder.bgm_override
+	else:
+		_current_bgm = THEME_BGM.get(Game.lvl_palette, "overworld_bgm")
+
+	if Game.player_star_power:
+		var star_bgm := "invincible_bgm"
+		AudioSystem.play_music(HURRY_BGM.get(star_bgm, star_bgm) if _hurry else star_bgm)
+	else:
+		AudioSystem.play_music(HURRY_BGM.get(_current_bgm, _current_bgm) if _hurry else _current_bgm)
+	_loading_level = false
 
 func _unload_level() -> void:
 	if _current_level and is_instance_valid(_current_level):
@@ -108,8 +166,47 @@ func _unload_level() -> void:
 func _spawn_player() -> void:
 	_player = PLAYER_SCENE.instantiate()
 	_level_container.add_child(_player)
-	_player.position = Vector2(SPAWN_X, _find_spawn_y())
-	_player.call_deferred("snap_to_ground")
+	_player.restore_state_from_game()
+
+	var spawn = TransitionManager.pending_spawn
+	var mode = spawn.get("spawn_mode", TransitionManager.SpawnMode.DEFAULT)
+
+	match mode:
+		TransitionManager.SpawnMode.MARKER:
+			var marker_name: String = spawn.get("marker_name", "")
+			var marker: Node2D = null
+			if not marker_name.is_empty() and _current_level:
+				marker = _current_level.find_child(marker_name, true, false) as Node2D
+			if marker:
+				_player.global_position = marker.global_position + Vector2(-8, 0)
+			else:
+				_player.position = Vector2(SPAWN_X, _find_spawn_y())
+				_player.call_deferred("snap_to_ground")
+			TransitionManager.clear_spawn()
+
+		TransitionManager.SpawnMode.VINE:
+			var marker_name: String = spawn.get("marker_name", "")
+			var marker: Node2D = null
+			if not marker_name.is_empty() and _current_level:
+				marker = _current_level.find_child(marker_name, true, false) as Node2D
+			if marker:
+				_player.global_position = marker.global_position
+			else:
+				_player.position = Vector2(SPAWN_X, _find_spawn_y())
+				_player.call_deferred("snap_to_ground")
+			# TODO: vine grow animation + player climb sequence
+			TransitionManager.clear_spawn()
+
+		_: # DEFAULT
+			var spawn_marker: Node2D = null
+			if _current_level:
+				spawn_marker = _current_level.find_child("SpawnPoint", true, false) as Node2D
+			if spawn_marker:
+				_player.global_position = spawn_marker.global_position + Vector2(-8, 0)
+			else:
+				_player.position = Vector2(SPAWN_X, _find_spawn_y())
+				_player.call_deferred("snap_to_ground")
+			TransitionManager.clear_spawn()
 
 func _despawn_player() -> void:
 	if _player and is_instance_valid(_player):
@@ -134,8 +231,6 @@ func _find_spawn_y() -> float:
 	if not bg_layer:
 		return -48.0
 
-	# Scan from highest Y (bottom, row 12) to lowest Y (top, row 0).
-	# Only check the Background layer since it's the only one with collision.
 	var bottom_ground := -1
 	for row in range(AREA_ROWS - 1, -1, -1):
 		if bg_layer.get_cell_source_id(Vector2i(SPAWN_COL, row)) != -1:
@@ -151,18 +246,20 @@ func _find_spawn_y() -> float:
 			break
 		surface_row = row
 
-	# Small Mario: collision bottom at +16, sprite is 16px tall
 	return (LEVEL_Y_OFFSET + surface_row * METATILE_PX - 2 * METATILE_PX) + 16
 
 func _on_player_died() -> void:
 	_unload_level()
 	_despawn_player()
+	TransitionManager.clear_spawn()
 	Game.on_player_died()
 	if Game.state == Game.GameState.MENU:
 		AudioSystem.stop_music()
 		AudioSystem.play_music("game_over")
 
 func _on_level_completed() -> void:
+	if _player and is_instance_valid(_player):
+		_player.save_state_to_game()
 	_unload_level()
 	_despawn_player()
 
@@ -193,11 +290,14 @@ func _on_star_power_ended() -> void:
 	else:
 		AudioSystem.play_music(_current_bgm)
 
-func _has_auto_enter_pipe() -> bool:
+func _on_scene_transition_requested(scene_path: String) -> void:
+	_load_scene(scene_path)
+
+func _has_transition_scene_pipe() -> bool:
 	if not _current_level:
 		return false
 	for node in _current_level.find_children("*", "PipeEntrance"):
-		if node.auto_enter:
+		if node.is_transition_scene:
 			return true
 	return false
 
@@ -221,14 +321,15 @@ func _dev_start() -> void:
 	_current_level = scene.instantiate()
 	_current_level.position.y = LEVEL_Y_OFFSET
 	_loading_level = true
-	_level_container.add_child(_current_level)
-	Game.current_level = _current_level
 
 	var level_builder = _current_level.get_node_or_null("LevelBuilder")
 	if level_builder:
 		Game.lvl_palette = level_builder.world_theme
 		Game.lvl_scenery_palette = level_builder.scenery_type
-		SignalBus.game_palette_updated.emit()
+
+	_level_container.add_child(_current_level)
+	Game.current_level = _current_level
+	SignalBus.game_palette_updated.emit()
 
 	_player = PLAYER_SCENE.instantiate()
 	_level_container.add_child(_player)
@@ -240,8 +341,11 @@ func _dev_start() -> void:
 		_player.position = Vector2(SPAWN_X, _find_spawn_y())
 		_player.call_deferred("snap_to_ground")
 
-	_current_bgm = THEME_BGM.get(Game.lvl_palette, "overworld_bgm")
-	if _has_auto_enter_pipe():
+	if level_builder and not level_builder.bgm_override.is_empty():
+		_current_bgm = level_builder.bgm_override
+	else:
+		_current_bgm = THEME_BGM.get(Game.lvl_palette, "overworld_bgm")
+	if _has_transition_scene_pipe():
 		AudioSystem.play_music("scene_change_bgm")
 	else:
 		AudioSystem.play_music(_current_bgm)

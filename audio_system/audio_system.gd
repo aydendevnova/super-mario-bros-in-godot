@@ -120,7 +120,7 @@ func _process(delta: float) -> void:
 			_sfx_left[i] -= delta
 			if _sfx_left[i] <= 0.0:
 				_restore_channel(i)
-		if _channel_muted[i]:
+		if _pause_muted or _channel_muted[i]:
 			_ch[i].volume_db = -80.0
 
 
@@ -205,6 +205,27 @@ func is_music_playing() -> bool:
 
 func is_channel_muted(ch: int) -> bool:
 	return _channel_muted[ch] if ch >= 0 and ch < CH_COUNT else false
+
+
+var _pause_muted := false
+
+func pause_streams() -> void:
+	for i in CH_COUNT:
+		_ch[i].stream_paused = true
+
+func unpause_streams_muted() -> void:
+	_pause_muted = true
+	for i in CH_COUNT:
+		_ch[i].volume_db = -80.0
+		_ch[i].stream_paused = false
+
+func end_pause_mute() -> void:
+	_pause_muted = false
+	for i in CH_COUNT:
+		if _channel_muted[i]:
+			_ch[i].volume_db = -80.0
+		else:
+			_ch[i].volume_db = 0.0
 
 
 func _load_stream(group: String, track_name: String, ch: int) -> AudioStream:

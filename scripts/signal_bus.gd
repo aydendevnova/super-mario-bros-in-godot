@@ -10,3 +10,4 @@ signal coins_updated(coins: int)
 signal time_updated(time: int)
 signal pipe_blackout(active: bool)
 signal star_power_ended
+signal scene_transition_requested(scene_path: String)

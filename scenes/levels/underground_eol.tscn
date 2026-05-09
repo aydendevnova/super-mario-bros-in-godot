@@ -8,7 +8,6 @@
 [ext_resource type="TileSet" uid="uid://drbqyvcwe1wl8" path="res://tilesets/atmospheric_tileset.tres" id="6_6ejr1"]
 [ext_resource type="TileSet" uid="uid://dnylvyjtr38fk" path="res://tilesets/red_enemies.tres" id="7_1br8w"]
 [ext_resource type="PackedScene" uid="uid://bkywjeu2574u0" path="res://scenes/sprites/brick_bg.tscn" id="8_kr4uh"]
-[ext_resource type="Script" uid="uid://cnuf8qxvj258v" path="res://scenes/sprites/brick_bg.gd" id="9_irpuh"]
 [ext_resource type="PackedScene" uid="uid://ce2pfugcn4ybx" path="res://scenes/sprites/flag.tscn" id="10_polvs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yb278"]
@@ -27,11 +26,15 @@ shader_parameter/palette_id = 17
 shader = ExtResource("2_w52nc")
 shader_parameter/palette_id = 27
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yb278"]
+size = Vector2(18, 232)
+
 [node name="Level" type="Node2D" unique_id=1226794753]
 
 [node name="LevelBuilder" type="Node2D" parent="." unique_id=235941376]
 script = ExtResource("1_1ly3s")
 level_json_path = "res://data/levels/misc-underground-end.json"
+bgm_override = "overworld_bgm"
 
 [node name="Background" type="TileMapLayer" parent="LevelBuilder" unique_id=1320592047]
 material = SubResource("ShaderMaterial_yb278")
@@ -62,10 +65,19 @@ sprite_type = 7
 
 [node name="Scenes" type="Node2D" parent="LevelBuilder" unique_id=1392992945]
 
-[node name="BrickBg" type="StaticBody2D" parent="LevelBuilder/Scenes" unique_id=1947564881 instance=ExtResource("8_kr4uh")]
-z_index = 1
+[node name="BrickBg" parent="LevelBuilder/Scenes" unique_id=1947564881 instance=ExtResource("8_kr4uh")]
 position = Vector2(416, 160)
-script = ExtResource("9_irpuh")
 
 [node name="Flag" parent="." unique_id=1462559492 instance=ExtResource("10_polvs")]
 position = Vector2(304, 8)
+
+[node name="PipeDest" type="Marker2D" parent="." unique_id=1779069796]
+position = Vector2(16, 144)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=40343175]
+collision_layer = 255
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=372661087]
+position = Vector2(-9, 92)
+shape = SubResource("RectangleShape2D_yb278")

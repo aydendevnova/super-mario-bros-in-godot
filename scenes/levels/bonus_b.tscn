@@ -1383,3 +1383,6 @@ script = ExtResource("9_xt62b")
 z_index = 1
 position = Vector2(496, 160)
 script = ExtResource("9_xt62b")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(32, 144)

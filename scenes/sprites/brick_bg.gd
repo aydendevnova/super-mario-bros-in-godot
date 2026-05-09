@@ -12,7 +12,13 @@ var _flip_timer := 0.0
 
 func _ready() -> void:
 	super()
+	
 	_original_texture = sprite.texture
+	if sprite.texture is AtlasTexture:
+		var atlas_tex := sprite.texture as AtlasTexture
+		var region := atlas_tex.region
+		region.position.x = 16.0 if Game.lvl_palette == Palette.WorldTheme.OVERWORLD else 32.0
+		atlas_tex.region = region
 	$First.visible = false
 	$Second.visible = false
 	$Third.visible = false

@@ -66,8 +66,8 @@ func _bop(become_empty: bool) -> void:
 		sprite._apply_palette()
 
 	var tween := create_tween()
-	tween.tween_property(sprite, "position", Vector2(0, -6), 0.08)
-	tween.tween_property(sprite, "position", Vector2.ZERO, 0.08)
+	tween.tween_property(sprite, "position", Vector2(0, -6), 0.1)
+	tween.tween_property(sprite, "position", Vector2.ZERO, 0.1)
 	tween.tween_callback(func():
 		_bopping = false
 		if become_empty:
@@ -97,9 +97,10 @@ func _knock_enemies_above(player) -> void:
 			node.collect(true)
 
 func _spawn_item(scene: PackedScene, is_1up: bool) -> void:
-	for n in range(8):
-		await get_tree().physics_frame
 	AudioSystem.play_sfx("powerup_appears")
+	for n in range(16):
+		await get_tree().physics_frame
+	
 	var item := scene.instantiate()
 	item.position = Game.current_level.to_local(global_position)
 	if "is_1up" in item:

@@ -34,6 +34,7 @@ shader_parameter/palette_id = 27
 [node name="LevelBuilder" type="Node2D" parent="." unique_id=235941376]
 script = ExtResource("1_lcquy")
 level_json_path = "res://data/levels/bonus-H.json"
+bgm_override = "invincible_bgm"
 
 [node name="Background" type="TileMapLayer" parent="LevelBuilder" unique_id=1047679117]
 material = SubResource("ShaderMaterial_j7i51")
@@ -496,3 +497,6 @@ position = Vector2(976, 176)
 position = Vector2(256, 144)
 script = ExtResource("12_fwk32")
 movement_type = 6
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(32, 144)
