@@ -11,7 +11,7 @@ func _ready() -> void:
 	SignalBus.time_updated.connect(_on_time_updated)
 
 func _on_time_updated(time: int) -> void:
-	if time <= 0 and Game._level_finished:
+	if time <= 0 and Game.level_finished:
 		SignalBus.time_updated.disconnect(_on_time_updated)
 		_raise_flag()
 

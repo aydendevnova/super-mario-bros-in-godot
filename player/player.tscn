@@ -65,20 +65,20 @@ autoplay = "Idle"
 centered = false
 
 [node name="BigSprite" type="AnimatedSprite2D" parent="." unique_id=201910012]
+visible = false
 material = SubResource("ShaderMaterial_qjkh3")
 position = Vector2(0, -16)
 sprite_frames = ExtResource("4_g6k8r")
-animation = &"Flagpole"
+animation = &"Idle"
 autoplay = "Idle"
 centered = false
 
 [node name="TransitionSprite" type="AnimatedSprite2D" parent="." unique_id=455344183]
 visible = false
 material = SubResource("ShaderMaterial_qjkh3")
-position = Vector2(-1, -16)
-scale = Vector2(0.875, 1)
+position = Vector2(0, -16)
 sprite_frames = ExtResource("6_boad6")
-animation = &"grow"
+animation = &"shrink"
 centered = false
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1862369667]

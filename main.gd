@@ -273,7 +273,11 @@ func _on_palette_updated() -> void:
 		AudioSystem.play_music(_current_bgm)
 
 func _on_time_updated(t: int) -> void:
-	if t == 100 and not _hurry and not Game._level_finished:
+	if t <= 0 and not Game.level_finished and Game.state == Game.GameState.PLAYING:
+		if _player and is_instance_valid(_player) and not _player.is_dead:
+			_player.handle_death()
+		return
+	if t == 100 and not _hurry and not Game.level_finished:
 		_hurry = true
 		AudioSystem.stop_music()
 		AudioSystem.play_music("time_up_warning_sound")

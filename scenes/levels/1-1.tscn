@@ -271,7 +271,7 @@ dest_is_bonus_room = true
 position = Vector2(2624, 144)
 
 [node name="QuickStart" type="Marker2D" parent="." unique_id=1263071719]
-position = Vector2(2960, 0)
+position = Vector2(176, 128)
 
 [node name="Flag" parent="." unique_id=1462559492 instance=ExtResource("12_3gwmd")]
 position = Vector2(3168, 8)

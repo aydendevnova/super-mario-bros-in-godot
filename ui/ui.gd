@@ -32,7 +32,7 @@ func _ready() -> void:
 	SignalBus.coins_updated.connect(func(v): hud_coin.text = "*%02d" % v)
 	SignalBus.time_updated.connect(func(v):
 		if Game.state == Game.GameState.PLAYING or Game.state == Game.GameState.DEAD:
-			hud_time.text = str(v).lpad(3)
+			hud_time.text = str(v).lpad(3, "0")
 	)
 
 	load_timer.wait_time = 3.0
@@ -106,7 +106,7 @@ func _refresh_hud() -> void:
 	hud_score.text = "%06d" % Game.score
 	hud_coin.text = "*%02d" % Game.coins
 	hud_world.text = Game.get_level_key()
-	hud_time.text = str(Game.time).lpad(3)
+	hud_time.text = str(Game.time).lpad(3, "0")
 	menu_top_score.text = "TOP- %06d" % Game.top_score
 
 func _on_pipe_blackout(active: bool) -> void:

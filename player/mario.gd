@@ -166,6 +166,7 @@ func _ready():
 	_update_tree()
 	movement_state_machine.setup(self)
 	camera.make_current()
+	transition_sprite.hide()
 
 func snap_to_ground() -> void:
 	for _i in range(SPAWN_GROUND_SNAP_MAX_PX):

@@ -34,7 +34,7 @@ const LEVEL_INTRO_SCENES := {
 
 var _play_intro_scene := false
 var _time_accumulator: float = 0.0
-var _level_finished := false
+var level_finished := false
 var level_timer_paused := false
 var _countdown_active := false
 var _countdown_callback: Callable
@@ -56,7 +56,7 @@ func _process(delta: float) -> void:
 				_countdown_callback.call()
 		return
 
-	if state == GameState.PLAYING and not _level_finished and not level_timer_paused and time > 0:
+	if state == GameState.PLAYING and not level_finished and not level_timer_paused and time > 0:
 		_time_accumulator += delta
 		if _time_accumulator >= 0.4:
 			_time_accumulator -= 0.4
@@ -77,7 +77,7 @@ func start_game() -> void:
 func begin_level() -> void:
 	time = 400
 	_time_accumulator = 0.0
-	_level_finished = false
+	level_finished = false
 	_countdown_active = false
 	level_timer_paused = false
 	state = GameState.PLAYING
@@ -113,7 +113,7 @@ func get_level_scene_path() -> String:
 	return "res://scenes/levels/%s.tscn" % get_level_key()
 
 func level_complete() -> void:
-	_level_finished = true
+	level_finished = true
 	_time_accumulator = 0.0
 
 func countdown_time_to_score(callback: Callable) -> void:
@@ -127,7 +127,7 @@ func countdown_time_to_score(callback: Callable) -> void:
 	_countdown_active = true
 
 func advance_level() -> void:
-	_level_finished = false
+	level_finished = false
 	_countdown_active = false
 	level += 1
 	if level > 4:

@@ -52,7 +52,6 @@ shader_parameter/scanline_phase_shift = 0.333
 [node name="Main" type="Node" unique_id=1024354604]
 script = ExtResource("1_272bh")
 dev_quick_start = true
-dev_level = "1-2"
 
 [node name="PauseHandler" type="CanvasLayer" parent="." unique_id=1264867346]
 process_mode = 3
