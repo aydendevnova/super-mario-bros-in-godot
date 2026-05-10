@@ -67,6 +67,8 @@ var auto_walk_right = false
 var auto_walk_speed: float = MAX_WALK_SPEED / AUTO_WALK_SPEED_DEFAULT_DIVISOR
 var camera_frozen := false
 var _camera_frozen_pos := Vector2.ZERO
+var _push_camera_max_x: float = 0.0
+var _left_wall: StaticBody2D
 var movement_state_name: StringName = &"idle"
 enum MoveState { IDLE, WALK, SPRINT, JUMP, FALL, SKID, CROUCH, LOCKED, AUTO_WALK, ENTER_PIPE, EXIT_PIPE, CLIMB_VINE, FLAG_POLE, UNKNOWN }
 const MOVE_STATE_FROM_NAME := {
@@ -170,6 +172,21 @@ func _ready():
 	movement_state_machine.setup(self)
 	camera.make_current()
 	transition_sprite.hide()
+	_create_left_wall()
+
+func _create_left_wall() -> void:
+	_left_wall = StaticBody2D.new()
+	_left_wall.top_level = true
+	_left_wall.collision_layer = 0
+	_left_wall.set_collision_layer_value(9, true)
+	_left_wall.collision_mask = 0
+	set_collision_mask_value(9, true)
+	var shape_node := CollisionShape2D.new()
+	var shape := RectangleShape2D.new()
+	shape.size = Vector2(4, 1024)
+	shape_node.shape = shape
+	_left_wall.add_child(shape_node)
+	add_child(_left_wall)
 
 func snap_to_ground() -> void:
 	for _i in range(SPAWN_GROUND_SNAP_MAX_PX):
@@ -202,6 +219,7 @@ func _process(delta):
 	process_input()
 	process_animation()
 
+
 func _physics_process(delta):
 	if Game.is_paused or get_tree().paused:
 		return
@@ -215,19 +233,24 @@ func _physics_process(delta):
 	if not _corner_correct():
 		handle_last_collision()
 	_check_invisible_blocks()
-	
+
+
+	_update_left_wall()
+
 	if (position.y > 16 && not is_dead):
 		handle_death()
-	
-func process_camera_bounds():
-	if global_position.x > camera.position.x and global_position.y <= 0:
-		camera.position.x = global_position.x
-	
-	var camera_left_bound = 8 + camera.position.x - get_viewport_rect().size.x / 2 / camera.zoom.x
 
-	if global_position.x <= camera_left_bound:
-		velocity.x = 0
-		global_position.x = camera_left_bound + .001
+func _update_left_wall() -> void:
+	if Game.allow_going_back or camera_frozen:
+		camera.position.x = 0 if not camera_frozen else camera.position.x
+		_left_wall.global_position.x = -9999
+		return
+
+	_push_camera_max_x = max(_push_camera_max_x, global_position.x)
+	camera.position.x = _push_camera_max_x - global_position.x
+
+	var half_vp := get_viewport_rect().size.x / 2.0 / camera.zoom.x
+	_left_wall.global_position = Vector2(_push_camera_max_x - half_vp - 2, global_position.y)
 
 func process_input():
 	if is_locked or movement_state_name == &"flag_pole":
@@ -607,6 +630,10 @@ func unfreeze_camera() -> void:
 func snap_camera() -> void:
 	camera_frozen = false
 	camera.position_smoothing_enabled = false
+	camera.position.x = 0
+	_push_camera_max_x = global_position.x
+	if _left_wall:
+		_left_wall.global_position.x = -9999
 
 	camera.reset_smoothing()
 	camera.force_update_scroll()
@@ -661,6 +688,10 @@ func reset() -> void:
 	reset_auto_walk_speed()
 	camera_frozen = false
 	camera.position_smoothing_enabled = false
+	camera.position.x = 0
+	_push_camera_max_x = 0.0
+	if _left_wall:
+		_left_wall.global_position.x = -9999
 	_is_transitioning = false
 	_is_shrink_transition = false
 	_shrink_cancel_timer = 0.0

@@ -52,6 +52,7 @@ shader_parameter/scanline_phase_shift = 0.333
 [node name="Main" type="Node" unique_id=1024354604]
 script = ExtResource("1_272bh")
 dev_quick_start = true
+dev_level = "1-3"
 
 [node name="PauseHandler" type="CanvasLayer" parent="." unique_id=1264867346]
 process_mode = 3
@@ -73,10 +74,22 @@ grow_vertical = 2
 script = ExtResource("4_yaehf")
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=2009417751]
+transparent_bg = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(900, 900)
 render_target_update_mode = 4
+
+[node name="BgLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport" unique_id=378957182]
+layer = -100
+
+[node name="BgColor" type="ColorRect" parent="SubViewportContainer/SubViewport/BgLayer" unique_id=1320242596]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.581, 0.581, 1, 1)
 
 [node name="CanvasLayer2" parent="SubViewportContainer/SubViewport" unique_id=1955268887 instance=ExtResource("18_074og")]
 visible = false

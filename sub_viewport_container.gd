@@ -23,6 +23,7 @@ extends SubViewportContainer
 
 var _viewport: SubViewport
 var _composite_rect: ColorRect
+var _bg_rect: ColorRect
 
 func _ready() -> void:
 	for child in get_children():
@@ -37,8 +38,13 @@ func _ready() -> void:
 	# Find the composite ColorRect so we can resize it with the viewport
 	_find_composite_rect(_viewport)
 
+	_bg_rect = _viewport.get_node_or_null("BgLayer/BgColor") as ColorRect
+	if _bg_rect:
+		Palette.set_bg_rect(_bg_rect)
+
 	_on_resize()
 	get_viewport().size_changed.connect(_on_resize)
+	SignalBus.settings_changed.connect(_on_resize)
 
 func _find_composite_rect(node: Node) -> void:
 	for child in node.get_children():
@@ -58,13 +64,19 @@ func _on_resize() -> void:
 		return
 
 	var scale_factor := window_size.y / float(base_height)
-	var source_width := int(ceil(window_size.x / scale_factor))
-
-	source_width = max(source_width, min_width)
-	if max_width > 0:
-		source_width = min(source_width, max_width)
+	var source_width: int
+	if Game.allow_widescreen:
+		source_width = int(ceil(window_size.x / scale_factor))
+		source_width = max(source_width, min_width)
+		if max_width > 0:
+			source_width = min(source_width, max_width)
+	else:
+		source_width = min_width
 
 	_viewport.size = Vector2i(source_width, base_height)
+
+	if _bg_rect:
+		_bg_rect.size = Vector2(source_width, base_height)
 
 	# Resize the composite ColorRect to cover the full viewport
 	if _composite_rect:

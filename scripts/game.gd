@@ -25,6 +25,13 @@ var player_power_state: int = 0
 var player_star_power := false
 var player_star_timer := 0.0
 
+# --- Settings (persisted to disk) ---
+var allow_going_back: bool = false
+var allow_widescreen: bool = false
+var four_channel_audio: bool = false
+
+const SETTINGS_PATH := "user://options.cfg"
+
 const LEVEL_INTRO_SCENES := {
 	"1-2": "res://scenes/levels/underground_transition.tscn",
 	"2-2": "res://scenes/levels/underground_transition.tscn",
@@ -40,6 +47,9 @@ var _countdown_active := false
 var _countdown_callback: Callable
 const COUNTDOWN_TICK_INTERVAL := 0.014
 const POINTS_PER_TICK := 50
+
+func _ready() -> void:
+	load_settings()
 
 func _process(delta: float) -> void:
 	if _countdown_active and time > 0:
@@ -136,3 +146,19 @@ func advance_level() -> void:
 	_play_intro_scene = LEVEL_INTRO_SCENES.has(get_level_key())
 	SignalBus.level_completed.emit()
 	state = GameState.TRANSITION
+
+func load_settings() -> void:
+	var config := ConfigFile.new()
+	if config.load(SETTINGS_PATH) != OK:
+		return
+	allow_going_back = config.get_value("options", "allow_going_back", false)
+	allow_widescreen = config.get_value("options", "allow_widescreen", false)
+	four_channel_audio = config.get_value("options", "four_channel_audio", false)
+
+func save_settings() -> void:
+	var config := ConfigFile.new()
+	config.set_value("options", "allow_going_back", allow_going_back)
+	config.set_value("options", "allow_widescreen", allow_widescreen)
+	config.set_value("options", "four_channel_audio", four_channel_audio)
+	config.save(SETTINGS_PATH)
+	SignalBus.settings_changed.emit()

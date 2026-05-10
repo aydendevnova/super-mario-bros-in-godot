@@ -24,9 +24,16 @@ const CLEAR_COLOR := {
 	WorldTheme.UNDERWATER:   Color("#9494ff"),
 }
 
-func _ready() -> void:
-	SignalBus.game_palette_updated.connect(_apply_clear_color)
-	_apply_clear_color()
+var _bg_rect: ColorRect
 
-func _apply_clear_color() -> void:
-	RenderingServer.set_default_clear_color(CLEAR_COLOR[Game.lvl_palette])
+func _ready() -> void:
+	SignalBus.game_palette_updated.connect(_apply_bg_color)
+
+func set_bg_rect(rect: ColorRect) -> void:
+	_bg_rect = rect
+	_apply_bg_color()
+
+func _apply_bg_color() -> void:
+	var color: Color = CLEAR_COLOR[Game.lvl_palette]
+	if _bg_rect and is_instance_valid(_bg_rect):
+		_bg_rect.color = color

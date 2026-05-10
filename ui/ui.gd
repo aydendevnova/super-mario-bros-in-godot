@@ -1,13 +1,12 @@
 extends CanvasLayer
 
 @onready var main_menu: CenterContainer = $MainMenu
+@onready var main_menu_buttons: MarginContainer = $MainMenu/MarginContainer/VBoxContainer/MainMenuButtons
+@onready var options_menu_buttons: MarginContainer = $MainMenu/MarginContainer/VBoxContainer/OptionsMenuButtons
 
 @onready var hud: CenterContainer = $HUD
 @onready var transition: Control = $Transition
 @onready var transition_content: CenterContainer = $Transition/Transition
-
-@onready var cursor_1p: TextureRect = get_node("MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/1PlayerGame/HBoxContainer/Cursor")
-@onready var cursor_2p: TextureRect = get_node("MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/2PlayerGame/HBoxContainer/Cursor")
 
 @onready var hud_score: Control = $HUD/MarginContainer/UI/BottomLine/Score
 @onready var hud_coin: Control = $HUD/MarginContainer/UI/BottomLine/CoinDiv/Coin
@@ -20,11 +19,7 @@ extends CanvasLayer
 
 @onready var coin_bottom_sprite: TextureRect = $HUD/MarginContainer/UI/BottomLine/CoinDiv/CoinBottomSprite
 
-@onready var menu_top_score: Control = $MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Label
-
-
-
-var menu_selection: int = 0
+@onready var menu_top_score: Control = $MainMenu/MarginContainer/VBoxContainer/MainMenuButtons/VBoxContainer/MarginContainer/HBoxContainer/Label
 
 
 func _ready() -> void:
@@ -41,25 +36,19 @@ func _ready() -> void:
 	load_timer.one_shot = true
 	load_timer.timeout.connect(_on_load_timer_timeout)
 
+	main_menu_buttons.game_start_requested.connect(func(): Game.start_game())
+	main_menu_buttons.options_requested.connect(_open_options)
+	options_menu_buttons.back_requested.connect(_close_options)
+
 	_show_menu()
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("start"):
-		if Game.state == Game.GameState.MENU:
-			Game.start_game()
-		return
+func _open_options() -> void:
+	main_menu_buttons.deactivate()
+	options_menu_buttons.activate()
 
-	if Game.state == Game.GameState.MENU:
-		if event.is_action_pressed("ui_down") or event.is_action_pressed("crouch"):
-			menu_selection = 1
-			_update_cursor()
-		elif event.is_action_pressed("ui_up") or event.is_action_pressed("jump"):
-			menu_selection = 0
-			_update_cursor()
-
-func _update_cursor() -> void:
-	cursor_1p.modulate.a = 1.0 if menu_selection == 0 else 0.0
-	cursor_2p.modulate.a = 1.0 if menu_selection == 1 else 0.0
+func _close_options() -> void:
+	options_menu_buttons.deactivate()
+	main_menu_buttons.activate(2)
 
 func _show_menu() -> void:
 	show()
@@ -67,13 +56,15 @@ func _show_menu() -> void:
 	hud.visible = true
 	transition.visible = false
 	coin_bottom_sprite.visible = true
-	menu_selection = 0
-	_update_cursor()
+	options_menu_buttons.deactivate()
+	main_menu_buttons.activate()
 	_refresh_hud()
 	hud_time.text = ""
 
 func _show_transition() -> void:
 	main_menu.visible = false
+	main_menu_buttons.deactivate()
+	options_menu_buttons.deactivate()
 	hud.visible = true
 	transition_content.visible = true
 	transition.visible = true
@@ -86,6 +77,8 @@ func _show_transition() -> void:
 
 func _show_gameplay() -> void:
 	main_menu.visible = false
+	main_menu_buttons.deactivate()
+	options_menu_buttons.deactivate()
 	hud.visible = true
 	transition.visible = false
 	coin_bottom_sprite.visible = true

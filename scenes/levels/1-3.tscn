@@ -191,4 +191,4 @@ position = Vector2(2432, 8)
 hide_block = NodePath("../LevelBuilder/Scenes/EndBlock")
 
 [node name="QuickStart" type="Marker2D" parent="." unique_id=858077519]
-position = Vector2(2320, 0)
+position = Vector2(48, 132)

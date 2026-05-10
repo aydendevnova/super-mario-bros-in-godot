@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://suotrbf0iuex" path="res://ui/small_mario_display.tres" id="6_bo1jx"]
 [ext_resource type="Script" uid="uid://b6p3et14aan2l" path="res://ui/ui.gd" id="7_ui_gd"]
 [ext_resource type="Script" uid="uid://b6mas8uqj1jdd" path="res://ui/controls.gd" id="8_controls"]
+[ext_resource type="Script" uid="uid://lb4kwo1sng1p" path="res://ui/main_menu.gd" id="9_mnmnu"]
+[ext_resource type="Script" uid="uid://ehm6vmxgscb1" path="res://ui/options_menu.gd" id="10_optmn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xuqvo"]
 shader = ExtResource("1_vkava")
@@ -99,30 +101,31 @@ script = ExtResource("3_obcwv")
 text = "&C1985 NINTENDO"
 scale_factor = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=518485546]
+[node name="MainMenuButtons" type="MarginContainer" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=518485546]
 layout_mode = 2
 theme_override_constants/margin_top = 56
+script = ExtResource("9_mnmnu")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer" unique_id=649759563]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MainMenuButtons" unique_id=649759563]
 layout_mode = 2
 theme_override_constants/separation = 32
 alignment = 1
 
-[node name="1PlayerGame" type="VBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=797047132]
+[node name="1PlayerGame" type="VBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MainMenuButtons/VBoxContainer" unique_id=797047132]
 layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/1PlayerGame" unique_id=1023147950]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MainMenuButtons/VBoxContainer/1PlayerGame" unique_id=1023147950]
 layout_mode = 2
 alignment = 1
 
-[node name="Cursor" type="TextureRect" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/1PlayerGame/HBoxContainer" unique_id=595662190]
+[node name="Cursor" type="TextureRect" parent="MainMenu/MarginContainer/VBoxContainer/MainMenuButtons/VBoxContainer/1PlayerGame/HBoxContainer" unique_id=595662190]
 material = SubResource("ShaderMaterial_gycre")
 layout_mode = 2
 texture = ExtResource("5_tf0e0")
 expand_mode = 3
 
-[node name="Label" type="Control" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/1PlayerGame/HBoxContainer" unique_id=1110658711]
+[node name="Label" type="Control" parent="MainMenu/MarginContainer/VBoxContainer/MainMenuButtons/VBoxContainer/1PlayerGame/HBoxContainer" unique_id=1110658711]
 texture_filter = 1
 material = SubResource("ShaderMaterial_vkava")
 custom_minimum_size = Vector2(448, 32)
@@ -131,22 +134,21 @@ script = ExtResource("3_obcwv")
 text = " 1 PLAYER GAME"
 scale_factor = 4
 
-[node name="2PlayerGame" type="VBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=888077722]
+[node name="2PlayerGame" type="VBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MainMenuButtons/VBoxContainer" unique_id=888077722]
 layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/2PlayerGame" unique_id=547584345]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MainMenuButtons/VBoxContainer/2PlayerGame" unique_id=547584345]
 layout_mode = 2
 alignment = 1
 
-[node name="Cursor" type="TextureRect" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/2PlayerGame/HBoxContainer" unique_id=56388817]
-modulate = Color(1, 1, 1, 0)
+[node name="Cursor" type="TextureRect" parent="MainMenu/MarginContainer/VBoxContainer/MainMenuButtons/VBoxContainer/2PlayerGame/HBoxContainer" unique_id=56388817]
 material = SubResource("ShaderMaterial_gycre")
 layout_mode = 2
 texture = ExtResource("5_tf0e0")
 expand_mode = 3
 
-[node name="Label" type="Control" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/2PlayerGame/HBoxContainer" unique_id=53321425]
+[node name="Label" type="Control" parent="MainMenu/MarginContainer/VBoxContainer/MainMenuButtons/VBoxContainer/2PlayerGame/HBoxContainer" unique_id=53321425]
 texture_filter = 1
 material = SubResource("ShaderMaterial_vkava")
 custom_minimum_size = Vector2(448, 32)
@@ -155,21 +157,146 @@ script = ExtResource("3_obcwv")
 text = " 2 PLAYER GAME"
 scale_factor = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1450640592]
-layout_mode = 2
-theme_override_constants/margin_top = 28
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=2066044803]
+[node name="Options" type="VBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MainMenuButtons/VBoxContainer" unique_id=3260255]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Control" parent="MainMenu/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1667671561]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MainMenuButtons/VBoxContainer/Options" unique_id=1777544338]
+layout_mode = 2
+alignment = 1
+
+[node name="Cursor" type="TextureRect" parent="MainMenu/MarginContainer/VBoxContainer/MainMenuButtons/VBoxContainer/Options/HBoxContainer" unique_id=1543723127]
+material = SubResource("ShaderMaterial_gycre")
+layout_mode = 2
+texture = ExtResource("5_tf0e0")
+expand_mode = 3
+
+[node name="Label" type="Control" parent="MainMenu/MarginContainer/VBoxContainer/MainMenuButtons/VBoxContainer/Options/HBoxContainer" unique_id=1122758409]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(448, 32)
+layout_mode = 2
+script = ExtResource("3_obcwv")
+text = " OPTIONS      "
+scale_factor = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/MarginContainer/VBoxContainer/MainMenuButtons/VBoxContainer" unique_id=1450640592]
+layout_mode = 2
+theme_override_constants/margin_top = 28
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/MainMenuButtons/VBoxContainer/MarginContainer" unique_id=2066044803]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Control" parent="MainMenu/MarginContainer/VBoxContainer/MainMenuButtons/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1667671561]
 texture_filter = 1
 material = SubResource("ShaderMaterial_vkava")
 custom_minimum_size = Vector2(352, 32)
 layout_mode = 2
 script = ExtResource("3_obcwv")
 text = "TOP- 000000"
+scale_factor = 4
+
+[node name="OptionsMenuButtons" type="MarginContainer" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=642691257]
+layout_mode = 2
+theme_override_constants/margin_top = 56
+script = ExtResource("10_optmn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/OptionsMenuButtons" unique_id=995362235]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="AllowGoingBack" type="VBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/OptionsMenuButtons/VBoxContainer" unique_id=1990398652]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/OptionsMenuButtons/VBoxContainer/AllowGoingBack" unique_id=768008274]
+layout_mode = 2
+alignment = 1
+
+[node name="Cursor" type="TextureRect" parent="MainMenu/MarginContainer/VBoxContainer/OptionsMenuButtons/VBoxContainer/AllowGoingBack/HBoxContainer" unique_id=1093412031]
+material = SubResource("ShaderMaterial_gycre")
+layout_mode = 2
+texture = ExtResource("5_tf0e0")
+expand_mode = 3
+
+[node name="Label" type="Control" parent="MainMenu/MarginContainer/VBoxContainer/OptionsMenuButtons/VBoxContainer/AllowGoingBack/HBoxContainer" unique_id=1985581435]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(544, 32)
+layout_mode = 2
+script = ExtResource("3_obcwv")
+text = " ALLOW GOING BACK"
+scale_factor = 4
+
+[node name="AllowWidescreen" type="VBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/OptionsMenuButtons/VBoxContainer" unique_id=1432632172]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/OptionsMenuButtons/VBoxContainer/AllowWidescreen" unique_id=1070066845]
+layout_mode = 2
+alignment = 1
+
+[node name="Cursor" type="TextureRect" parent="MainMenu/MarginContainer/VBoxContainer/OptionsMenuButtons/VBoxContainer/AllowWidescreen/HBoxContainer" unique_id=1526334236]
+material = SubResource("ShaderMaterial_gycre")
+layout_mode = 2
+texture = ExtResource("5_tf0e0")
+expand_mode = 3
+
+[node name="Label" type="Control" parent="MainMenu/MarginContainer/VBoxContainer/OptionsMenuButtons/VBoxContainer/AllowWidescreen/HBoxContainer" unique_id=1710625255]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(544, 32)
+layout_mode = 2
+script = ExtResource("3_obcwv")
+text = " ALLOW WIDESCREEN"
+scale_factor = 4
+
+[node name="4ChannelAudio" type="VBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/OptionsMenuButtons/VBoxContainer" unique_id=1082135784]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/OptionsMenuButtons/VBoxContainer/4ChannelAudio" unique_id=131618585]
+layout_mode = 2
+alignment = 1
+
+[node name="Cursor" type="TextureRect" parent="MainMenu/MarginContainer/VBoxContainer/OptionsMenuButtons/VBoxContainer/4ChannelAudio/HBoxContainer" unique_id=650069090]
+material = SubResource("ShaderMaterial_gycre")
+layout_mode = 2
+texture = ExtResource("5_tf0e0")
+expand_mode = 3
+
+[node name="Label" type="Control" parent="MainMenu/MarginContainer/VBoxContainer/OptionsMenuButtons/VBoxContainer/4ChannelAudio/HBoxContainer" unique_id=895448028]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(544, 32)
+layout_mode = 2
+script = ExtResource("3_obcwv")
+text = " 4-CHANNEL AUDIO "
+scale_factor = 4
+
+[node name="Back" type="VBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/OptionsMenuButtons/VBoxContainer" unique_id=1665365644]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer/OptionsMenuButtons/VBoxContainer/Back" unique_id=815485416]
+layout_mode = 2
+alignment = 1
+
+[node name="Cursor" type="TextureRect" parent="MainMenu/MarginContainer/VBoxContainer/OptionsMenuButtons/VBoxContainer/Back/HBoxContainer" unique_id=2114484146]
+material = SubResource("ShaderMaterial_gycre")
+layout_mode = 2
+texture = ExtResource("5_tf0e0")
+expand_mode = 3
+
+[node name="Label" type="Control" parent="MainMenu/MarginContainer/VBoxContainer/OptionsMenuButtons/VBoxContainer/Back/HBoxContainer" unique_id=1682831185]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vkava")
+custom_minimum_size = Vector2(544, 32)
+layout_mode = 2
+script = ExtResource("3_obcwv")
+text = " BACK            "
 scale_factor = 4
 
 [node name="Transition" type="Control" parent="." unique_id=722732007]

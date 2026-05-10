@@ -107,6 +107,7 @@ start={
 2d_physics/layer_6="bonus"
 2d_physics/layer_7="fireball"
 2d_physics/layer_8="flagpole"
+2d_physics/layer_9="camera_wall"
 
 [physics]
 
@@ -114,6 +115,7 @@ start={
 
 [rendering]
 
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"

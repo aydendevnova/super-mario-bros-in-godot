@@ -10,6 +10,8 @@ const CH_NAMES := ["Pulse1", "Pulse2", "Triangle", "Noise"]
 
 var _ch: Array = []
 
+const SFX_POOL_SIZE := 4
+var _sfx_pool: Array[AudioStreamPlayer] = []
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -19,6 +21,13 @@ func _ready() -> void:
 		player.bus = "Master"
 		add_child(player)
 		_ch.append(player)
+
+	for i in SFX_POOL_SIZE:
+		var player := AudioStreamPlayer.new()
+		player.name = "SfxPool%d" % i
+		player.bus = "Master"
+		add_child(player)
+		_sfx_pool.append(player)
 
 # --- Music state ---
 var _track := ""
@@ -91,6 +100,11 @@ func play_sfx(sfx_name: String) -> void:
 	if t.is_empty():
 		push_error("AudioSystem: unknown sfx '%s'" % sfx_name)
 		return
+
+	if not Game.four_channel_audio:
+		_play_sfx_pooled(t, sfx_name)
+		return
+
 	for v in t.voices:
 		var ch: int = v as int
 		if ch >= CH_COUNT:
@@ -111,6 +125,26 @@ func play_sfx(sfx_name: String) -> void:
 		_ch[ch].volume_db = -80.0 if _channel_muted[ch] else 0.0
 		_ch[ch].stream = s
 		_ch[ch].play()
+
+func _play_sfx_pooled(t: Dictionary, sfx_name: String) -> void:
+	var ch_index: int = t.voices[0] as int if t.voices.size() > 0 else 0
+	var s := _load_stream(t.group, sfx_name, clampi(ch_index, 0, CH_COUNT - 1))
+	if not s:
+		return
+	var player := _get_free_sfx_player()
+	player.stream = s
+	player.volume_db = 0.0
+	player.play()
+
+func _get_free_sfx_player() -> AudioStreamPlayer:
+	for p in _sfx_pool:
+		if not p.playing:
+			return p
+	var oldest := _sfx_pool[0]
+	for p in _sfx_pool:
+		if p.get_playback_position() > oldest.get_playback_position():
+			oldest = p
+	return oldest
 
 
 func _process(delta: float) -> void:
